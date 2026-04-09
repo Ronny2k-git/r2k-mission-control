@@ -1,0 +1,21 @@
+# Node
+node_modules/
+dist/
+build/
+
+# Env
+.env
+.env.local
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Vite
+client/dist/
+
+# Server
+server/node_modules/
+server/dist/
