@@ -15,10 +15,12 @@
 }
 
 @theme {
-  --color-header-bg: rgba(2, 17, 20, 0.65);
+  --color-light-background: rgba(2, 17, 20, 0.65);
   --color-cyber-cyan: rgba(62, 155, 185);
   --color-cyber-cyan-text: rgba(96, 215, 250);
   --color-cyan-text-light: rgba(166, 223, 238);
+
+  --text-description: 1.1875rem;
 }
 
 body {
