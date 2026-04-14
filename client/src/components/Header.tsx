@@ -1,5 +1,5 @@
 import { CheckCircle, History, Timer } from "lucide-react";
-import { useRef, useState } from "react";
+import { useClickFeedback } from "../hooks";
 
 const headerNavigation = [
   { nav: "/", icon: CheckCircle, label: "Launch" },
@@ -8,20 +8,18 @@ const headerNavigation = [
 ];
 
 export function Header() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const clickSound = useRef(new Audio("/sound/click.mp3"));
+  const { activeIndex, triggerIndex } = useClickFeedback({
+    audioPath: "/sound/click.mp3",
+    duration: 100,
+  });
 
-  // Function used to animate nav and play a sound when clicked.
+  // Animate navigation and play a sound when clicked.
   const handleClick = (index: number, nav: string, e: React.MouseEvent) => {
     e.preventDefault();
 
-    setActiveIndex(index);
-
-    clickSound.current.currentTime = 0;
-    clickSound.current.play();
+    triggerIndex(index);
 
     setTimeout(() => {
-      setActiveIndex(null);
       window.location.href = nav;
     }, 100);
   };
@@ -38,14 +36,12 @@ export function Header() {
 
       <nav className="flex h-full justify-center gap-2 font-semi text-cyan-text-light">
         {headerNavigation.map((item, i) => {
-          const isActive = activeIndex === i;
-
           return (
             <a
               key={i}
               href={item.nav}
               onClick={(e) => handleClick(i, item.nav, e)}
-              className={`flex items-center gap-2 sm:px-1 lg:px-3 text-base sm:text-xl ${isActive ? "bg-cyan-400/95" : "bg-transparent"}`}
+              className={`flex items-center gap-2 sm:px-1 lg:px-3 text-base sm:text-xl ${activeIndex === i ? "bg-cyan-400/95" : "bg-transparent"}`}
             >
               {item.icon && <item.icon className="w-5 h-5" />}
               {item.label}
