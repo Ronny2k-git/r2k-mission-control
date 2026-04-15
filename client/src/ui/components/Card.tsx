@@ -5,9 +5,15 @@ import { CornerBorders } from "./CornerBorders";
 export type CardProps = ComponentPropsWithRef<"div"> & {
   children?: ReactNode;
   className?: string;
+  cornerBorders?: boolean;
 };
 
-export function Card({ className, children, ...props }: CardProps) {
+export function Card({
+  className,
+  cornerBorders = true,
+  children,
+  ...props
+}: CardProps) {
   return (
     <div
       className={twMerge(
@@ -17,7 +23,7 @@ export function Card({ className, children, ...props }: CardProps) {
       {...props}
     >
       {/* Card Corner Edges */}
-      <CornerBorders color="border-cyan-400" size="md" />
+      {cornerBorders && <CornerBorders color="border-cyan-400" size="md" />}
 
       {/* Children */}
       {children}

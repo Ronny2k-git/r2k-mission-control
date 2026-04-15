@@ -2,7 +2,7 @@ export function Divider({ label }: { label?: string }) {
   return (
     <div className={`flex items-center w-full ${label ? "gap-4" : ""}`}>
       {label ? (
-        <span className="text-xs text-cyan-text-light uppercase font-semibold tracking-widest">
+        <span className="text-xs text-cyber-cyan-text uppercase font-semibold tracking-widest">
           ◊ {label}
         </span>
       ) : (
