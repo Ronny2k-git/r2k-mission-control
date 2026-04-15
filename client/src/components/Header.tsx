@@ -26,8 +26,8 @@ export function Header() {
 
   return (
     <header
-      className="w-full h-20 px-4 flex items-center gap-2 sm:gap-4 justify-center border-b-5 border-solid border-cyber-cyan
-        backdrop-blur-[1px] bg-light-background"
+      className="w-full h-20 px-4 flex items-center gap-2 sm:gap-4 justify-center border-b-3 border-solid border-cyber-cyan
+        backdrop-blur-[1px] bg-light-background/70"
     >
       <img src={"/favicon.png"} className="size-12" />
       <span className="max-md:hidden font-semibold text-cyber-cyan-text text-3xl tracking-tight">
@@ -41,7 +41,7 @@ export function Header() {
               key={i}
               href={item.nav}
               onClick={(e) => handleClick(i, item.nav, e)}
-              className={`flex items-center gap-2 sm:px-1 lg:px-3 text-base sm:text-xl ${activeIndex === i ? "bg-cyan-400/95" : "bg-transparent"}`}
+              className={`flex items-center gap-2 sm:px-1 lg:px-3 text-sm sm:text-lg ${activeIndex === i ? "bg-cyan-400/95" : "bg-transparent"}`}
             >
               {item.icon && <item.icon className="w-5 h-5" />}
               {item.label}

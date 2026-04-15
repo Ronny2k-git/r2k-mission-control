@@ -1,6 +1,19 @@
 import { Check } from "lucide-react";
 import { useClickFeedback } from "../hooks";
-import { Button, Card, Input, Selector } from "../ui/components";
+import { Button, Card, Divider, Input, Selector } from "../ui/components";
+
+const eligibilityPlanets = [
+  {
+    id: 1,
+    description:
+      "Planetary radius < 1.6× Earth's radius — ensures terrestrial-class surface conditions.",
+  },
+  {
+    id: 2,
+    description:
+      "Effective stellar flux in range 0.36 – 1.11× Earth's value — conservative habitable zone boundary.",
+  },
+];
 
 export default function Launch() {
   const { active, trigger } = useClickFeedback({
@@ -14,45 +27,47 @@ export default function Launch() {
 
     trigger();
   };
+
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">
-      <div className="w-full max-w-3xl text-base sm:text-description">
-        <Card>
-          <h1>
-            Schedule a mission launch for interstellar travel to one of the
-            Kepler Exoplanets.
-          </h1>
+      <div className="flex flex-col w-full max-w-3xl sm:gap-8 text-base sm:text-description">
+        <h1 className="text-white/90 text-[35px] max-w-[21.2rem] font-semibold leading-10">
+          Schedule a <span className="text-cyber-cyan-text">Launch</span> to
+          Kepler Exoplanets
+        </h1>
+
+        <Divider />
+
+        <Card className="sm:gap-6 text-cyber-cyan-text">
+          <Divider label="Eligibility Criteria" />
 
           <h2>
             Only confirmed planets matching the following criteria are available
             for the earliest scheduled missions:
           </h2>
 
-          <ul className="list-disc pl-5 sm:pl-10 marker:text-2xl">
-            <li>Planetary radius &lt; 1.6 times Earth's radius</li>
-            <li>
-              Effective stellar flux &gt; 0.36 times Earth's value and &lt; 1.11
-              times Earth's value
-            </li>
-          </ul>
+          <div className="flex flex-col gap-2">
+            {eligibilityPlanets.map((planet) => (
+              <div className="flex gap-2 p-2 text-sm sm:text-lg border-l-2 border border-cyan-900/70 border-l-cyber-cyan-text text-cyan-text-light bg-cyan-950/50">
+                <span className="text-cyan-800">0{planet.id}</span>
+                <p>{planet.description}</p>
+              </div>
+            ))}
+          </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <span>Launch Date</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <Input className="h-10 " type="date" label="● Launch Date" />
 
-            <Input className="sm:w-50 h-8 " type="date" />
+            <Input className="h-10 " type="text" label="● Mission Name" />
 
-            <span>Mission Name</span>
-            <Input className="sm:w-50 h-8 " type="text" />
-
-            <span>Rocket Type</span>
             <Input
-              className="sm:w-50 h-8 "
+              className="h-10 "
               type="text"
               defaultValue={"Explorer IS1"}
+              label="● Rocket Type"
             />
 
-            <span>Destination Exoplanet</span>
-            <Selector className="sm:w-50 h-8">
+            <Selector className="h-10" label="● Destination Exoplanet">
               <option value="">Exoplanets</option>
               <option value="">Test</option>
             </Selector>
