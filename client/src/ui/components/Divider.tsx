@@ -8,7 +8,7 @@ export function Divider({ label }: { label?: string }) {
       ) : (
         <div className="w-20 bg-cyan-600 h-[3px]" />
       )}
-      <div className="flex-1 h-px bg-linear-to-r bg-cyan-900" />
+      <div className="flex-1 h-px bg-linear-to-r from-cyan-900 via-cyan-900" />
     </div>
   );
 }

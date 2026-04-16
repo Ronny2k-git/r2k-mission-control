@@ -6,6 +6,10 @@
   ::after {
     border-style: solid;
   }
+
+  button {
+    cursor: pointer;
+  }
 }
 
 @font-face {

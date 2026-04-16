@@ -1,6 +1,6 @@
-import { InfoCard } from "../components";
+import { InfoCard, MissionRowCard } from "../components";
 import { historyInfoCards, type HistoryData } from "../consts";
-import { Card, Divider } from "../ui/components";
+import { Card, Divider, Input } from "../ui/components";
 
 export default function History() {
   const infoHistoryCardData: HistoryData = {
@@ -39,19 +39,33 @@ export default function History() {
               from the year 2006.
             </h2>
 
+            <Divider label="Launch Archive" />
+
+            <Input
+              className="h-9"
+              placeholder="Search mission, rocket, customer..."
+            />
+
             <table className="w-full text-base text-cyan-text-light mb-8">
-              <thead className="border-b border-cyber-cyan">
+              <thead className="bg-cyan-400/5 border-b border-cyber-cyan">
                 <tr>
                   <th>No.</th>
                   <th>Date</th>
                   <th>Mission</th>
                   <th>Rocket</th>
                   <th>Customers</th>
+                  <th>Abort</th>
                 </tr>
               </thead>
 
               <tbody>
-                <tr></tr>
+                <MissionRowCard
+                  id={1}
+                  date="May 16 2026"
+                  mission="FalconSat"
+                  rocket="Falcon 1"
+                  destination="Kepler-443 b"
+                />
               </tbody>
             </table>
           </Card>

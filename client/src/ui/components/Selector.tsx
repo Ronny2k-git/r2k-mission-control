@@ -31,7 +31,7 @@ export function Selector({
 
       <select
         className={twMerge(
-          `bg-cyan-900/70 text-white text-base pl-2 focus:outline-none focus:border-cyber-cyan-text/80
+          `bg-cyan-900/70 text-white text-[15px] pl-2 focus:outline-none focus:border-cyber-cyan-text/80
           border border-cyan-900`,
           className,
         )}
