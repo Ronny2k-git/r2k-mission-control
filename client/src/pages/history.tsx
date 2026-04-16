@@ -1,31 +1,67 @@
-import { Card } from "../ui/components";
+import { InfoCard } from "../components";
+import { historyInfoCards, type HistoryData } from "../consts";
+import { Card, Divider } from "../ui/components";
 
 export default function History() {
+  const infoHistoryCardData: HistoryData = {
+    totalLaunches: 20,
+    successfull: 85,
+    firstLaunch: "2006",
+    status: "Verified",
+  };
+
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">
-      <div className="w-full max-w-3xl text-base sm:text-description">
-        <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text">
-          <h1>
-            History of mission launches including SpaceX launches starting from
-            the year 2006.
-          </h1>
+      <div className="flex flex-col w-full max-w-3xl gap-8 text-base sm:text-lg">
+        {/* Info Cards */}
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {historyInfoCards.map((item, i) => (
+            <InfoCard
+              key={i}
+              title={item.title}
+              text={infoHistoryCardData[item.key]}
+              textColor={item.textColor}
+            />
+          ))}
+        </div>
 
-          <table className="w-full text-base text-cyan-text-light mb-8">
-            <thead className="border-b border-cyber-cyan">
-              <tr>
-                <th>No.</th>
-                <th>Date</th>
-                <th>Mission</th>
-                <th>Rocket</th>
-                <th>Customers</th>
-              </tr>
-            </thead>
+        {/* Title */}
+        <h1 className="text-white/80 text-2xl sm:text-[32px] sm:max-w-[24rem] font-heading leading-10">
+          Mission <span className="text-cyber-cyan-text">History</span>
+        </h1>
 
-            <tbody>
-              <tr></tr>
-            </tbody>
-          </table>
-        </Card>
+        <Divider />
+
+        <div className="flex flex-col gap-4">
+          <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text">
+            <h2>
+              History of mission launches including SpaceX launches starting
+              from the year 2006.
+            </h2>
+
+            <table className="w-full text-base text-cyan-text-light mb-8">
+              <thead className="border-b border-cyber-cyan">
+                <tr>
+                  <th>No.</th>
+                  <th>Date</th>
+                  <th>Mission</th>
+                  <th>Rocket</th>
+                  <th>Customers</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr></tr>
+              </tbody>
+            </table>
+          </Card>
+
+          <Divider />
+
+          <span className="text-xs max-sm:text-center text-cyan-muted">
+            NASA MISSION CONTROL · RESTRICTED ACCESS
+          </span>
+        </div>
       </div>
     </div>
   );

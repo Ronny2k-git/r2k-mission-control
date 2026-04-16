@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
-import { LaunchInfoCard } from "../components";
+import { InfoCard } from "../components";
+import { launchInfoCards, type LaunchData } from "../consts";
 import { useClickFeedback } from "../hooks";
 import { Button, Card, Divider, Input, Selector } from "../ui/components";
 
@@ -28,31 +29,26 @@ export default function Launch() {
     trigger();
   };
 
+  const infoLaunchCardData: LaunchData = {
+    planets: 8,
+    nextWindow: "Apr 20, 2026",
+    activeMissions: 3,
+    status: "Operational",
+  };
+
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">
       <div className="flex flex-col w-full max-w-3xl gap-8 text-base sm:text-lg">
         {/* Info Cards */}
         <div className="grid grid-cols-2 md:grid-cols-4">
-          <LaunchInfoCard
-            title="Eligible Planets"
-            text={8}
-            textColor="text-cyber-cyan-text"
-          />
-          <LaunchInfoCard
-            title="Next Launch Window"
-            text={"Apr 20, 2026"}
-            textColor="text-cyber-cyan-text"
-          />
-          <LaunchInfoCard
-            title="Active Missions"
-            text={"3"}
-            textColor="text-cyber-cyan-text"
-          />
-          <LaunchInfoCard
-            title="Fleet Status"
-            text={"Operational"}
-            textColor="text-green-600"
-          />
+          {launchInfoCards.map((item, i) => (
+            <InfoCard
+              key={i}
+              title={item.title}
+              text={infoLaunchCardData[item.key]}
+              textColor={item.textColor}
+            />
+          ))}
         </div>
 
         {/* Title */}
@@ -63,8 +59,8 @@ export default function Launch() {
 
         <Divider />
 
-        {/* Cards */}
         <div className="flex flex-col gap-4">
+          {/* Eligibility Criteria  */}
           <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text">
             <Divider label="Eligibility Criteria" />
 
@@ -83,6 +79,7 @@ export default function Launch() {
             </div>
           </Card>
 
+          {/* Card Form */}
           <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text ">
             <Divider label="Mission Parameters" />
 

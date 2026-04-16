@@ -1,4 +1,4 @@
 export * from "./Clock";
 export * from "./Footer";
 export * from "./Header";
-export * from "./LaunchInfoCard";
+export * from "./InfoCard";

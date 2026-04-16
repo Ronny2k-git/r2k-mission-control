@@ -1,18 +1,17 @@
 import { Card } from "../ui/components";
 
-type textColor = "text-cyber-cyan-text" | "text-green-600";
+export type textColor =
+  | "text-cyber-cyan-text"
+  | "text-green-600"
+  | "text-orange-300";
 
-export type LaunchInfoCardProps = {
+export type InfoCardProps = {
   title: string;
   text: string | number;
   textColor: textColor;
 };
 
-export function LaunchInfoCard({
-  title,
-  text,
-  textColor,
-}: LaunchInfoCardProps) {
+export function InfoCard({ title, text, textColor }: InfoCardProps) {
   return (
     <Card className="w-full p-3" cornerBorders={false}>
       <span className="text-xs text-cyan-muted font-mono uppercase whitespace-nowrap">
