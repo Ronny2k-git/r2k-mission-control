@@ -14,7 +14,7 @@ export function LaunchInfoCard({
   textColor,
 }: LaunchInfoCardProps) {
   return (
-    <Card className="w-full" cornerBorders={false}>
+    <Card className="w-full p-3" cornerBorders={false}>
       <span className="text-xs text-cyan-muted font-mono uppercase whitespace-nowrap">
         {title}
       </span>
