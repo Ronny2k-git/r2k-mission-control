@@ -1,31 +1,42 @@
 import { ShieldCheck, ShieldX } from "lucide-react";
 import { InfoCard, MissionRowCard } from "../components";
-import { historyInfoCards, missions, type HistoryData } from "../consts";
+import { historyInfoCards, type HistoryData } from "../consts";
+import { useFilterMissions, useSearchMissions } from "../hooks";
+import type { FilterType } from "../types";
 import { Button, Card, Divider, Input } from "../ui/components";
 
+const filters: {
+  value: FilterType;
+  label: string;
+  icon?: React.ElementType;
+  iconColor?: string;
+}[] = [
+  { value: "all", label: "All" },
+  {
+    value: "success",
+    icon: ShieldCheck,
+    iconColor: "text-green-500",
+    label: "Success",
+  },
+  {
+    value: "aborted",
+    icon: ShieldX,
+    iconColor: "text-red-400",
+    label: "Aborted",
+  },
+];
+
 export default function History() {
+  const { searchedMissions, search, setSearch } = useSearchMissions();
+  const { filteredMissions, filter, setFilter } =
+    useFilterMissions(searchedMissions);
+
   const infoHistoryCardData: HistoryData = {
     totalLaunches: 20,
     successfull: 85,
     firstLaunch: "2006",
     status: "Verified",
   };
-
-  const filters = [
-    { value: "all", label: "All" },
-    {
-      value: "success",
-      icon: ShieldCheck,
-      iconColor: "text-green-500",
-      label: "Success",
-    },
-    {
-      value: "aborted",
-      icon: ShieldX,
-      iconColor: "text-red-400",
-      label: "Aborted",
-    },
-  ];
 
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">
@@ -63,14 +74,20 @@ export default function History() {
                 <Input
                   className="h-9"
                   placeholder="Search mission, rocket, customer..."
+                  defaultValue={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
               </div>
 
               {filters.map((item, i) => (
                 <Button
                   key={`${item.value}_${i}`}
-                  className="text-xs uppercase gap-1"
+                  className={`text-xs uppercase gap-1 ${
+                    filter === item.value &&
+                    "bg-cyan-500/20 border-cyber-cyan-text"
+                  }`}
                   variant="ghost"
+                  onClick={() => setFilter(item.value)}
                 >
                   {item.icon && (
                     <item.icon className={`size-4 ${item.iconColor}`} />
@@ -80,10 +97,10 @@ export default function History() {
               ))}
             </div>
 
-            <table className="w-full text-base text-cyan-text-light mb-8 min-w-[40rem]">
-              <thead className="bg-cyan-400/5 border-b border-cyber-cyan-text">
+            <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
+              <thead className="bg-cyan-400/5 border-b text-cyber-cyan-text border-cyber-cyan-text">
                 <tr>
-                  <th>No.</th>
+                  <th className="p-2">No.</th>
                   <th>Date</th>
                   <th>Mission</th>
                   <th>Rocket</th>
@@ -93,7 +110,7 @@ export default function History() {
               </thead>
 
               <tbody>
-                {missions.map((item, i) => (
+                {filteredMissions.map((item, i) => (
                   <MissionRowCard
                     key={i}
                     id={item.id}

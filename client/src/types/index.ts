@@ -6,3 +6,5 @@ export type Mission = {
   target: string;
   status?: "success" | "aborted";
 };
+
+export type FilterType = "all" | "success" | "aborted";

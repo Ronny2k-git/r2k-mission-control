@@ -1,9 +1,11 @@
-import { X } from "lucide-react";
 import { InfoCard, MissionRowCard } from "../components";
-import { missions, upcomingInfoCards, type UpcomingData } from "../consts";
+import { upcomingInfoCards, type UpcomingData } from "../consts";
+import { useSearchMissions } from "../hooks";
 import { Card, Divider, Input } from "../ui/components";
 
 export default function Upcoming() {
+  const { searchedMissions, search, setSearch } = useSearchMissions();
+
   const infoUpcomingCardData: UpcomingData = {
     launchedMissions: 6,
     nextWindow: "May 13, 2026",
@@ -13,8 +15,8 @@ export default function Upcoming() {
 
   // TO DO TOMORROW:
 
-  // 2 FINISH UPCOMING AND HISTORY PAGE DESIGN MOCK
-  // 4 CREATE A PAGINANTION COMPONENT
+  // 1 CREATE A PAGINANTION COMPONENT
+  // 2 CREATE A DEBOUNCE HOOK TO AVOID UNECESSARY API CALLS
 
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">
@@ -45,25 +47,25 @@ export default function Upcoming() {
               scheduled Zero to Mastery rockets.
             </h2>
 
-            <div className="flex max-sm:flex-col items-end gap-4 text-xs uppercase">
+            <div className="flex max-sm:flex-col items-center gap-4 text-xs uppercase">
               <Divider label="Active Launch Mission" />
 
               <div className="flex justify-center max-sm:w-full w-[16rem] p-1.5 text-red-400/90 border border-red-400/50 bg-red-500/10">
-                <h3 className="flex items-center">
-                  Click <X className="size-4" /> to abort Mission
-                </h3>
+                <h3 className="flex items-center">Click X to abort Mission</h3>
               </div>
             </div>
 
             <Input
               className="h-9"
-              placeholder="Search mission, rocket, customer..."
+              placeholder="Search mission, rocket, destination..."
+              defaultValue={search}
+              onChange={(e) => setSearch(e.target.value)}
             />
 
-            <table className="w-full text-base text-cyan-text-light mb-8">
-              <thead className="bg-cyan-400/5 border-b border-cyber-cyan">
+            <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
+              <thead className="bg-cyan-400/5 border-b text-cyber-cyan-text border-cyber-cyan">
                 <tr>
-                  <th>No.</th>
+                  <th className="p-2">No.</th>
                   <th>Date</th>
                   <th>Mission</th>
                   <th>Rocket</th>
@@ -73,7 +75,7 @@ export default function Upcoming() {
               </thead>
 
               <tbody>
-                {missions.map((item, i) => (
+                {searchedMissions.map((item, i) => (
                   <MissionRowCard
                     key={i}
                     id={item.id}
