@@ -1,0 +1,24 @@
+import { useMemo, useState } from "react";
+import { missions } from "../consts";
+import { useDebounce } from "./useDebounce";
+
+export function useSearchMissions() {
+  const [search, setSearch] = useState("");
+
+  const debouncedValue = useDebounce(search, 500);
+  const searchLower = debouncedValue.toLowerCase();
+
+  const searchedMissions = useMemo(() => {
+    if (!searchLower.trim()) return missions;
+
+    return missions.filter((mission) => {
+      return (
+        mission.mission.toLowerCase().includes(searchLower) ||
+        mission.rocket.toLowerCase().includes(searchLower) ||
+        mission.target.toLowerCase().includes(searchLower)
+      );
+    });
+  }, [searchLower]);
+
+  return { searchedMissions, search, setSearch };
+}

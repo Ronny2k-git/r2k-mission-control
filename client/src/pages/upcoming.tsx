@@ -15,8 +15,9 @@ export default function Upcoming() {
 
   // TO DO TOMORROW:
 
-  // 1 CREATE A PAGINANTION COMPONENT
-  // 2 CREATE A DEBOUNCE HOOK TO AVOID UNECESSARY API CALLS
+  // 1 CREATE A PAGINATION COMPONENT
+  // 2 CREATE A BANNER TO BE USED WHEN THE TABLE IS EMPTY OR WHEN
+  //  THE FILTERS RETURN NOTHING
 
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">
