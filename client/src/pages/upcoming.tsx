@@ -18,6 +18,7 @@ export default function Upcoming() {
   // 1 CREATE A PAGINATION COMPONENT
   // 2 CREATE A BANNER TO BE USED WHEN THE TABLE IS EMPTY OR WHEN
   //  THE FILTERS RETURN NOTHING
+  //  3 CREATE A MODAL COMPONENT
 
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">

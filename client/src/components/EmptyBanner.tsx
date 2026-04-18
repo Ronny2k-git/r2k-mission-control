@@ -3,7 +3,8 @@ import { Card } from "../ui/components";
 export function EmptyBanner() {
   return (
     <Card>
-      <div></div>
+      <span className="uppercase"> No data found</span>
+      <p>Title</p>
     </Card>
   );
 }
