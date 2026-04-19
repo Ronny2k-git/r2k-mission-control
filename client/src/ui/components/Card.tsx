@@ -17,13 +17,15 @@ export function Card({
   return (
     <div
       className={twMerge(
-        "flex flex-col relative border border-cyan-900 p-4 bg-light-background",
+        "flex flex-col relative border border-cyber-cyan-text/20 p-4 bg-card-background",
         className,
       )}
       {...props}
     >
       {/* Card Corner Edges */}
-      {cornerBorders && <CornerBorders color="border-cyan-400" size="sm" />}
+      {cornerBorders && (
+        <CornerBorders color="border-cyber-cyan-text" size="sm" />
+      )}
 
       {/* Children */}
       {children}

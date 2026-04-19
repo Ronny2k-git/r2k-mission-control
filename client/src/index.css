@@ -34,10 +34,11 @@
 @theme {
   --font-heading: "Orbitron", sans-serif;
 
-  --color-light-background: rgba(2, 17, 20, 0.9);
+  --color-light-background: rgba(3, 16, 32, 0.6);
+  --color-card-background: rgba(3, 16, 20, 0.9);
   --color-cyber-cyan: rgba(62, 155, 185);
-  --color-cyber-cyan-text: rgba(96, 215, 250);
-  --color-cyan-text-light: rgba(166, 223, 238);
+  --color-cyber-cyan-text: rgba(0, 200, 255);
+  --color-cyan-text-light: rgba(147, 227, 250);
   --color-cyan-muted: rgba(166, 223, 238, 0.4);
 
   --text-description: 1.1875rem;

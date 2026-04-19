@@ -35,27 +35,29 @@ export function Header() {
       <img src={"/favicon.png"} className="size-12" alt="website-logo" />
 
       <div className="h-full flex flex-col justify-center leading-8 md:px-4 mr-2 md:border-r-2 border-cyan-900/40 ">
-        <span className="text-cyber-cyan-text text-3xl font-heading">NASA</span>
+        <span className="text-cyber-cyan-text text-3xl font-heading font-extrabold">
+          NASA
+        </span>
         <span className="text-xs text-cyan-muted uppercase font-semibold whitespace-nowrap">
           Mission Control
         </span>
       </div>
 
-      <nav className="flex h-full justify-center font-semi text-cyan-text-light/70">
+      <nav className="flex h-full justify-center font-semi text-cyan-muted">
         {headerNavigation.map((item, i) => {
           const currentActiveNav = location.pathname === item.nav;
 
           return (
             <div
               key={`nav_bar_${i}`}
-              className="flex gap-2 text-sm uppercase font-semibold"
+              className="flex gap-2 text-xs uppercase font-semibold font-heading hover:text-cyber-cyan-text"
             >
               <a
                 href={item.nav}
                 aria-label="website-navigation"
                 onClick={(e) => handleClick(i, item.nav, e)}
                 className={`flex items-center justify-center gap-2 max-md:px-2 md:w-[8rem] max-md:h-13
-                ${currentActiveNav && "bg-cyan-950/35 border-b-3 border-b-cyan-600 text-cyan-600"}`}
+                ${currentActiveNav && "bg-cyan-950/35 border-b-2 border-b-cyber-cyan-text text-cyber-cyan-text"}`}
               >
                 {item.icon && <item.icon className="w-5 h-5" />}
                 {item.label}

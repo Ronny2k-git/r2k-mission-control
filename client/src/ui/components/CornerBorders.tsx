@@ -1,6 +1,5 @@
 export type BorderColor =
-  | "border-cyan-400"
-  | "border-cyan-500"
+  | "border-cyber-cyan-text"
   | "border-green-400"
   | "border-red-400";
 

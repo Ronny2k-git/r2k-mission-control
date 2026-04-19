@@ -16,9 +16,9 @@ export function Input({ className, label, required, ...props }: InputProps) {
         </span>
 
         {required && (
-          <span className="text-[11px] text-orange-300 font-mono tracking-tighter">
+          <strong className="text-[11px] text-orange-300 font-mono tracking-tighter">
             REQ
-          </span>
+          </strong>
         )}
       </div>
 
