@@ -1,4 +1,4 @@
-import { InfoCard, MissionRowCard } from "../components";
+import { InfoCard, MissionRowCard, SectionLabel } from "../components";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useSearchMissions } from "../hooks";
 import { Card, Divider, Input } from "../ui/components";
@@ -45,11 +45,8 @@ export default function Upcoming() {
 
         <section className="flex flex-col w-full gap-4">
           <Card className="gap-4 sm:gap-6 text-cyber-cyan-text ">
-            <div className="flex flex-col gap-4 sm:gap-6">
-              <h2>
-                Upcoming missions including both SpaceX launches and newly
-                scheduled Zero to Mastery rockets.
-              </h2>
+            <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
+              <SectionLabel>Active launch missions</SectionLabel>
 
               <Divider variant="label" label="Active Launch Mission" />
 
@@ -70,7 +67,7 @@ export default function Upcoming() {
               </div>
             </div>
 
-            <div className="w-full flex flex-col justify-center overflow-y-auto max-sm:pt-6 bg-cyan-800/20">
+            <div className="w-full flex flex-col justify-center overflow-y-auto bg-cyan-800/20">
               <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
                 <thead className="bg-cyan-400/30 border-b text-cyber-cyan-text border-cyber-cyan">
                   <tr>
@@ -92,6 +89,7 @@ export default function Upcoming() {
                       mission={item.mission}
                       rocket={item.rocket}
                       target={item.target}
+                      status="upcoming"
                     />
                   ))}
                 </tbody>

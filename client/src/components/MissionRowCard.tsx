@@ -4,11 +4,6 @@ export interface MissionRowCardProps extends Mission {
   className?: string;
 }
 
-const statusBorder = {
-  default: "border-l-cyan-600",
-  pending: "border-l-orange-300/90",
-};
-
 export function MissionRowCard({
   id,
   date,
@@ -18,11 +13,8 @@ export function MissionRowCard({
   status,
 }: MissionRowCardProps) {
   return (
-    <tr
-      className={`h-11 bg-cyan-800/20 border-b border-cyan-900/70  border-l-3 
-        ${status ? statusBorder["default"] : statusBorder.pending} text-[15px]`}
-    >
-      <td align="center" className="font-heading text-xs">
+    <tr className="h-11 bg-cyan-800/20 border-b border-cyan-900/70 text-[15px]">
+      <td align="center" className="font-heading text-xs ">
         {String(id).padStart(2, "0")}
       </td>
       <td align="center">{date}</td>
@@ -33,13 +25,13 @@ export function MissionRowCard({
       <td align="center">{target}</td>
       <td align="center">
         {status === "aborted" ? (
-          <div className="size-6 bg-red-400/90" />
+          <div className="size-5 bg-red-500/90" />
         ) : status === "success" ? (
-          <div className="size-6 bg-green-400/90" />
+          <div className="size-5 bg-green-500/90" />
         ) : (
           <button
             aria-label="Abort mission"
-            className="px-2 border border-red-400/50 bg-red-500/10 font-semibold hover:border-red-400/80 
+            className="size-6 border border-red-400/50 bg-red-500/10 font-semibold hover:border-red-400/80 
           hover:bg-red-500/15"
           >
             <span className="text-xs text-red-400">X</span>

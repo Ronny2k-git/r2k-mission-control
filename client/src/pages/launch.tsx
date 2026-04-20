@@ -61,7 +61,7 @@ export default function Launch() {
 
         <div className="flex flex-col gap-4">
           {/* Eligibility Criteria  */}
-          <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text">
+          <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
             <Divider variant="label" label="Eligibility Criteria" />
 
             <h2 className="text-cyan-muted">
@@ -83,7 +83,7 @@ export default function Launch() {
           </Card>
 
           {/* Card Form */}
-          <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text ">
+          <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text ">
             <Divider variant="label" label="Mission Parameters" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
