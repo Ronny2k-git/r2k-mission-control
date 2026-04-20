@@ -13,7 +13,7 @@ export function MissionRowCard({
   status,
 }: MissionRowCardProps) {
   return (
-    <tr className="h-11 bg-cyan-800/20 border-b border-cyan-900/70 text-[15px]">
+    <tr className="h-11 border-b border-bg-border text-[15px]">
       <td align="center" className="font-heading text-xs ">
         {String(id).padStart(2, "0")}
       </td>

@@ -34,18 +34,23 @@
 @theme {
   --font-heading: "Orbitron", sans-serif;
 
-  --color-light-background: rgba(3, 16, 32, 0.6);
-  --color-card-background: rgba(3, 16, 20, 0.9);
+  --color-background-color: rgba(2, 8, 16);
+  --color-light-background: rgba(3, 8, 32, 0.5);
+  --color-card-background: rgba(3, 16, 32, 0.9);
+  --color-secondary-card: rgba(4, 31, 50);
   --color-cyber-cyan: rgba(62, 155, 185);
   --color-cyber-cyan-text: rgba(0, 200, 255);
   --color-cyan-text-light: rgba(147, 227, 250);
   --color-cyan-muted: rgba(166, 223, 238, 0.4);
+  --color-white-light: rgba(135, 161, 181);
+  --color-bg-border: rgba(6, 49, 72);
+  --color-input-color: rgba(0, 19, 38);
 
   --text-description: 1.1875rem;
 }
 
 body {
-  background-image: url("/img/background-large.jpg");
+  background-color: var(--color-background-color);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

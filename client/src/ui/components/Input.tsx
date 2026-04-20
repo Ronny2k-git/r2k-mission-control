@@ -16,7 +16,7 @@ export function Input({
   ...props
 }: InputProps) {
   return (
-    <div className={twMerge("flex flex-col gap-1", wrapperClassName)}>
+    <div className={twMerge("flex flex-col", wrapperClassName)}>
       <div className="flex items-center gap-2">
         <span className="text-[13px] text-cyan-text-light uppercase font-mono tracking-widest">
           {label}
@@ -31,8 +31,8 @@ export function Input({
 
       <input
         className={twMerge(
-          `bg-cyan-900/40 text-white text-[15px] pl-2 focus:outline-none focus:border-cyber-cyan-text/80 
-          border border-cyan-900 placeholder:text-cyan-muted`,
+          `bg-input-color text-white text-[15px] pl-2 focus:outline-none focus:border-cyber-cyan-text 
+          border border-bg-border placeholder:text-cyan-muted`,
           inputClassName,
         )}
         {...props}

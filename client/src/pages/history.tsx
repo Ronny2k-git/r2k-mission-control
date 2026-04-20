@@ -61,50 +61,41 @@ export default function History() {
         <Divider />
 
         <section className="flex flex-col gap-4">
-          <Card className="gap-4 sm:gap-6 text-cyber-cyan-text">
-            <div className="flex flex-col gap-4 sm:gap-6 p-4 sm:p-6">
-              {/* <h2>
-                History of mission launches including SpaceX launches starting
-                from the year 2006.
-              </h2>
+          <Card className="text-cyber-cyan-text">
+            <div className="flex max-md:flex-col items-center gap-2 p-4 sm:p-6">
+              <SectionLabel>Launch archive</SectionLabel>
 
-              <Divider label="Launch Archive" /> */}
+              <Input
+                inputClassName="h-9"
+                wrapperClassName="w-full"
+                placeholder="Search mission, rocket, customer..."
+                defaultValue={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
 
-              <div className="flex max-sm:flex-col sm:items-center gap-2">
-                <SectionLabel>Launch archive</SectionLabel>
-
-                <Input
-                  inputClassName="h-9"
-                  wrapperClassName="w-full"
-                  placeholder="Search mission, rocket, customer..."
-                  defaultValue={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-
-                <div className="flex gap-2">
-                  {filters.map((item, i) => (
-                    <Button
-                      key={`${item.value}_${i}`}
-                      className={`text-xs uppercase gap-1 h-9 ${
-                        filter === item.value &&
-                        "bg-cyan-500/20 border-cyber-cyan-text"
-                      }`}
-                      variant="ghost"
-                      onClick={() => setFilter(item.value)}
-                    >
-                      {item.icon && (
-                        <item.icon className={`size-4 ${item.iconColor}`} />
-                      )}
-                      {item.label}
-                    </Button>
-                  ))}
-                </div>
+              <div className="flex gap-2">
+                {filters.map((item, i) => (
+                  <Button
+                    key={`${item.value}_${i}`}
+                    className={`text-xs uppercase gap-1 h-9 ${
+                      filter === item.value &&
+                      "bg-cyan-500/20 border-cyber-cyan-text"
+                    }`}
+                    variant="ghost"
+                    onClick={() => setFilter(item.value)}
+                  >
+                    {item.icon && (
+                      <item.icon className={`size-4 ${item.iconColor}`} />
+                    )}
+                    {item.label}
+                  </Button>
+                ))}
               </div>
             </div>
 
-            <div className="w-full overflow-y-auto pb-3">
+            <div className="w-full flex flex-col overflow-y-auto">
               <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
-                <thead className="bg-cyan-400/5 border-b text-cyber-cyan-text border-cyber-cyan-text">
+                <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                   <tr>
                     <th className="p-2">No.</th>
                     <th>Date</th>
@@ -129,8 +120,6 @@ export default function History() {
                   ))}
                 </tbody>
               </table>
-
-              <Divider variant="line" />
 
               <span className="text-xs p-3">
                 Showing {searchedMissions.length} missions

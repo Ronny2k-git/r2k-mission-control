@@ -24,7 +24,7 @@ export function Button({
   return (
     <button
       className={twMerge(
-        `flex relative px-4 py-2 items-center justify-center border font-semibold`,
+        `flex relative px-4 items-center justify-center border font-semibold`,
         variantStyles[variant],
         className,
       )}

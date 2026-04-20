@@ -64,7 +64,7 @@ export default function Launch() {
           <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
             <Divider variant="label" label="Eligibility Criteria" />
 
-            <h2 className="text-cyan-muted">
+            <h2 className="text-white-light">
               Only confirmed planets matching the following criteria are
               available for the earliest scheduled missions:
             </h2>
@@ -73,7 +73,7 @@ export default function Launch() {
               {eligibilityPlanets.map((planet, i) => (
                 <div
                   key={i}
-                  className="flex gap-2 p-2 text-sm sm:text-base border-l-2 border-l-cyber-cyan-text text-cyan-text-light bg-cyan-950/50"
+                  className="bg-secondary-card flex gap-2 p-2 text-sm sm:text-base text-white-light  border-l-2 border-l-cyber-cyan-text "
                 >
                   <span className="text-cyan-muted">0{planet.id}</span>
                   <p>{planet.description}</p>
@@ -99,6 +99,7 @@ export default function Launch() {
                 type="text"
                 label="● Mission Name"
                 required={true}
+                placeholder="Enter mission name"
               />
 
               <Input

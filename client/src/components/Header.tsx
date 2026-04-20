@@ -30,11 +30,11 @@ export function Header() {
   return (
     <header
       className="w-full h-auto max-md:p-4 md:h-20 max-md:gap-4 flex max-md:flex-wrap items-center justify-center
-       border-b border-cyber-cyan/50 bg-light-background/70"
+       border-b border-bg-border"
     >
       <img src={"/favicon.png"} className="size-12" alt="website-logo" />
 
-      <div className="h-full flex flex-col justify-center leading-8 md:px-4 mr-2 md:border-r-2 border-cyan-900/40 ">
+      <div className="h-full flex flex-col justify-center leading-8 md:px-4 mr-2 md:border-r-2 border-bg-border ">
         <span className="text-cyber-cyan-text text-3xl font-heading font-extrabold">
           NASA
         </span>
@@ -67,7 +67,7 @@ export function Header() {
         })}
       </nav>
 
-      <div className="flex items-center w-[11rem] md:border-x ml-2 border-x-cyan-900/40 -tracking-wider">
+      <div className="flex items-center w-[11rem] md:border-x ml-2 border-x-bg-border -tracking-wider">
         <div className="flex justify-between w-full p-2 md:p-5 text-cyan-muted ">
           {/* System status */}
           <div className="flex flex-col text-xs">
