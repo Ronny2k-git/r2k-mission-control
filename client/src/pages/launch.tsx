@@ -57,12 +57,12 @@ export default function Launch() {
           Kepler Exoplanets.
         </h1>
 
-        <Divider />
+        <Divider variant="thick" />
 
         <div className="flex flex-col gap-4">
           {/* Eligibility Criteria  */}
           <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text">
-            <Divider label="Eligibility Criteria" />
+            <Divider variant="label" label="Eligibility Criteria" />
 
             <h2 className="text-cyan-muted">
               Only confirmed planets matching the following criteria are
@@ -84,25 +84,25 @@ export default function Launch() {
 
           {/* Card Form */}
           <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text ">
-            <Divider label="Mission Parameters" />
+            <Divider variant="label" label="Mission Parameters" />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               <Input
-                className="h-10 "
+                inputClassName="h-10"
                 type="date"
                 label="● Launch Date"
                 required={true}
               />
 
               <Input
-                className="h-10 "
+                inputClassName="h-10"
                 type="text"
                 label="● Mission Name"
                 required={true}
               />
 
               <Input
-                className="h-10 "
+                inputClassName="h-10"
                 type="text"
                 defaultValue={"Explorer IS1"}
                 label="● Rocket System"

@@ -18,7 +18,8 @@ export default function Upcoming() {
   // 1 CREATE A PAGINATION COMPONENT
   // 2 CREATE A BANNER TO BE USED WHEN THE TABLE IS EMPTY OR WHEN
   //  THE FILTERS RETURN NOTHING
-  //  3 CREATE A MODAL COMPONENT
+  // 3 CREATE A MODAL COMPONENT
+  // 4 CREATE A CARD DIALOG TO CONFIRM THE MISSION LAUNCH
 
   return (
     <div className="flex w-full h-full justify-center px-4 py-8 sm:px-8">
@@ -40,55 +41,68 @@ export default function Upcoming() {
           Upcoming a <span className="text-cyber-cyan-text">Missions</span>
         </h1>
 
-        <Divider />
+        <Divider variant="thick" />
 
-        <div className="flex flex-col gap-4">
-          <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text">
-            <h2>
-              Upcoming missions including both SpaceX launches and newly
-              scheduled Zero to Mastery rockets.
-            </h2>
+        <section className="flex flex-col w-full gap-4">
+          <Card className="gap-4 sm:gap-6 text-cyber-cyan-text ">
+            <div className="flex flex-col gap-4 sm:gap-6">
+              <h2>
+                Upcoming missions including both SpaceX launches and newly
+                scheduled Zero to Mastery rockets.
+              </h2>
 
-            <div className="flex max-sm:flex-col items-center gap-4 text-xs uppercase">
-              <Divider label="Active Launch Mission" />
+              <Divider variant="label" label="Active Launch Mission" />
 
-              <div className="flex justify-center max-sm:w-full w-[16rem] p-1.5 text-red-400/90 border border-red-400/50 bg-red-500/10">
-                <h3 className="flex items-center">Click X to abort Mission</h3>
+              <div className="flex max-sm:flex-col items-center gap-4 text-xs uppercase">
+                <Input
+                  inputClassName="h-9"
+                  wrapperClassName="w-full"
+                  placeholder="Search mission, rocket, destination..."
+                  defaultValue={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+
+                <div className="flex justify-center max-sm:w-full p-2 text-red-400/90 border border-red-400/50 bg-red-500/10">
+                  <h3 className="flex items-center whitespace-nowrap">
+                    Click X to abort Mission
+                  </h3>
+                </div>
               </div>
             </div>
 
-            <Input
-              className="h-9"
-              placeholder="Search mission, rocket, destination..."
-              defaultValue={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <div className="w-full flex flex-col justify-center overflow-y-auto max-sm:pt-6 bg-cyan-800/20">
+              <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
+                <thead className="bg-cyan-400/30 border-b text-cyber-cyan-text border-cyber-cyan">
+                  <tr>
+                    <th className="p-2">No.</th>
+                    <th>Date</th>
+                    <th>Mission</th>
+                    <th>Rocket</th>
+                    <th>Destination</th>
+                    <th>Abort</th>
+                  </tr>
+                </thead>
 
-            <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
-              <thead className="bg-cyan-400/5 border-b text-cyber-cyan-text border-cyber-cyan">
-                <tr>
-                  <th className="p-2">No.</th>
-                  <th>Date</th>
-                  <th>Mission</th>
-                  <th>Rocket</th>
-                  <th>Destination</th>
-                  <th>Abort</th>
-                </tr>
-              </thead>
+                <tbody>
+                  {searchedMissions.map((item, i) => (
+                    <MissionRowCard
+                      key={i}
+                      id={item.id}
+                      date={item.date}
+                      mission={item.mission}
+                      rocket={item.rocket}
+                      target={item.target}
+                    />
+                  ))}
+                </tbody>
+              </table>
 
-              <tbody>
-                {searchedMissions.map((item, i) => (
-                  <MissionRowCard
-                    key={i}
-                    id={item.id}
-                    date={item.date}
-                    mission={item.mission}
-                    rocket={item.rocket}
-                    target={item.target}
-                  />
-                ))}
-              </tbody>
-            </table>
+              <Divider variant="line" />
+
+              <span className="text-xs p-3">
+                Showing {searchedMissions.length} missions
+              </span>
+            </div>
           </Card>
 
           <Divider />
@@ -96,7 +110,7 @@ export default function Upcoming() {
           <span className="text-xs max-sm:text-center text-cyan-muted">
             NASA MISSION CONTROL · RESTRICTED ACCESS
           </span>
-        </div>
+        </section>
       </div>
     </div>
   );

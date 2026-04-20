@@ -60,8 +60,8 @@ export default function History() {
 
         <Divider />
 
-        <div className="flex flex-col gap-4">
-          <Card className="gap-4 sm:gap-6 p-6 text-cyber-cyan-text">
+        <section className="flex flex-col gap-4">
+          <Card className="gap-4 sm:gap-6 text-cyber-cyan-text">
             <h2>
               History of mission launches including SpaceX launches starting
               from the year 2006.
@@ -69,20 +69,19 @@ export default function History() {
 
             <Divider label="Launch Archive" />
 
-            <div className="flex items-center gap-2">
-              <div className="flex-1">
-                <Input
-                  className="h-9"
-                  placeholder="Search mission, rocket, customer..."
-                  defaultValue={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-              </div>
+            <div className="flex items-end gap-2">
+              <Input
+                inputClassName="h-9"
+                wrapperClassName="w-full"
+                placeholder="Search mission, rocket, customer..."
+                defaultValue={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
 
               {filters.map((item, i) => (
                 <Button
                   key={`${item.value}_${i}`}
-                  className={`text-xs uppercase gap-1 ${
+                  className={`text-xs uppercase gap-1 h-9 ${
                     filter === item.value &&
                     "bg-cyan-500/20 border-cyber-cyan-text"
                   }`}
@@ -97,32 +96,34 @@ export default function History() {
               ))}
             </div>
 
-            <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
-              <thead className="bg-cyan-400/5 border-b text-cyber-cyan-text border-cyber-cyan-text">
-                <tr>
-                  <th className="p-2">No.</th>
-                  <th>Date</th>
-                  <th>Mission</th>
-                  <th>Rocket</th>
-                  <th>Customers</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
+            <div className="w-full overflow-y-auto max-sm:pt-6 pb-3">
+              <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
+                <thead className="bg-cyan-400/5 border-b text-cyber-cyan-text border-cyber-cyan-text">
+                  <tr>
+                    <th className="p-2">No.</th>
+                    <th>Date</th>
+                    <th>Mission</th>
+                    <th>Rocket</th>
+                    <th>Customers</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
 
-              <tbody>
-                {filteredMissions.map((item, i) => (
-                  <MissionRowCard
-                    key={i}
-                    id={item.id}
-                    date={item.date}
-                    mission={item.mission}
-                    rocket={item.rocket}
-                    target={item.target}
-                    status={item.status}
-                  />
-                ))}
-              </tbody>
-            </table>
+                <tbody>
+                  {filteredMissions.map((item, i) => (
+                    <MissionRowCard
+                      key={i}
+                      id={item.id}
+                      date={item.date}
+                      mission={item.mission}
+                      rocket={item.rocket}
+                      target={item.target}
+                      status={item.status}
+                    />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </Card>
 
           <Divider />
@@ -130,7 +131,7 @@ export default function History() {
           <span className="text-xs max-sm:text-center text-cyan-muted">
             NASA MISSION CONTROL · RESTRICTED ACCESS
           </span>
-        </div>
+        </section>
       </div>
     </div>
   );
