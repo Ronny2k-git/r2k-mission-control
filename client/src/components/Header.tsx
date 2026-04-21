@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { headerNavigation } from "../consts";
 import { useClickFeedback } from "../hooks";
 import { Clock } from "./Clock";
@@ -9,7 +9,7 @@ export function Header() {
     audioPath: "/sound/click.mp3",
     duration: 100,
   });
-  const location = useLocation();
+  const navigate = useNavigate();
 
   // Animate navigation and play a sound when clicked.
   const handleClick = (index: number, nav: string, e: React.MouseEvent) => {
@@ -18,18 +18,18 @@ export function Header() {
     triggerIndex(index);
 
     setTimeout(() => {
-      window.location.href = nav;
+      navigate(nav);
     }, 100);
   };
 
   return (
     <header
-      className="flex md:justify-between items-center max-md:flex-col h-44 md:h-20 w-full max-md:py-2 
-       border-b border-bg-border px-4 gap-4"
+      className="flex justify-between items-center h-32 md:h-20 
+       border-b border-bg-border md:px-4 gap-4"
     >
-      {/* Content */}
-      <div className="flex h-full items-center w-full max-md:flex-col max-md:gap-4">
-        <div className="flex items-center gap-4 h-full">
+      <div className="flex h-full max-md:flex-col max-md:w-full">
+        {/* Logo and Name */}
+        <div className="flex h-full w-full items-center p-2 gap-4 border-b border-b-bg-border ">
           <img src={"/favicon.png"} className="size-12" alt="website-logo" />
 
           <div className="h-full flex flex-col justify-center md:pr-4 md:border-r-2 border-bg-border ">
@@ -43,7 +43,7 @@ export function Header() {
         </div>
 
         {/* Mobile Nav */}
-        <nav className="flex md:hidden h-full">
+        <nav className="flex md:hidden h-full w-full">
           {headerNavigation.map((item, i) => {
             return (
               <NavItem
@@ -75,8 +75,8 @@ export function Header() {
         </nav>
       </div>
 
-      <div className="flex items-center gap-4 lg:gap-6 text-cyan-muted whitespace-nowrap">
-        {/* System status */}
+      {/* Aditional infos */}
+      <div className="hidden md:flex items-center gap-4 lg:gap-6 text-cyan-muted whitespace-nowrap">
         <div className="flex flex-col text-xs">
           <span className="uppercase">system</span>
           <p className="flex items-center gap-1 text-cyber-cyan-text font-semibold">
