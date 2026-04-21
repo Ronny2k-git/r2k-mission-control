@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef } from "react";
-import { Card } from "../ui/components";
+import { Card } from "./ui";
 
 export type textColor =
   | "text-cyber-cyan-text"

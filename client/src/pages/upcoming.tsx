@@ -1,7 +1,7 @@
 import { InfoCard, MissionRowCard, SectionLabel } from "../components";
+import { Card, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useSearchMissions } from "../hooks";
-import { Card, Divider, Input } from "../ui/components";
 
 export default function Upcoming() {
   const { searchedMissions, search, setSearch } = useSearchMissions();

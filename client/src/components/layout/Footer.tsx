@@ -6,7 +6,7 @@ export function Footer() {
         only.
       </p>
 
-      <span className="text-sm text-cyan-muted">2026.</span>
+      <span className="text-sm text-cyan-muted">© 2026 R2K.</span>
     </footer>
   );
 }

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { headerNavigation } from "../consts";
-import { useClickFeedback } from "../hooks";
-import { Clock } from "./Clock";
-import { NavItem } from "./NavItem";
+import { headerNavigation } from "../../consts";
+import { useClickFeedback } from "../../hooks";
+import { Clock } from "../Clock";
+import { NavItem } from "../NavItem";
 
 export function Header() {
   const { triggerIndex } = useClickFeedback({
@@ -23,10 +23,7 @@ export function Header() {
   };
 
   return (
-    <header
-      className="flex justify-between items-center h-32 md:h-20 
-       border-b border-bg-border md:px-4 gap-4"
-    >
+    <header className="flex justify-between items-center h-32 md:h-20 border-b border-bg-border md:px-4 gap-4">
       <div className="flex h-full max-md:flex-col max-md:w-full">
         {/* Logo and Name */}
         <div className="flex h-full w-full items-center p-2 gap-4 border-b border-b-bg-border ">
@@ -34,7 +31,7 @@ export function Header() {
 
           <div className="h-full flex flex-col justify-center md:pr-4 md:border-r-2 border-bg-border ">
             <span className="text-cyber-cyan-text text-2xl font-heading font-extrabold">
-              NASA
+              R2K
             </span>
             <span className="text-xs text-cyan-muted uppercase font-semibold whitespace-nowrap">
               Mission Control
@@ -43,7 +40,7 @@ export function Header() {
         </div>
 
         {/* Mobile Nav */}
-        <nav className="flex md:hidden h-full w-full">
+        <nav className="flex md:hidden h-full">
           {headerNavigation.map((item, i) => {
             return (
               <NavItem
@@ -75,7 +72,7 @@ export function Header() {
         </nav>
       </div>
 
-      {/* Aditional infos */}
+      {/* Additional infos */}
       <div className="hidden md:flex items-center gap-4 lg:gap-6 text-cyan-muted whitespace-nowrap">
         <div className="flex flex-col text-xs">
           <span className="uppercase">system</span>

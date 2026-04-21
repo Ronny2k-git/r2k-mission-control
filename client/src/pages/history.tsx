@@ -1,9 +1,9 @@
 import { ShieldCheck, ShieldX } from "lucide-react";
 import { InfoCard, MissionRowCard, SectionLabel } from "../components";
+import { Button, Card, Divider, Input } from "../components/ui";
 import { historyInfoCards, type HistoryData } from "../consts";
 import { useFilterMissions, useSearchMissions } from "../hooks";
 import type { FilterType } from "../types";
-import { Button, Card, Divider, Input } from "../ui/components";
 
 const filters: {
   value: FilterType;

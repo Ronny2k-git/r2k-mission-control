@@ -1,12 +1,12 @@
 import { Check } from "lucide-react";
 import { InfoCard } from "../components";
+import { Button, Card, Divider, Input, Selector } from "../components/ui";
 import {
   eligibilityPlanets,
   launchInfoCards,
   type LaunchData,
 } from "../consts";
 import { useClickFeedback } from "../hooks";
-import { Button, Card, Divider, Input, Selector } from "../ui/components";
 
 export default function Launch() {
   const { active, trigger } = useClickFeedback({

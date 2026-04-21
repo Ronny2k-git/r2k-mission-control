@@ -1,4 +1,4 @@
-import { Card } from "../ui/components";
+import { Card } from "./ui";
 
 export function EmptyBanner() {
   return (
