@@ -44,7 +44,7 @@ export default function History() {
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full gap-12 pb-8">
         {/* Info Cards */}
-        <div className="flex">
+        <div className="md:flex grid grid-cols-2">
           {historyInfoCards.map((item, i) => (
             <InfoCard
               key={i}
@@ -76,6 +76,7 @@ export default function History() {
                   onChange={(e) => setSearch(e.target.value)}
                 />
 
+                {/* Mission filters*/}
                 <div className="flex gap-2">
                   {filters.map((item, i) => (
                     <Button
@@ -93,6 +94,7 @@ export default function History() {
                 </div>
               </div>
 
+              {/* Table */}
               <div className="w-full flex flex-col overflow-y-auto">
                 <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">

@@ -31,7 +31,7 @@ export default function Launch() {
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full gap-12 pb-8">
         {/* Info Cards */}
-        <div className="flex">
+        <div className="md:flex grid grid-cols-2">
           {launchInfoCards.map((item, i) => (
             <InfoCard
               key={i}
@@ -76,12 +76,13 @@ export default function Launch() {
               </div>
             </Card>
 
-            {/* Card Form */}
+            {/* Form Card */}
             <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text ">
               <Divider variant="label" label="Mission Parameters" />
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <Input
+                  id="launch-date"
                   inputClassName="h-10"
                   type="date"
                   label="● Launch Date"
@@ -89,6 +90,7 @@ export default function Launch() {
                 />
 
                 <Input
+                  id="mission-name"
                   inputClassName="h-10"
                   type="text"
                   label="● Mission Name"
@@ -97,6 +99,7 @@ export default function Launch() {
                 />
 
                 <Input
+                  id="rocket"
                   inputClassName="h-10"
                   type="text"
                   defaultValue={"Explorer IS1"}
@@ -104,6 +107,7 @@ export default function Launch() {
                 />
 
                 <Selector
+                  id="destination-exoplanet"
                   className="h-10"
                   label="● Destination Exoplanet"
                   required={true}
@@ -115,6 +119,7 @@ export default function Launch() {
 
               <Divider />
 
+              {/* Warning  + Button*/}
               <div className="flex w-full max-sm:flex-col gap-4 justify-between">
                 <p className="text-xs max-w-[15rem] text-cyan-muted">
                   All fields marked{" "}

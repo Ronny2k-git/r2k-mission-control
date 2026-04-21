@@ -28,7 +28,7 @@ export default function Upcoming() {
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full gap-12 pb-8">
         {/* Info Cards */}
-        <div className="flex">
+        <div className="md:flex grid grid-cols-2">
           {upcomingInfoCards.map((item, i) => (
             <InfoCard
               key={i}
@@ -67,6 +67,7 @@ export default function Upcoming() {
                 </div>
               </div>
 
+              {/* Table */}
               <div className="w-full flex flex-col justify-center overflow-y-auto">
                 <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">

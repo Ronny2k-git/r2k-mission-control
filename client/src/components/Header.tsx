@@ -1,13 +1,8 @@
-import { History, Rocket, Timer } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { headerNavigation } from "../consts";
 import { useClickFeedback } from "../hooks";
 import { Clock } from "./Clock";
-
-const headerNavigation = [
-  { nav: "/", icon: Rocket, label: "Launch" },
-  { nav: "/upcoming", icon: Timer, label: "Upcoming" },
-  { nav: "/history", icon: History, label: "History" },
-];
+import { NavItem } from "./NavItem";
 
 export function Header() {
   const { triggerIndex } = useClickFeedback({
@@ -37,8 +32,8 @@ export function Header() {
         <div className="flex items-center gap-4 h-full">
           <img src={"/favicon.png"} className="size-12" alt="website-logo" />
 
-          <div className="h-full flex flex-col justify-center leading-8 pr-4 border-r-2 border-bg-border ">
-            <span className="text-cyber-cyan-text text-3xl font-heading font-extrabold">
+          <div className="h-full flex flex-col justify-center md:pr-4 md:border-r-2 border-bg-border ">
+            <span className="text-cyber-cyan-text text-2xl font-heading font-extrabold">
               NASA
             </span>
             <span className="text-xs text-cyan-muted uppercase font-semibold whitespace-nowrap">
@@ -47,26 +42,34 @@ export function Header() {
           </div>
         </div>
 
-        <nav className="flex h-full justify-center font-semi text-cyan-muted">
+        {/* Mobile Nav */}
+        <nav className="flex md:hidden h-full">
           {headerNavigation.map((item, i) => {
-            const currentActiveNav = location.pathname === item.nav;
-
             return (
-              <div
-                key={`nav_bar_${i}`}
-                className="flex gap-2 text-xs uppercase font-semibold font-heading hover:text-cyber-cyan-text"
-              >
-                <a
-                  href={item.nav}
-                  aria-label="website-navigation"
-                  onClick={(e) => handleClick(i, item.nav, e)}
-                  className={`flex items-center justify-center gap-2 max-md:px-2 md:w-[8rem]
-                ${currentActiveNav && "bg-cyan-950/35 border-b-2 border-b-cyber-cyan-text text-cyber-cyan-text"}`}
-                >
-                  {item.icon && <item.icon className="w-5 h-5" />}
-                  {item.label}
-                </a>
-              </div>
+              <NavItem
+                key={`navigation_bar_${i}`}
+                index={i}
+                item={item}
+                variant="mobile"
+                isActive={location.pathname === item.nav}
+                onClick={handleClick}
+              />
+            );
+          })}
+        </nav>
+
+        {/* Desktop Nav */}
+        <nav className="flex max-md:hidden h-full ">
+          {headerNavigation.map((item, i) => {
+            return (
+              <NavItem
+                key={`navigation_bar_${i}`}
+                index={i}
+                item={item}
+                variant="desktop"
+                isActive={location.pathname === item.nav}
+                onClick={handleClick}
+              />
             );
           })}
         </nav>
