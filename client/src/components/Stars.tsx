@@ -48,6 +48,7 @@ export function Stars() {
     window.addEventListener("resize", () => {
       resize();
       initStars();
+      drawStars();
     });
   }, []);
 

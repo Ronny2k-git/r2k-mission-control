@@ -42,7 +42,7 @@ export default function Launch() {
           ))}
         </div>
 
-        <section className="flex flex-col w-full max-w-4xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
+        <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
           {/* Title */}
           <h1 className="font-extrabold text-white text-2xl sm:text-4xl sm:max-w-[27.2rem] font-heading leading-10">
             Schedule a <span className="text-cyber-cyan-text">Launch</span> to
@@ -56,7 +56,7 @@ export default function Launch() {
             <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
               <Divider variant="label" label="Eligibility Criteria" />
 
-              <h2 className="text-white-light">
+              <h2 className="text-white-light text-base">
                 Only confirmed planets matching the following criteria are
                 available for the earliest scheduled missions:
               </h2>
@@ -65,7 +65,9 @@ export default function Launch() {
                 {eligibilityPlanets.map((planet, i) => (
                   <div
                     key={i}
-                    className="flex items-center bg-secondary-card gap-2 p-2 text-sm  border-l-2 border-l-cyber-cyan-text "
+                    className="flex items-center bg-secondary-card gap-2 p-4 text-sm  border-l-2 border-l-cyber-cyan-text 
+                    hover:bg-secondary-card/70
+                    "
                   >
                     <span className="text-cyber-cyan-text text-xs">
                       {String(planet.id).padStart(2, "0")}

@@ -13,16 +13,25 @@ export function MissionRowCard({
   status,
 }: MissionRowCardProps) {
   return (
-    <tr className="h-11 border-b border-bg-border text-[15px]">
-      <td align="center" className="font-heading text-xs ">
+    <tr className="h-12 border-b border-bg-border text-xs md:text-sm text-cyan-muted">
+      <td align="center" className="font-heading text-xs">
         {String(id).padStart(2, "0")}
       </td>
-      <td align="center">{date}</td>
-      <td align="center" className="text-white/85 font-semibold">
+
+      <td align="center" className="text-white-light">
+        {date}
+      </td>
+
+      <td align="center" className="text-white font-semibold tracking-tight">
         {mission}
       </td>
+
       <td align="center">{rocket}</td>
-      <td align="center">{target}</td>
+
+      <td align="center" className="text-cyber-cyan-text">
+        {target}
+      </td>
+
       <td align="center">
         {status === "aborted" ? (
           <div className="size-5 bg-red-500/90" />

@@ -15,6 +15,16 @@ export default function History() {
     status: "Verified",
   };
 
+  //  TO DO LATER:
+
+  //   1 CREATE A PAGINATION COMPONENT.
+  //   2 CREATE A BANNER TO BE USED WHEN THE TABLE IS EMPTY OR WHEN.
+  //    THE FILTERS RETURN NOTHING
+  //   3 CREATE A MODAL COMPONENT.
+  //   4 CREATE A CARD DIALOG TO CONFIRM THE MISSION LAUNCH.
+  //   5 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
+  //   6 CREATE A COUNTDOWN COMPONENT.
+
   return (
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full gap-12 pb-8">
@@ -30,13 +40,13 @@ export default function History() {
           ))}
         </div>
 
-        <section className="flex flex-col w-full max-w-4xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
+        <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
           {/* Title */}
-          <h1 className="font-extrabold text-white/85 text-2xl sm:text-4xl font-heading leading-10">
+          <h1 className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10">
             Mission <span className="text-cyber-cyan-text">History</span>
           </h1>
 
-          <Divider />
+          <Divider variant="thick" />
 
           <div className="flex flex-col gap-4">
             <Card className="text-cyber-cyan-text">

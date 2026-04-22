@@ -13,15 +13,6 @@ export default function Upcoming() {
     status: "Scheduling",
   };
 
-  // TO DO TOMORROW:
-
-  // 1 CREATE A PAGINATION COMPONENT
-  // 2 CREATE A BANNER TO BE USED WHEN THE TABLE IS EMPTY OR WHEN
-  //  THE FILTERS RETURN NOTHING
-  // 3 CREATE A MODAL COMPONENT
-  // 4 CREATE A CARD DIALOG TO CONFIRM THE MISSION LAUNCH
-  // 5 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS)
-
   return (
     <div className="flex w-full h-full">
       <div className="flex flex-col w-full gap-12 pb-8">
@@ -37,7 +28,7 @@ export default function Upcoming() {
           ))}
         </div>
 
-        <section className="flex flex-col w-full max-w-4xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
+        <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
           {/* Title */}
           <h1 className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10">
             Upcoming <span className="text-cyber-cyan-text">Missions</span>
