@@ -1,4 +1,5 @@
 import {
+  EmptyBanner,
   InfoCard,
   MissionRowCard,
   MissionStatusBar,
@@ -85,7 +86,7 @@ export default function History() {
               </div>
 
               {/* Table */}
-              <div className="w-full flex flex-col overflow-y-auto gap-4">
+              <div className="w-full flex flex-col overflow-y-auto max-md:pb-4">
                 <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
@@ -114,29 +115,40 @@ export default function History() {
                     </tbody>
                   )}
                 </table>
+              </div>
 
-                {!filteredMissions ||
-                  (filteredMissions.length === 0 && <div>TESTTT</div>)}
+              {/* Display this banner when the table is empty */}
+              {filteredMissions.length === 0 && (
+                <div className="flex flex-col gap-4 m-4">
+                  <EmptyBanner />
 
-                <span className="text-xs px-4">
+                  <Divider variant="line" />
+                </div>
+              )}
+
+              {/* Total mission + Paginantion */}
+              <div className="flex p-4 gap-2 justify-between ">
+                <span className="text-xs ">
                   Showing {filteredMissions.length} missions
                 </span>
 
-                <div className="grid grid-cols-2">
-                  <MissionStatusBar
-                    title="Mission success rate"
-                    status="success"
-                    missions={14}
-                    totalMissions={20}
-                  />
+                <span className="text-sm">PAGINATION WILL BE HERE</span>
+              </div>
 
-                  <MissionStatusBar
-                    title="Abort rate"
-                    status="aborted"
-                    missions={6}
-                    totalMissions={20}
-                  />
-                </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                <MissionStatusBar
+                  title="Mission success rate"
+                  status="success"
+                  missions={14}
+                  totalMissions={20}
+                />
+
+                <MissionStatusBar
+                  title="Abort rate"
+                  status="aborted"
+                  missions={6}
+                  totalMissions={20}
+                />
               </div>
             </Card>
 

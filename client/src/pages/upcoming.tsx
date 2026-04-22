@@ -1,4 +1,9 @@
-import { InfoCard, MissionRowCard, SectionLabel } from "../components";
+import {
+  EmptyBanner,
+  InfoCard,
+  MissionRowCard,
+  SectionLabel,
+} from "../components";
 import { Card, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useSearchMissions } from "../hooks";
@@ -56,11 +61,8 @@ export default function Upcoming() {
                 </div>
               </div>
 
-              {/* <EmptyBanner /> */}
-              {/* {FINISH THIS COMPONENT AFTER LUNCH} */}
-
               {/* Table */}
-              <div className="w-full flex flex-col justify-center overflow-y-auto gap-4">
+              <div className="w-full flex flex-col justify-center overflow-y-auto pb-4">
                 <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
@@ -73,9 +75,9 @@ export default function Upcoming() {
                     </tr>
                   </thead>
 
-                  {searchedMissions.length > 0 && (
-                    <tbody>
-                      {searchedMissions.map((item, i) => (
+                  <tbody>
+                    {searchedMissions.length > 0 &&
+                      searchedMissions.map((item, i) => (
                         <MissionRowCard
                           key={i}
                           id={item.id}
@@ -86,16 +88,26 @@ export default function Upcoming() {
                           status="upcoming"
                         />
                       ))}
-                    </tbody>
-                  )}
+                  </tbody>
                 </table>
+              </div>
 
-                {!searchedMissions ||
-                  (searchedMissions.length === 0 && <div>TESTTTT</div>)}
+              {/* Display this banner when the table is empty */}
+              {searchedMissions.length === 0 && (
+                <div className="flex flex-col gap-4 m-4">
+                  <EmptyBanner />
 
-                <span className="text-xs px-4">
+                  <Divider variant="line" />
+                </div>
+              )}
+
+              {/* Total mission + Paginantion */}
+              <div className="flex p-4 gap-2 justify-between">
+                <span className="text-xs ">
                   Showing {searchedMissions.length} missions
                 </span>
+
+                <span className="text-sm">PAGINATION WILL BE HERE</span>
               </div>
             </Card>
 
