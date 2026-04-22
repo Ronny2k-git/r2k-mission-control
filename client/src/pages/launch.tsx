@@ -142,7 +142,7 @@ export default function Launch() {
             <Divider />
 
             <span className="text-xs max-sm:text-center text-cyan-muted">
-              NASA MISSION CONTROL · RESTRICTED ACCESS
+              R2K MISSION CONTROL · RESTRICTED ACCESS
             </span>
           </div>
         </section>

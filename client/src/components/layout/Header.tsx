@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { headerNavigation } from "../../consts";
 import { useClickFeedback } from "../../hooks";
 import { Clock } from "../Clock";
+import { Logo } from "../Logo";
 import { NavItem } from "../NavItem";
 
 export function Header() {
@@ -27,13 +28,13 @@ export function Header() {
       <div className="flex h-full max-md:flex-col max-md:w-full">
         {/* Logo and Name */}
         <div className="flex h-full w-full items-center p-2 gap-4 border-b border-b-bg-border ">
-          <img src={"/favicon.png"} className="size-12" alt="website-logo" />
+          <Logo />
 
           <div className="h-full flex flex-col justify-center md:pr-4 md:border-r-2 border-bg-border ">
             <span className="text-cyber-cyan-text text-2xl font-heading font-extrabold">
               R2K
             </span>
-            <span className="text-xs text-cyan-muted uppercase font-semibold whitespace-nowrap">
+            <span className="text-xs text-cyan-muted uppercase whitespace-nowrap">
               Mission Control
             </span>
           </div>

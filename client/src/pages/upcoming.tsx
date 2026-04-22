@@ -21,8 +21,6 @@ export default function Upcoming() {
   // 3 CREATE A MODAL COMPONENT
   // 4 CREATE A CARD DIALOG TO CONFIRM THE MISSION LAUNCH
   // 5 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS)
-  // 6 IMPLEMENT AN ANIMATED BACKGROUND
-  // 7 FINISH THE WENSITE COLOR UPDATES
 
   return (
     <div className="flex w-full h-full">
@@ -69,7 +67,7 @@ export default function Upcoming() {
 
               {/* Table */}
               <div className="w-full flex flex-col justify-center overflow-y-auto">
-                <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
+                <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
                       <th className="p-2">No.</th>
@@ -105,7 +103,7 @@ export default function Upcoming() {
             <Divider />
 
             <span className="text-xs max-sm:text-center text-cyan-muted">
-              NASA MISSION CONTROL · RESTRICTED ACCESS
+              R2K MISSION CONTROL · RESTRICTED ACCESS
             </span>
           </div>
         </section>

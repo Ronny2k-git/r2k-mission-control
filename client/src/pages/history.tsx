@@ -1,30 +1,7 @@
-import { ShieldCheck, ShieldX } from "lucide-react";
 import { InfoCard, MissionRowCard, SectionLabel } from "../components";
 import { Button, Card, Divider, Input } from "../components/ui";
-import { historyInfoCards, type HistoryData } from "../consts";
+import { filters, historyInfoCards, type HistoryData } from "../consts";
 import { useFilterMissions, useSearchMissions } from "../hooks";
-import type { FilterType } from "../types";
-
-const filters: {
-  value: FilterType;
-  label: string;
-  icon?: React.ElementType;
-  iconColor?: string;
-}[] = [
-  { value: "all", label: "All" },
-  {
-    value: "success",
-    icon: ShieldCheck,
-    iconColor: "text-green-500",
-    label: "Success",
-  },
-  {
-    value: "aborted",
-    icon: ShieldX,
-    iconColor: "text-red-400",
-    label: "Aborted",
-  },
-];
 
 export default function History() {
   const { searchedMissions, search, setSearch } = useSearchMissions();
@@ -37,8 +14,6 @@ export default function History() {
     firstLaunch: "2006",
     status: "Verified",
   };
-
-  // {FIX THIS RESPONSIBILITY}
 
   return (
     <div className="flex w-full h-full">
@@ -96,7 +71,7 @@ export default function History() {
 
               {/* Table */}
               <div className="w-full flex flex-col overflow-y-auto">
-                <table className="w-full text-base text-cyan-text-light min-w-[45rem]">
+                <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
                       <th className="p-2">No.</th>
@@ -132,7 +107,7 @@ export default function History() {
             <Divider />
 
             <span className="text-xs max-sm:text-center text-cyan-muted">
-              NASA MISSION CONTROL · RESTRICTED ACCESS
+              R2K MISSION CONTROL · RESTRICTED ACCESS
             </span>
           </div>
         </section>

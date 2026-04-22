@@ -4,5 +4,7 @@ export * from "./EmptyBanner";
 export * from "./InfoCard";
 export * from "./layout/Footer";
 export * from "./layout/Header";
+export * from "./Logo";
 export * from "./MissionRowCard";
 export * from "./SectionLabel";
+export * from "./Stars";
