@@ -25,7 +25,7 @@ export default function History() {
 
   //  TO DO LATER:
 
-  //   1 CREATE A PAGINATION COMPONENT.
+  //   1 FINISH AND IMPLEMENT THE PAGINATION COMPONENT.
 
   //   2 CREATE A MODAL COMPONENT.
 
@@ -35,7 +35,7 @@ export default function History() {
 
   //   5 CREATE A COUNTDOWN COMPONENT.
 
-  //   6 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING
+  //   6 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
 
   return (
     <div className="flex w-full h-full">
@@ -96,8 +96,7 @@ export default function History() {
                 <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
-                      <th className="p-2">No.</th>
-                      <th>Date</th>
+                      <th className="p-3">Launch Date</th>
                       <th>Mission</th>
                       <th>Rocket</th>
                       <th>Customers</th>
@@ -145,9 +144,9 @@ export default function History() {
               )}
 
               {/* Total mission + Paginantion */}
-              <div className="flex p-4 gap-2 justify-between">
-                <span className="text-xs ">
-                  Showing {filteredMissions.length} missions
+              <div className="flex bg-secondary-card h-16 sm:h-12 px-6 gap-2 items-center justify-center sm:justify-between">
+                <span className="hidden sm:block text-xs">
+                  Showing {searchedMissions.length} missions
                 </span>
 
                 <Pagination

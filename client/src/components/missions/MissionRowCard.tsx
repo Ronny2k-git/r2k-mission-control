@@ -13,12 +13,12 @@ export function MissionRowCard({
   status,
 }: MissionRowCardProps) {
   return (
-    <tr className="h-12 border-b border-bg-border hover:bg-card-background-light text-xs md:text-sm text-cyan-muted">
-      <td align="center" className="font-heading text-xs">
-        {String(id).padStart(2, "0")}
-      </td>
-
+    <tr className="h-12 border-b border-bg-border hover:bg-secondary-card text-xs md:text-sm text-cyan-muted">
       <td align="center" className="text-white-light">
+        <span className="font-heading text-xs mr-6 text-cyan-muted">
+          {String(id).padStart(2, "0")}
+        </span>
+
         {date}
       </td>
 

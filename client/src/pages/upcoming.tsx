@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { EmptyBanner, SectionLabel } from "../components";
+import { EmptyBanner, Pagination, SectionLabel } from "../components";
 import { MissionInfoCard, MissionRowCard } from "../components/missions";
 import { Card, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
@@ -65,8 +65,7 @@ export default function Upcoming() {
                 <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
-                      <th className="p-2">No.</th>
-                      <th>Date</th>
+                      <th className="p-3">Launch Date</th>
                       <th>Mission</th>
                       <th>Rocket</th>
                       <th>Destination</th>
@@ -110,12 +109,16 @@ export default function Upcoming() {
               )}
 
               {/* Total mission + Paginantion */}
-              <div className="flex p-4 gap-2 justify-between">
-                <span className="text-xs ">
+              <div className="flex bg-secondary-card h-16 sm:h-12 px-6 gap-2 items-center justify-center sm:justify-between">
+                <span className="hidden sm:block text-xs">
                   Showing {searchedMissions.length} missions
                 </span>
 
-                <span className="text-sm">PAGINATION WILL BE HERE</span>
+                <Pagination
+                  page={1}
+                  totalPages={3}
+                  onChange={() => console.log("test")}
+                />
               </div>
             </Card>
 

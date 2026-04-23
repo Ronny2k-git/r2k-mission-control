@@ -4,11 +4,12 @@ import { twMerge } from "tailwind-merge";
 import { CornerBorders, type BorderColor } from "./CornerBorders";
 
 const buttonVariants = cva(
-  "flex relative items-center justify-center font-semibold",
+  "flex relative items-center justify-center font-semibold disabled:opacity-30 disabled:cursor-not-allowed disabled:pointer-events-none",
   {
     variants: {
       variant: {
-        primary: "border text-green-400 bg-green-400/5 ",
+        primary:
+          "border border-cyber-cyan-text/70 text-white hover:bg-cyan-500/15 ",
         ghost:
           "border border-cyber-cyan-text/50 text-cyan-muted hover:text-cyber-cyan hover:bg-cyan-500/10",
         basic:
@@ -21,14 +22,14 @@ const buttonVariants = cva(
           "border bg-orange-300/10 border-orange-300 text-orange-300 hover:bg-red-300/15",
       },
       size: {
-        sm: "px-4 text-base",
+        sm: "px-4 py-1 text-sm rounded-lg",
         md: "px-4 text-base",
-        lg: "px-4 text-base",
+        lg: "px-4 ",
       },
     },
     defaultVariants: {
       variant: "primary",
-      size: "sm",
+      size: "md",
     },
   },
 );

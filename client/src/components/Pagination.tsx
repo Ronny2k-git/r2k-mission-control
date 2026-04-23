@@ -9,23 +9,33 @@ export type PaginationProps = {
 
 export function Pagination({ page, totalPages, onChange }: PaginationProps) {
   return (
-    <div className="flex items-center gap-2 text-base">
+    <div className="flex items-center gap-1 text-base">
       <Button
-        className="uppercase rounded-lg"
-        variant="ghost"
+        className="uppercase px-2"
+        variant="primary"
+        size="sm"
         iconLeft={<ChevronLeft className="size-4" />}
         disabled={page === 1}
       >
         Prev
       </Button>
 
-      <Button className="uppercase" variant="ghost">
+      <Button variant="primary" size="sm">
         {page}
       </Button>
 
+      <Button variant="primary" size="sm">
+        {page + 1}
+      </Button>
+
+      <Button variant="primary" size="sm">
+        {page + 2}
+      </Button>
+
       <Button
-        className="uppercase rounded-4xl"
-        variant="ghost"
+        className="uppercase px-2"
+        variant="primary"
+        size="sm"
         iconRight={<ChevronRight className="size-4" />}
         disabled={page === totalPages}
       >
