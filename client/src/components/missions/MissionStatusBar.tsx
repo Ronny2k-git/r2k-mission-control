@@ -1,5 +1,5 @@
-import { calculatePercentage } from "../utils";
-import { Card } from "./ui";
+import { calculatePercentage } from "../../utils";
+import { Card } from "../ui";
 
 const statusColor = {
   success: "from-green-500 via-green-500 to-green-400",

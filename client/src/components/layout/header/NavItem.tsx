@@ -1,5 +1,5 @@
 import { twMerge } from "tailwind-merge";
-import type { headerNavigation } from "../consts";
+import type { headerNavigation } from "../../../consts";
 
 type NavItemProps = {
   item: (typeof headerNavigation)[number];

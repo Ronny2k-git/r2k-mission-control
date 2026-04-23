@@ -1,5 +1,5 @@
 import type { ComponentPropsWithRef } from "react";
-import { Card } from "./ui";
+import { Card } from "../ui";
 
 export type textColor =
   | "text-cyber-cyan-text"
@@ -7,13 +7,18 @@ export type textColor =
   | "text-green-400"
   | "text-orange-300";
 
-export type InfoCardProps = ComponentPropsWithRef<"div"> & {
+export type MissionInfoCardProps = ComponentPropsWithRef<"div"> & {
   title: string;
   text: string | number;
   textColor: textColor;
 };
 
-export function InfoCard({ title, text, textColor, ...props }: InfoCardProps) {
+export function MissionInfoCard({
+  title,
+  text,
+  textColor,
+  ...props
+}: MissionInfoCardProps) {
   return (
     <Card
       className="w-full p-4 bg-transparent font-body"

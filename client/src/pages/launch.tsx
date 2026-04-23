@@ -1,5 +1,5 @@
 import { Check } from "lucide-react";
-import { InfoCard } from "../components";
+import { MissionInfoCard } from "../components/missions";
 import { Button, Card, Divider, Input, Selector } from "../components/ui";
 import {
   eligibilityPlanets,
@@ -33,7 +33,7 @@ export default function Launch() {
         {/* Info Cards */}
         <div className="md:flex grid grid-cols-2">
           {launchInfoCards.map((item, i) => (
-            <InfoCard
+            <MissionInfoCard
               key={i}
               title={item.title}
               text={infoLaunchCardData[item.key]}

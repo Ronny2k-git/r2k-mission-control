@@ -1,4 +1,4 @@
-import type { Mission } from "../types";
+import type { Mission } from "../../types";
 
 export interface MissionRowCardProps extends Mission {
   className?: string;

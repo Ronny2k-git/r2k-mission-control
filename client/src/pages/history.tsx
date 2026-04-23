@@ -1,10 +1,9 @@
+import { EmptyBanner, SectionLabel } from "../components";
 import {
-  EmptyBanner,
-  InfoCard,
+  MissionInfoCard,
   MissionRowCard,
   MissionStatusBar,
-  SectionLabel,
-} from "../components";
+} from "../components/missions";
 import { Button, Card, Divider, Input } from "../components/ui";
 import { filters, historyInfoCards, type HistoryData } from "../consts";
 import { useFilterMissions, useSearchMissions } from "../hooks";
@@ -24,11 +23,16 @@ export default function History() {
   //  TO DO LATER:
 
   //   1 CREATE A PAGINATION COMPONENT.
+
   //   2 CREATE A BANNER TO BE USED WHEN THE TABLE IS EMPTY OR WHEN.
   //    THE FILTERS RETURN NOTHING
+
   //   3 CREATE A MODAL COMPONENT.
+
   //   4 CREATE A CARD DIALOG TO CONFIRM THE MISSION LAUNCH.
+
   //   5 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
+
   //   6 CREATE A COUNTDOWN COMPONENT.
 
   return (
@@ -37,7 +41,7 @@ export default function History() {
         {/* Info Cards */}
         <div className="md:flex grid grid-cols-2">
           {historyInfoCards.map((item, i) => (
-            <InfoCard
+            <MissionInfoCard
               key={i}
               title={item.title}
               text={infoHistoryCardData[item.key]}
@@ -56,7 +60,7 @@ export default function History() {
 
           <div className="flex flex-col gap-4">
             <Card className="text-cyber-cyan-text">
-              <div className="flex max-md:flex-col items-center gap-2 p-4 sm:p-6">
+              <div className="flex max-md:flex-col items-center gap-4 p-4 sm:p-6">
                 <SectionLabel>Launch archive</SectionLabel>
 
                 <Input
@@ -86,7 +90,7 @@ export default function History() {
               </div>
 
               {/* Table */}
-              <div className="w-full flex flex-col overflow-y-auto max-md:pb-4">
+              <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
                 <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
@@ -119,7 +123,7 @@ export default function History() {
 
               {/* Display this banner when the table is empty */}
               {filteredMissions.length === 0 && (
-                <div className="flex flex-col gap-4 m-4">
+                <div className="flex flex-col gap-6 m-4">
                   <EmptyBanner />
 
                   <Divider variant="line" />
@@ -127,7 +131,7 @@ export default function History() {
               )}
 
               {/* Total mission + Paginantion */}
-              <div className="flex p-4 gap-2 justify-between ">
+              <div className="flex p-4 gap-2 justify-between">
                 <span className="text-xs ">
                   Showing {filteredMissions.length} missions
                 </span>

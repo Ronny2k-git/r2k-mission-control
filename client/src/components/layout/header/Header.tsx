@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { headerNavigation } from "../../consts";
-import { useClickFeedback } from "../../hooks";
-import { Clock } from "../Clock";
+import { headerNavigation } from "../../../consts";
+import { useClickFeedback } from "../../../hooks";
+import { Clock } from "../../Clock";
 import { Logo } from "../Logo";
-import { NavItem } from "../NavItem";
+import { NavItem } from "./NavItem";
 
 export function Header() {
   const { triggerIndex } = useClickFeedback({

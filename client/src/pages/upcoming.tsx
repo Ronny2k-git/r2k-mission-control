@@ -1,9 +1,5 @@
-import {
-  EmptyBanner,
-  InfoCard,
-  MissionRowCard,
-  SectionLabel,
-} from "../components";
+import { EmptyBanner, SectionLabel } from "../components";
+import { MissionInfoCard, MissionRowCard } from "../components/missions";
 import { Card, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useSearchMissions } from "../hooks";
@@ -24,7 +20,7 @@ export default function Upcoming() {
         {/* Info Cards */}
         <div className="md:flex grid grid-cols-2">
           {upcomingInfoCards.map((item, i) => (
-            <InfoCard
+            <MissionInfoCard
               key={i}
               title={item.title}
               text={infoUpcomingCardData[item.key]}
@@ -43,7 +39,7 @@ export default function Upcoming() {
 
           <div className="flex flex-col w-full gap-4">
             <Card className="text-cyber-cyan-text">
-              <div className="flex max-sm:flex-col items-center gap-2 p-4 sm:p-6">
+              <div className="flex max-sm:flex-col items-center gap-4 p-4 sm:p-6">
                 <SectionLabel>Launch Schedule</SectionLabel>
 
                 <Input
@@ -62,7 +58,7 @@ export default function Upcoming() {
               </div>
 
               {/* Table */}
-              <div className="w-full flex flex-col justify-center overflow-y-auto pb-4">
+              <div className="w-full flex flex-col justify-center overflow-y-auto max-md:pb-2">
                 <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
                   <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
                     <tr>
@@ -94,7 +90,7 @@ export default function Upcoming() {
 
               {/* Display this banner when the table is empty */}
               {searchedMissions.length === 0 && (
-                <div className="flex flex-col gap-4 m-4">
+                <div className="flex flex-col gap-6 m-4">
                   <EmptyBanner />
 
                   <Divider variant="line" />
