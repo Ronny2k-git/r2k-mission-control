@@ -54,6 +54,7 @@
   --color-white-light: rgba(188, 218, 242);
   --color-bg-border: rgba(6, 49, 72, 0.7);
   --color-input-color: rgba(0, 19, 38);
+  --color-red-muted: rgba(107, 48, 48);
 
   --text-description: 1.1875rem;
 }

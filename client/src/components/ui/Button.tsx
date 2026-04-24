@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import { CornerBorders, type BorderColor } from "./CornerBorders";
+import { CornerBorders, type BorderColors } from "./CornerBorders";
 
 const buttonVariants = cva(
   "flex relative items-center justify-center font-semibold disabled:opacity-30 disabled:cursor-not-allowed disabled:pointer-events-none",
@@ -16,15 +16,17 @@ const buttonVariants = cva(
           "border bg-cyan-500/10 border-cyber-cyan-text hover:bg-cyan-500/15",
         success:
           "border bg-green-500/5 border-green-500/80 text-base text-green-400/85 hover:bg-green-500/10",
-        aborted:
+        abort:
           "border bg-red-500/5 border-red-500/80 text-red-400/85 hover:bg-red-500/10",
         waiting:
           "border bg-orange-300/10 border-orange-300 text-orange-300 hover:bg-red-300/15",
         glow: "glow bg-cyan-500/10 border border-cyber-cyan-text/70 text-white hover:bg-cyan-500/15 ",
+        warning:
+          "bg-red-500/10 text-red-500 border border-red-500/50 font-semibold hover:border-red-500/80",
       },
       size: {
         sm: "px-2 py-1 text-sm rounded-lg",
-        md: "px-4 text-base",
+        md: "px-3 text-base",
         lg: "px-4 ",
       },
     },
@@ -40,7 +42,7 @@ export type ButtonVariant = VariantProps<typeof buttonVariants>["variant"];
 export interface ButtonProps
   extends ComponentPropsWithRef<"button">, VariantProps<typeof buttonVariants> {
   className?: string;
-  borderColor?: BorderColor;
+  borderColor?: BorderColors;
   iconLeft?: ReactNode;
   iconRight?: ReactNode;
   children: ReactNode;

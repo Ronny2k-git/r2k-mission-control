@@ -21,7 +21,8 @@ export function MissionInfoCard({
 }: MissionInfoCardProps) {
   return (
     <Card
-      className="w-full p-4 bg-transparent font-body"
+      className="w-full p-4 font-body"
+      variant="secondary"
       cornerBorders={false}
       {...props}
     >

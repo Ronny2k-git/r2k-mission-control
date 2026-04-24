@@ -1,7 +1,9 @@
 import type { Mission } from "../../types";
+import { Button } from "../ui";
 
 export interface MissionRowCardProps extends Mission {
   className?: string;
+  onAbort?: (mission: Mission) => void;
 }
 
 export function MissionRowCard({
@@ -11,6 +13,7 @@ export function MissionRowCard({
   rocket,
   target,
   status,
+  onAbort,
 }: MissionRowCardProps) {
   return (
     <tr className="h-12 border-b border-bg-border hover:bg-secondary-card text-xs md:text-sm text-cyan-muted">
@@ -38,13 +41,17 @@ export function MissionRowCard({
         ) : status === "success" ? (
           <div className="size-5 bg-green-500/90" />
         ) : (
-          <button
+          <Button
+            className="size-5 text-xs"
             aria-label="Abort mission"
-            className="size-6 border border-red-500/50 bg-red-500/10 font-semibold hover:border-red-500/80 
-          hover:bg-red-500/15"
+            variant="warning"
+            size="md"
+            onClick={() =>
+              onAbort?.({ id, date, mission, rocket, target, status })
+            }
           >
-            <span className="text-xs text-red-500">X</span>
-          </button>
+            X
+          </Button>
         )}
       </td>
     </tr>

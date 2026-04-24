@@ -1,61 +1,66 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
-import { Button } from "./Button";
-import { Card } from "./Card";
+import { Button, type ButtonVariant } from "./Button";
+import { Card, type CardVariants } from "./Card";
 import { Portal } from "./Portal";
 
 export type ModalProps = ComponentPropsWithRef<"div"> & {
   className?: string;
-  isOpen: boolean;
+  variant?: CardVariants;
+  open: boolean;
   onClose: () => void;
-  trigger: ReactNode;
   children: ReactNode;
 };
 
+const buttonVariantMap: Record<CardVariants, ButtonVariant> = {
+  primary: "primary",
+  secondary: "primary",
+  warning: "warning",
+  success: "success",
+};
+
 export function Modal({
-  className,
-  trigger,
-  isOpen,
+  variant = "primary",
+  open,
   onClose,
   children,
+  className,
   ...props
 }: ModalProps) {
   return (
     <>
-      {trigger}
-
-      {isOpen && (
+      {open && (
         <Portal>
-          <>
-            {/* Overlay */}
-            <div
-              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
+          {/* Overlay */}
+          <div
+            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
+            onClick={onClose}
+          />
+
+          {/* Add FIXED later */}
+          <Card
+            role="dialog"
+            aria-modal="true"
+            variant={variant}
+            className={twMerge(
+              "gap-4 fixed z-50 p-4 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ",
+              className,
+            )}
+            onClick={(e) => e.stopPropagation()}
+            {...props}
+          >
+            {/* Close modal */}
+
+            <Button
+              className="absolute size-8 top-4 right-4"
+              variant={buttonVariantMap[variant]}
               onClick={onClose}
-            />
-
-            {/* Add FIXED later */}
-            <Card
-              role="dialog"
-              aria-modal="true"
-              className={twMerge(
-                "gap-4 fixed z-50 p-4 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ",
-                className,
-              )}
-              {...props}
             >
-              <div className="flex w-full justify-end">
-                <Button
-                  className="size-8 text-lg "
-                  variant={"primary"}
-                  onClick={onClose}
-                >
-                  x
-                </Button>
-              </div>
+              X
+            </Button>
 
-              {children}
-            </Card>
-          </>
+            {children}
+          </Card>
         </Portal>
       )}
     </>

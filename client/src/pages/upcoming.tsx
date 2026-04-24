@@ -1,14 +1,17 @@
+import { X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EmptyBanner, Pagination, SectionLabel } from "../components";
 import { MissionInfoCard, MissionRowCard } from "../components/missions";
-import { Button, Card, Divider, Input, Modal } from "../components/ui";
+import { Card, DialogCard, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useSearchMissions } from "../hooks";
+import type { Mission } from "../types";
 
 export default function Upcoming() {
   const [page, setPage] = useState(1);
   const [openModal, setOpenModal] = useState(false);
+  const [selectedMission, setSelectedMission] = useState<Mission>();
   const { searchedMissions, search, setSearch } = useSearchMissions();
 
   const navigate = useNavigate();
@@ -21,7 +24,7 @@ export default function Upcoming() {
   };
 
   return (
-    <div className="flex w-full h-full">
+    <>
       <div className="flex flex-col w-full gap-12 pb-8">
         {/* Info Cards */}
         <div className="md:flex grid grid-cols-2">
@@ -34,21 +37,6 @@ export default function Upcoming() {
             />
           ))}
         </div>
-
-        <Modal
-          className="max-w-5xl"
-          isOpen={openModal}
-          onClose={() => setOpenModal(false)}
-          trigger={
-            <Button variant={"primary"} onClick={() => setOpenModal(true)}>
-              Open Modal
-            </Button>
-          }
-        >
-          <span className="text-cyber-cyan-text">
-            TEEEEEEEEESSSSSSSSSSTTTTTTTTTTTTT
-          </span>
-        </Modal>
 
         <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
           {/* Title */}
@@ -102,6 +90,10 @@ export default function Upcoming() {
                           rocket={item.rocket}
                           target={item.target}
                           status="upcoming"
+                          onAbort={(mission) => {
+                            setSelectedMission(mission);
+                            setOpenModal(true);
+                          }}
                         />
                       ))}
                   </tbody>
@@ -148,6 +140,21 @@ export default function Upcoming() {
           </div>
         </section>
       </div>
-    </div>
+
+      {/* Dialog card */}
+      {selectedMission && (
+        <DialogCard
+          className="max-w-lg"
+          open={openModal}
+          onClose={() => setOpenModal(false)}
+          variant="warning"
+          iconBadge={<X />}
+          title="Abort Mission ?"
+          description="This action will immediately halt all systems and terminate the
+            mission sequence. This operation cannot be undone."
+          mission={selectedMission}
+        ></DialogCard>
+      )}
+    </>
   );
 }

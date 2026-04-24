@@ -1,12 +1,12 @@
-export type BorderColor =
+export type BorderColors =
   | "border-cyber-cyan-text"
-  | "border-green-400"
-  | "border-red-400";
+  | "border-green-500"
+  | "border-red-500";
 
 type Size = "xs" | "sm" | "md" | "lg";
 
 type CornerBordersProps = {
-  color: BorderColor;
+  color: BorderColors;
   size: Size;
 };
 
