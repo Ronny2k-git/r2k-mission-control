@@ -11,7 +11,7 @@ const buttonVariants = cva(
         primary:
           "border border-cyber-cyan-text/70 text-white hover:bg-cyan-500/15 ",
         ghost:
-          "border border-cyber-cyan-text/50 text-cyan-muted hover:text-cyber-cyan hover:bg-cyan-500/10",
+          "border border-cyber-cyan-text/30 text-cyber-cyan-text/90 hover:text-cyber-cyan hover:bg-cyan-500/10",
         basic:
           "border bg-cyan-500/10 border-cyber-cyan-text hover:bg-cyan-500/15",
         success:
@@ -20,9 +20,10 @@ const buttonVariants = cva(
           "border bg-red-500/5 border-red-500/80 text-red-400/85 hover:bg-red-500/10",
         waiting:
           "border bg-orange-300/10 border-orange-300 text-orange-300 hover:bg-red-300/15",
+        glow: "glow bg-cyan-500/10 border border-cyber-cyan-text/70 text-white hover:bg-cyan-500/15 ",
       },
       size: {
-        sm: "px-4 py-1 text-sm rounded-lg",
+        sm: "px-2 py-1 text-sm rounded-lg",
         md: "px-4 text-base",
         lg: "px-4 ",
       },
@@ -58,10 +59,9 @@ export function Button({
   return (
     <button
       className={twMerge(
-        "relative px-4",
         buttonVariants({ variant, size }),
-        iconLeft && "gap-2",
-        iconRight && "gap-2",
+        iconLeft && "sm:gap-2",
+        iconRight && "sm:gap-2",
         className,
       )}
       type="button"

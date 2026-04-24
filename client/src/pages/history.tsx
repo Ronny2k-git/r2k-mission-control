@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EmptyBanner, Pagination, SectionLabel } from "../components";
 import {
@@ -10,6 +11,7 @@ import { filters, historyInfoCards, type HistoryData } from "../consts";
 import { useFilterMissions, useSearchMissions } from "../hooks";
 
 export default function History() {
+  const [page, setPage] = useState(1);
   const { searchedMissions, search, setSearch } = useSearchMissions();
   const { filteredMissions, filter, setFilter } =
     useFilterMissions(searchedMissions);
@@ -25,11 +27,11 @@ export default function History() {
 
   //  TO DO LATER:
 
-  //   1 FINISH AND IMPLEMENT THE PAGINATION COMPONENT.
+  //   1 CREATE A MODAL COMPONENT.
 
-  //   2 CREATE A MODAL COMPONENT.
+  //   2 CREATE A CARD DIALOG TO CONFIRM THE MISSION LAUNCH.
 
-  //   3 CREATE A CARD DIALOG TO CONFIRM THE MISSION LAUNCH.
+  //   LATER -----------------
 
   //   4 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
 
@@ -129,7 +131,7 @@ export default function History() {
                     key="history-empty-banner"
                     variant="cyan"
                     primaryActionVariant="ghost"
-                    secondaryActionVariant="primary"
+                    secondaryActionVariant="basic"
                     onPrimaryAction={() => {
                       setSearch("");
                       setFilter("all");
@@ -144,15 +146,15 @@ export default function History() {
               )}
 
               {/* Total mission + Paginantion */}
-              <div className="flex bg-secondary-card h-16 sm:h-12 px-6 gap-2 items-center justify-center sm:justify-between">
+              <div className="flex bg-secondary-card h-16 sm:h-12 sm:px-6 gap-2 items-center justify-center sm:justify-between">
                 <span className="hidden sm:block text-xs">
                   Showing {searchedMissions.length} missions
                 </span>
 
                 <Pagination
-                  page={1}
-                  totalPages={3}
-                  onChange={() => console.log("test")}
+                  page={page}
+                  totalPages={8}
+                  onChange={(newPage) => setPage(newPage)}
                 />
               </div>
 

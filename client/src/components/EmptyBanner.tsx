@@ -20,7 +20,7 @@ export function EmptyBanner({
 }: EmptyBannerProps) {
   return (
     <Card
-      className="bg-card-background-light/50 p-4 sm:p-8 items-center gap-8"
+      className="border-cyber-cyan-text/25 p-4 sm:p-8 items-center gap-8"
       cornerBorders={true}
     >
       <EnergyBadge className="mt-4" icon={<Rocket />} variant={variant} />

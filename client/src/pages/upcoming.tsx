@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { EmptyBanner, Pagination, SectionLabel } from "../components";
 import { MissionInfoCard, MissionRowCard } from "../components/missions";
@@ -6,6 +7,7 @@ import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useSearchMissions } from "../hooks";
 
 export default function Upcoming() {
+  const [page, setPage] = useState(1);
   const { searchedMissions, search, setSearch } = useSearchMissions();
 
   const navigate = useNavigate();
@@ -109,15 +111,15 @@ export default function Upcoming() {
               )}
 
               {/* Total mission + Paginantion */}
-              <div className="flex bg-secondary-card h-16 sm:h-12 px-6 gap-2 items-center justify-center sm:justify-between">
+              <div className="flex bg-secondary-card h-16 sm:h-12 sm:px-6 gap-2 items-center justify-center sm:justify-between">
                 <span className="hidden sm:block text-xs">
                   Showing {searchedMissions.length} missions
                 </span>
 
                 <Pagination
-                  page={1}
-                  totalPages={3}
-                  onChange={() => console.log("test")}
+                  page={page}
+                  totalPages={11}
+                  onChange={(newPage) => setPage(newPage)}
                 />
               </div>
             </Card>
