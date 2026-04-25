@@ -1,7 +1,7 @@
 import { Check, Rocket, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { SectionLabel } from "../components/global";
+import { CountdownClock, SectionLabel } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import {
   Button,
@@ -53,7 +53,7 @@ export default function Launch() {
 
   const infoLaunchCardData: LaunchData = {
     planets: 8,
-    nextMission: "Apr 20, 2026",
+    nextMission: <CountdownClock targetDate={"2026-4-26"} />,
     activeMissions: 3,
     status: "Operational",
   };
@@ -69,6 +69,7 @@ export default function Launch() {
               title={item.title}
               text={infoLaunchCardData[item.key]}
               textColor={item.textColor}
+              variant={item.variant}
             />
           ))}
         </div>

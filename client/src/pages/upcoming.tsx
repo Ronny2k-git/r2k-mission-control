@@ -1,7 +1,12 @@
 import { CornerUpLeft, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { EmptyBanner, Pagination, SectionLabel } from "../components/global";
+import {
+  CountdownClock,
+  EmptyBanner,
+  Pagination,
+  SectionLabel,
+} from "../components/global";
 import { MissionInfoCard, MissionRowCard } from "../components/missions";
 import { Button, Card, DialogCard, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
@@ -43,7 +48,7 @@ export default function Upcoming() {
 
   const infoUpcomingCardData: UpcomingData = {
     launchedMissions: 10,
-    nextMission: "May 13, 2026",
+    nextMission: <CountdownClock targetDate={"2026-4-28"} />,
     rocketsReady: 3,
     status: "Scheduling",
   };
@@ -59,6 +64,7 @@ export default function Upcoming() {
               title={item.title}
               text={infoUpcomingCardData[item.key]}
               textColor={item.textColor}
+              variant={item.variant}
             />
           ))}
         </div>
@@ -97,7 +103,7 @@ export default function Upcoming() {
               {/* Table */}
               <div className="w-full flex flex-col justify-center overflow-y-auto max-md:pb-2">
                 <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
-                  <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
+                  <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
                     <tr>
                       <th className="p-3">Launch Date</th>
                       <th>Mission</th>

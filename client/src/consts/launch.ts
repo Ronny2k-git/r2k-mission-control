@@ -1,29 +1,38 @@
-import type { CardConfig } from "../types";
+import type { ReactNode } from "react";
+import type { MissionCardInfoProps } from "../types";
 
 export type LaunchData = {
   planets: number;
-  nextMission: string;
+  nextMission: ReactNode;
   activeMissions: number;
   status: string;
 };
 
-export const launchInfoCards: CardConfig<LaunchData>[] = [
+export const launchInfoCards: MissionCardInfoProps<LaunchData>[] = [
   {
     title: "Eligible Planets",
     key: "planets",
     textColor: "text-cyber-cyan-text",
+    variant: "secondary",
   },
   {
     title: "Active Missions",
     key: "activeMissions",
     textColor: "text-orange-300",
+    variant: "secondary",
   },
   {
     title: "Next Mission In",
     key: "nextMission",
     textColor: "text-white",
+    variant: "glow",
   },
-  { title: "Fleet Status", key: "status", textColor: "text-green-400" },
+  {
+    title: "Fleet Status",
+    key: "status",
+    textColor: "text-green-400",
+    variant: "secondary",
+  },
 ];
 
 export const eligibilityPlanets = [

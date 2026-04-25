@@ -7,6 +7,7 @@ const cardVariants = {
   secondary: "border border-bg-border",
   success: "bg-green-muted border border-green-500/40 ",
   warning: "bg-red-dark border border-red-500/25 ",
+  glow: "bg-dark-blue/70 border border-bg-border border-t-2 border-t-cyber-cyan-text",
 };
 
 const borderColorMap: Record<CardVariants, BorderColors> = {
@@ -14,6 +15,7 @@ const borderColorMap: Record<CardVariants, BorderColors> = {
   secondary: "border-cyber-cyan-text",
   success: "border-green-500",
   warning: "border-red-500",
+  glow: "border-cyber-cyan-text",
 };
 
 export type CardVariants = keyof typeof cardVariants;

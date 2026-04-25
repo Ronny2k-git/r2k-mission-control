@@ -1,5 +1,5 @@
-import type { ComponentPropsWithRef } from "react";
-import { Card } from "../ui";
+import type { ComponentPropsWithRef, ReactNode } from "react";
+import { Card, type CardVariants } from "../ui";
 
 export type textColor =
   | "text-cyber-cyan-text"
@@ -9,26 +9,29 @@ export type textColor =
 
 export type MissionInfoCardProps = ComponentPropsWithRef<"div"> & {
   title: string;
-  text: string | number;
+  text: ReactNode;
   textColor: textColor;
+  variant: CardVariants;
 };
 
 export function MissionInfoCard({
   title,
   text,
   textColor,
+  variant,
   ...props
 }: MissionInfoCardProps) {
   return (
     <Card
       className="w-full p-4 font-body"
-      variant="secondary"
+      variant={variant}
       cornerBorders={false}
       {...props}
     >
       <span className="text-xs text-cyan-muted uppercase whitespace-nowrap">
         {title}
       </span>
+
       <span
         className={`font-heading font-semibold text-sm sm:text-lg ${textColor}`}
       >

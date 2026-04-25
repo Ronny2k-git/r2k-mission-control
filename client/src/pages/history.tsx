@@ -21,8 +21,8 @@ export default function History() {
   const navigate = useNavigate();
 
   const infoHistoryCardData: HistoryData = {
-    totalLaunches: 20,
-    successfull: 85,
+    totalLaunches: filteredMissions.length,
+    successfull: 7,
     firstLaunch: "2006",
     status: "Verified",
   };
@@ -31,16 +31,16 @@ export default function History() {
 
   // 1 CREATE A COUNTDOWN COMPONENT.
 
-  // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
+  // 2 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
+
+  // 3 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
   // TO DO LATER ------------------
 
-  // 3 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
+  // 4 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
   // IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE.
 
-  // 4 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
-
-  // 5 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
+  // 5 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
 
   // 6 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
 
@@ -54,6 +54,7 @@ export default function History() {
             title={item.title}
             text={infoHistoryCardData[item.key]}
             textColor={item.textColor}
+            variant={item.variant}
           />
         ))}
       </div>
@@ -104,7 +105,7 @@ export default function History() {
             {/* Table */}
             <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
               <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
-                <thead className="bg-cyan-400/5 border-y text-cyber-cyan-text border-bg-border">
+                <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
                   <tr>
                     <th className="p-3">Launch Date</th>
                     <th>Mission</th>

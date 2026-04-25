@@ -1,6 +1,6 @@
 import { ShieldCheck, ShieldX } from "lucide-react";
 import type { ButtonVariant } from "../components/ui";
-import type { CardConfig, FilterType } from "../types";
+import type { FilterType, MissionCardInfoProps } from "../types";
 
 export type HistoryData = {
   totalLaunches: number;
@@ -9,23 +9,31 @@ export type HistoryData = {
   status: string;
 };
 
-export const historyInfoCards: CardConfig<HistoryData>[] = [
+export const historyInfoCards: MissionCardInfoProps<HistoryData>[] = [
   {
     title: "Total Launches",
     key: "totalLaunches",
     textColor: "text-cyber-cyan-text",
+    variant: "secondary",
   },
   {
     title: "Successful Launches",
     key: "successfull",
     textColor: "text-green-400",
+    variant: "secondary",
   },
   {
     title: "First Launch",
     key: "firstLaunch",
     textColor: "text-white",
+    variant: "secondary",
   },
-  { title: "Archive Status", key: "status", textColor: "text-green-400" },
+  {
+    title: "Archive Status",
+    key: "status",
+    textColor: "text-green-400",
+    variant: "secondary",
+  },
 ];
 
 type filterProps = {
