@@ -183,7 +183,7 @@ export default function Launch() {
         mission={{
           id: 1,
           date: "Apr 24, 2026",
-          mission: "Starlink Batch 12",
+          name: "Starlink Batch 12",
           rocket: "Explorer IS1",
           target: "Kepler-452 b",
           status: "success",

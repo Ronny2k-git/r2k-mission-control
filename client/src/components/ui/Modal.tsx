@@ -50,7 +50,6 @@ export function Modal({
             {...props}
           >
             {/* Close modal */}
-
             <Button
               className="absolute size-8 top-4 right-4"
               variant={buttonVariantMap[variant]}

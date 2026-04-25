@@ -3,7 +3,7 @@ import type { MissionInfoCardProps } from "../components/missions";
 export type Mission = {
   id: number;
   date: string;
-  mission: string;
+  name: string;
   rocket: string;
   target: string;
   status?: "success" | "aborted" | "upcoming";

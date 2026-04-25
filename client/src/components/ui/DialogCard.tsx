@@ -41,7 +41,7 @@ export function DialogCard({
 
   const missionFields = [
     { label: "Mission Id", value: mission?.id },
-    { label: "Mission", value: mission?.mission },
+    { label: "Mission Name", value: mission?.name },
     { label: "Rocket", value: mission?.rocket },
     { label: "Destination", value: mission?.target },
     { label: "Launch Date", value: mission?.date },
@@ -73,8 +73,9 @@ export function DialogCard({
 
         {/* Mission Data */}
         <div className="w-full grid grid-cols-2">
-          {missionFields.map((m) => (
+          {missionFields.map((m, i) => (
             <Card
+              key={`confirm_mission_data_${i}`}
               className="bg-transparent font-body p-2 sm:px-4 sm:py-3 font-semibold uppercase"
               variant={variant}
               cornerBorders={false}

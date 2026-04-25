@@ -9,7 +9,7 @@ export interface MissionRowCardProps extends Mission {
 export function MissionRowCard({
   id,
   date,
-  mission,
+  name,
   rocket,
   target,
   status,
@@ -26,7 +26,7 @@ export function MissionRowCard({
       </td>
 
       <td align="center" className="text-white font-semibold tracking-tight">
-        {mission}
+        {name}
       </td>
 
       <td align="center">{rocket}</td>
@@ -47,7 +47,7 @@ export function MissionRowCard({
             variant="warning"
             size="md"
             onClick={() =>
-              onAbort?.({ id, date, mission, rocket, target, status })
+              onAbort?.({ id, date, name, rocket, target, status })
             }
           >
             X

@@ -4,7 +4,7 @@ export const missions: Mission[] = [
   {
     id: 1,
     date: "May 16, 2026",
-    mission: "FalconSat",
+    name: "FalconSat",
     rocket: "Falcon 1",
     target: "Kepler-442 b",
     status: "success",
@@ -12,7 +12,7 @@ export const missions: Mission[] = [
   {
     id: 2,
     date: "Jun 02, 2026",
-    mission: "Dragon Demo",
+    name: "Dragon Demo",
     rocket: "Falcon 9",
     target: "Kepler-186 f",
     status: "aborted",
@@ -20,7 +20,7 @@ export const missions: Mission[] = [
   {
     id: 3,
     date: "Jun 18, 2026",
-    mission: "Starlink Batch 12",
+    name: "Starlink Batch 12",
     rocket: "Falcon 9",
     target: "Low Earth Orbit",
     status: "success",
@@ -28,7 +28,7 @@ export const missions: Mission[] = [
   {
     id: 4,
     date: "Jul 01, 2026",
-    mission: "Explorer IS1",
+    name: "Explorer IS1",
     rocket: "Explorer Heavy",
     target: "Kepler-452 b",
     status: "success",
@@ -36,7 +36,7 @@ export const missions: Mission[] = [
   {
     id: 5,
     date: "Jul 14, 2026",
-    mission: "Cargo Resupply CRS-3",
+    name: "Cargo Resupply CRS-3",
     rocket: "Falcon 9",
     target: "ISS",
     status: "aborted",
@@ -44,7 +44,7 @@ export const missions: Mission[] = [
   {
     id: 6,
     date: "Aug 03, 2026",
-    mission: "Voyager X",
+    name: "Voyager X",
     rocket: "Starship",
     target: "Kepler-22 b",
     status: "success",
@@ -52,7 +52,7 @@ export const missions: Mission[] = [
   {
     id: 7,
     date: "Aug 19, 2026",
-    mission: "Lunar Surveyor",
+    name: "Lunar Surveyor",
     rocket: "SLS",
     target: "Moon",
     status: "success",
@@ -60,7 +60,7 @@ export const missions: Mission[] = [
   {
     id: 8,
     date: "Sep 05, 2026",
-    mission: "Mars Cargo 1",
+    name: "Mars Cargo 1",
     rocket: "Starship",
     target: "Mars",
     status: "aborted",
@@ -68,7 +68,7 @@ export const missions: Mission[] = [
   {
     id: 9,
     date: "Sep 21, 2026",
-    mission: "Deep Space Probe",
+    name: "Deep Space Probe",
     rocket: "Falcon Heavy",
     target: "Kepler-62 e",
     status: "success",
@@ -76,7 +76,7 @@ export const missions: Mission[] = [
   {
     id: 10,
     date: "Oct 10, 2026",
-    mission: "Habitat Deployment",
+    name: "Habitat Deployment",
     rocket: "Starship",
     target: "Kepler-1649 c",
     status: "success",

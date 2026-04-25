@@ -99,7 +99,7 @@ export default function Upcoming() {
                           key={i}
                           id={item.id}
                           date={item.date}
-                          mission={item.mission}
+                          name={item.name}
                           rocket={item.rocket}
                           target={item.target}
                           status="upcoming"

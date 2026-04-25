@@ -118,7 +118,7 @@ export default function History() {
                         key={i}
                         id={item.id}
                         date={item.date}
-                        mission={item.mission}
+                        name={item.name}
                         rocket={item.rocket}
                         target={item.target}
                         status={item.status}

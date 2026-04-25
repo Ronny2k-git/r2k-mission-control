@@ -2,5 +2,6 @@ export * from "./Clock";
 export * from "./Countdown";
 export * from "./EmptyBanner";
 export * from "./Pagination";
+export * from "./ScrollToTop";
 export * from "./SectionLabel";
 export * from "./Stars";

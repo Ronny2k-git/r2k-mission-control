@@ -14,12 +14,14 @@ const toastVariantMap: Record<
   aborted: "warning",
 };
 
-export function Toast({ id, mission, target, date, status }: ToastProps) {
+// CALL THIS COMPONENT GLOBALLY, LIKE: <ToastProvider> <App /> </ToastProvider>
+
+export function Toast({ name, target, date, status }: ToastProps) {
   const variant = status ? toastVariantMap[status] : "primary";
 
   return (
     <Card variant={variant}>
-      <span>{mission}</span>
+      <span>{name}</span>
     </Card>
   );
 }
