@@ -1,6 +1,6 @@
 import { Rocket, RotateCcw } from "lucide-react";
-import { energyVariants, type EnergyVariant } from "../consts";
-import { Button, Card, Divider, EnergyBadge, type ButtonProps } from "./ui";
+import { energyVariants, type EnergyVariant } from "../../consts";
+import { Button, Card, Divider, EnergyBadge, type ButtonProps } from "../ui";
 
 export type EmptyBannerProps = {
   variant?: EnergyVariant;

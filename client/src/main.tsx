@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.tsx";
 
-import { Stars } from "./components/Stars.tsx";
+import { Stars } from "./components/global/Stars.tsx";
 import { Footer } from "./components/layout/Footer.tsx";
 import { Header } from "./components/layout/header/Header.tsx";
 import "./index.css";

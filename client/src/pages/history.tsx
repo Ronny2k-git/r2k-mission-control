@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { EmptyBanner, Pagination, SectionLabel } from "../components";
+import { EmptyBanner, Pagination, SectionLabel } from "../components/global";
 import {
   MissionInfoCard,
   MissionRowCard,
@@ -25,18 +25,24 @@ export default function History() {
     status: "Verified",
   };
 
-  //  TO DO LATER:
+  // TO DO LIST:
 
-  //   1 CREATE A COUNTDOWN COMPONENT.
+  // 1 CREATE A COUNTDOWN COMPONENT.
 
-  //   2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT
+  // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
-  //   3 CREATE A FUNCTION TO GET ELEMENTS BY ID AND SCROLL TO TOP OF THE PAGE.
+  // 3 CREATE A FUNCTION TO GET ELEMENTS BY ID AND SCROLL TO TOP OF THE PAGE.
 
-  //   4 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
+  // 4 CREATE AND IMPLEMENT A TOAST COMPONENT.
 
-  //   5 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.\
-  //   IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE
+  // TO DO LATER ------------------
+
+  // 5 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
+  // IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE.
+
+  // 6 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
+
+  // 7 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
 
   return (
     <div className="flex flex-col w-full gap-12 pb-8">

@@ -12,6 +12,8 @@ const buttonVariants = cva(
           "border border-cyber-cyan-text/70 text-white hover:bg-cyan-500/15 ",
         ghost:
           "border border-cyber-cyan-text/30 text-cyber-cyan-text/90 hover:text-cyber-cyan hover:bg-cyan-500/10",
+        neutral:
+          "border border-gray-500/50 hover:border-white/50 text-gray-400 hover:text-white hover:bg-gray-500/10",
         basic:
           "border bg-cyan-500/10 border-cyber-cyan-text hover:bg-cyan-500/15",
         success:
@@ -24,6 +26,7 @@ const buttonVariants = cva(
         warning:
           "bg-red-500/5 text-red-500/80 border border-red-500/50 hover:border-red-500/80",
       },
+
       size: {
         sm: "px-2 py-1 text-sm rounded-lg",
         md: "px-3 text-base",

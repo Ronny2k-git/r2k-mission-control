@@ -50,6 +50,6 @@ export const filters: filterProps = [
     icon: ShieldX,
     iconColor: "text-red-500",
     label: "Aborted",
-    variant: "aborted",
+    variant: "abort",
   },
 ] as const;

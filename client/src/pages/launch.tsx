@@ -1,6 +1,7 @@
 import { Check, Rocket, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { SectionLabel } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import {
   Button,
@@ -73,7 +74,7 @@ export default function Launch() {
           <div className="flex flex-col gap-4">
             {/* Eligibility Criteria  */}
             <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
-              <Divider type="label" label="Eligibility Criteria" />
+              <SectionLabel>Eligibility Criteria</SectionLabel>
 
               <h2 className="text-white-light text-base">
                 Only confirmed planets matching the following criteria are
@@ -177,7 +178,7 @@ export default function Launch() {
         onClose={() => setOpenDialog(false)}
         variant="success"
         iconBadge={<Rocket />}
-        title="Launch a Mission"
+        title="Launch a Mission?"
         description="Your mission has been submitted and is pending director authorization. You will be notified once clearance is granted."
         mission={{
           id: 1,
@@ -190,8 +191,8 @@ export default function Launch() {
         actions={
           <div className="w-full flex gap-2 justify-center">
             <Button
-              className="w-full text-sm text-white"
-              variant="ghost"
+              className="w-full text-sm"
+              variant="neutral"
               size={"lg"}
               iconLeft={<X className="size-4" />}
               onClick={() => setOpenDialog(false)}

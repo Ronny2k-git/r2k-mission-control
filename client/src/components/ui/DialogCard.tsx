@@ -75,7 +75,7 @@ export function DialogCard({
         <div className="w-full grid grid-cols-2">
           {missionFields.map((m) => (
             <Card
-              className="bg-transparent font-body px-4 py-3 font-semibold uppercase"
+              className="bg-transparent font-body p-2 sm:px-4 sm:py-3 font-semibold uppercase"
               variant={variant}
               cornerBorders={false}
             >
@@ -83,7 +83,7 @@ export function DialogCard({
                 {m.label}
               </span>
 
-              <span className="text-white/80 text-sm -tracking-wide">
+              <span className="text-white/85 font-mono text-xs sm:text-sm">
                 {m.value}
               </span>
             </Card>

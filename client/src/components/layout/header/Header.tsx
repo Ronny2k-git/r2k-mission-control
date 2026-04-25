@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { headerNavigation } from "../../../consts";
 import { useClickFeedback } from "../../../hooks";
-import { Clock } from "../../Clock";
+import { Clock } from "../../global";
 import { Logo } from "../Logo";
 import { NavItem } from "./NavItem";
 

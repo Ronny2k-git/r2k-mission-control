@@ -1,7 +1,7 @@
 import { CornerUpLeft, X } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { EmptyBanner, Pagination, SectionLabel } from "../components";
+import { EmptyBanner, Pagination, SectionLabel } from "../components/global";
 import { MissionInfoCard, MissionRowCard } from "../components/missions";
 import { Button, Card, DialogCard, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
@@ -169,8 +169,8 @@ export default function Upcoming() {
           actions={
             <div className="w-full flex gap-2 justify-center">
               <Button
-                className="w-full text-sm text-white"
-                variant="ghost"
+                className="w-full text-sm"
+                variant="neutral"
                 size={"lg"}
                 iconLeft={<X className="size-4" />}
                 onClick={() => setOpenDialog(false)}
