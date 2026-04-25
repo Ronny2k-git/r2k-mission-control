@@ -40,12 +40,12 @@ export function DialogCard({
   const energy = variantStyles[variant].energy;
 
   const missionFields = [
-    { label: "Mission Id", value: mission?.id },
-    { label: "Mission Name", value: mission?.name },
-    { label: "Rocket", value: mission?.rocket },
-    { label: "Destination", value: mission?.target },
-    { label: "Launch Date", value: mission?.date },
-    { label: "Status", value: mission?.status },
+    { key: "id", label: "Mission Id", value: mission.id },
+    { key: "name", label: "Mission Name", value: mission.name },
+    { key: "rocket", label: "Rocket", value: mission.rocket },
+    { key: "target", label: "Destination", value: mission.target },
+    { key: "date", label: "Launch Date", value: mission.date },
+    { key: "status", label: "Status", value: mission.status },
   ];
 
   return (
@@ -73,9 +73,9 @@ export function DialogCard({
 
         {/* Mission Data */}
         <div className="w-full grid grid-cols-2">
-          {missionFields.map((m, i) => (
+          {missionFields.map((m) => (
             <Card
-              key={`confirm_mission_data_${i}`}
+              key={m.key}
               className="bg-transparent font-body p-2 sm:px-4 sm:py-3 font-semibold uppercase"
               variant={variant}
               cornerBorders={false}

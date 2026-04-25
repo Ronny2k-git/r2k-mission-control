@@ -13,7 +13,7 @@ export function useSearchMissions() {
 
     return missions.filter((mission) => {
       return (
-        mission.mission.toLowerCase().includes(searchLower) ||
+        mission.name.toLowerCase().includes(searchLower) ||
         mission.rocket.toLowerCase().includes(searchLower) ||
         mission.target.toLowerCase().includes(searchLower)
       );

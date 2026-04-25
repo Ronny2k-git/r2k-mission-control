@@ -12,6 +12,7 @@ import { useFilterMissions, useSearchMissions } from "../hooks";
 
 export default function History() {
   const [page, setPage] = useState(1);
+
   const { searchedMissions, search, setSearch } = useSearchMissions();
   const { filteredMissions, filter, setFilter } =
     useFilterMissions(searchedMissions);
@@ -32,8 +33,6 @@ export default function History() {
   // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
   // 3 CREATE A FUNCTION TO GET ELEMENTS BY ID AND SCROLL TO TOP OF THE PAGE.
-
-  // 4 CREATE AND IMPLEMENT A TOAST COMPONENT.
 
   // TO DO LATER ------------------
 

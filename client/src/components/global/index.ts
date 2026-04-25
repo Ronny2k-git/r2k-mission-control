@@ -5,3 +5,4 @@ export * from "./Pagination";
 export * from "./ScrollToTop";
 export * from "./SectionLabel";
 export * from "./Stars";
+export * from "./Toast";

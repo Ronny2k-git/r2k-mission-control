@@ -6,11 +6,14 @@ import { MissionInfoCard, MissionRowCard } from "../components/missions";
 import { Button, Card, DialogCard, Divider, Input } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useClickFeedback, useSearchMissions } from "../hooks";
+import { useToast } from "../hooks/useToast";
 import type { Mission } from "../types";
 
 export default function Upcoming() {
   const [page, setPage] = useState(1);
   const [openDialog, setOpenDialog] = useState(false);
+  const { showToast } = useToast();
+
   const [selectedMission, setSelectedMission] = useState<Mission>();
   const { searchedMissions, search, setSearch } = useSearchMissions();
 
@@ -25,6 +28,14 @@ export default function Upcoming() {
   const handleAbortMission = (e: React.MouseEvent) => {
     e.preventDefault();
     audioTrigger();
+
+    showToast({
+      id: selectedMission!.id,
+      name: selectedMission!.name,
+      target: selectedMission!.target,
+      date: selectedMission!.date,
+      status: "aborted",
+    });
 
     setOpenDialog(false);
   };

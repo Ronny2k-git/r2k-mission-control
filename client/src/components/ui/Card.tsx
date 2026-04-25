@@ -5,7 +5,7 @@ import { CornerBorders, type BorderColors } from "./CornerBorders";
 const cardVariants = {
   primary: "bg-card-background border border-bg-border",
   secondary: "border border-bg-border",
-  success: "bg-green-muted border border-green-500/25 ",
+  success: "bg-green-muted border border-green-500/40 ",
   warning: "bg-red-dark border border-red-500/25 ",
 };
 

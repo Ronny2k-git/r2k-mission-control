@@ -5,6 +5,7 @@ import App from "./App.tsx";
 
 import { ScrollToTop } from "./components/global/ScrollToTop.tsx";
 import { Stars } from "./components/global/Stars.tsx";
+import { ToastProvider } from "./components/global/ToastProvider.tsx";
 import { Footer } from "./components/layout/Footer.tsx";
 import { Header } from "./components/layout/header/Header.tsx";
 import "./index.css";
@@ -12,19 +13,21 @@ import "./index.css";
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen">
-        <ScrollToTop />
+      <ToastProvider>
+        <div className="flex flex-col min-h-screen">
+          <ScrollToTop />
 
-        <Stars />
+          <Stars />
 
-        <Header />
+          <Header />
 
-        <main className="flex-1">
-          <App />
-        </main>
+          <main className="flex-1">
+            <App />
+          </main>
 
-        <Footer />
-      </div>
+          <Footer />
+        </div>
+      </ToastProvider>
     </BrowserRouter>
   </StrictMode>,
 );

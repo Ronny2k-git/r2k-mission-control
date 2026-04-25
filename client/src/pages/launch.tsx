@@ -17,9 +17,11 @@ import {
   type LaunchData,
 } from "../consts";
 import { useClickFeedback } from "../hooks";
+import { useToast } from "../hooks/useToast";
 
 export default function Launch() {
   const [openDialog, setOpenDialog] = useState(false);
+  const { showToast } = useToast();
 
   const { trigger: audioTrigger } = useClickFeedback({
     audioPath: "/sound/success.mp3",
@@ -32,6 +34,15 @@ export default function Launch() {
   const handleNewMission = (e: React.MouseEvent) => {
     e.preventDefault();
     audioTrigger();
+
+    // Fill using the form data later
+    showToast({
+      id: 1,
+      name: "Dragon Demo",
+      target: "HORIZON-7",
+      date: "May 16, 2026",
+      status: "success",
+    });
 
     setOpenDialog(false);
 
