@@ -76,15 +76,17 @@ export function DialogCard({
           {missionFields.map((m) => (
             <Card
               key={m.key}
-              className="bg-transparent font-body p-2 sm:px-4 sm:py-3 font-semibold uppercase"
+              className="bg-transparent font-body p-2 sm:px-4 sm:py-3"
               variant={variant}
               cornerBorders={false}
             >
-              <span className={`text-[10px] ${energyVariants[energy].text}`}>
+              <span
+                className={`text-[10px] uppercase ${energyVariants[energy].text}`}
+              >
                 {m.label}
               </span>
 
-              <span className="text-white/85 font-mono text-xs sm:text-sm">
+              <span className="text-white/85 font-mono capitalize text-xs sm:text-sm">
                 {m.value}
               </span>
             </Card>

@@ -9,6 +9,7 @@ import {
 import { Button, Card, Divider, Input } from "../components/ui";
 import { filters, historyInfoCards, type HistoryData } from "../consts";
 import { useFilterMissions, useSearchMissions } from "../hooks";
+import { scrollToId } from "../utils";
 
 export default function History() {
   const [page, setPage] = useState(1);
@@ -32,16 +33,16 @@ export default function History() {
 
   // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
-  // 3 CREATE A FUNCTION TO GET ELEMENTS BY ID AND SCROLL TO TOP OF THE PAGE.
-
   // TO DO LATER ------------------
 
-  // 5 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
+  // 3 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
   // IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE.
 
-  // 6 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
+  // 4 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
 
-  // 7 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
+  // 5 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
+
+  // 6 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
 
   return (
     <div className="flex flex-col w-full gap-12 pb-8">
@@ -59,7 +60,10 @@ export default function History() {
 
       <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
         {/* Title */}
-        <h1 className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10">
+        <h1
+          id="history_page_title"
+          className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10"
+        >
           Mission <span className="text-cyber-cyan-text">History</span>
         </h1>
 
@@ -158,7 +162,10 @@ export default function History() {
               <Pagination
                 page={page}
                 totalPages={8}
-                onChange={(newPage) => setPage(newPage)}
+                onChange={(newPage) => {
+                  setPage(newPage);
+                  requestAnimationFrame(() => scrollToId("history_page_title"));
+                }}
               />
             </div>
 

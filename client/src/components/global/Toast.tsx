@@ -45,8 +45,9 @@ export function Toast({ id, name, target, date, status }: ToastProps) {
         </p>
       </div>
 
-      <p className={`flex gap-2 text-xs capitalize ${textStyle}`}>
-        {target} • {date} • {status}
+      <p className="flex gap-2 text-xs text-cyan-muted">
+        {target} • {date} •{" "}
+        <span className={`capitalize ${textStyle}`}>{status}</span>
       </p>
     </Card>
   );

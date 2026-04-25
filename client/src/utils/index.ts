@@ -1,8 +1,19 @@
-// Function created to calculate percentage and avoid repeating logic
+// Function used to calculate percentage and avoid repeating logic
 export function calculatePercentage(value: number, total: number) {
   if (total <= 0) return 0;
 
   const percentage = (value / total) * 100;
 
   return Math.min(100, Math.max(0, Math.round(percentage)));
+}
+
+// Function used to scroll the page to the provided id
+export function scrollToId(id: string, offset = 0) {
+  const element = document.getElementById(id);
+  if (!element) return false;
+
+  const top = element.getBoundingClientRect().top + window.scrollY - offset;
+
+  window.scrollTo({ top, behavior: "smooth" });
+  return true;
 }

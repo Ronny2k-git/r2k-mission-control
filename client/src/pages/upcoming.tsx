@@ -8,6 +8,7 @@ import { upcomingInfoCards, type UpcomingData } from "../consts";
 import { useClickFeedback, useSearchMissions } from "../hooks";
 import { useToast } from "../hooks/useToast";
 import type { Mission } from "../types";
+import { scrollToId } from "../utils";
 
 export default function Upcoming() {
   const [page, setPage] = useState(1);
@@ -64,7 +65,10 @@ export default function Upcoming() {
 
         <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
           {/* Title */}
-          <h1 className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10">
+          <h1
+            id="upcoming_page_title"
+            className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10"
+          >
             Upcoming <span className="text-cyber-cyan-text">Missions</span>
           </h1>
 
@@ -151,7 +155,12 @@ export default function Upcoming() {
                 <Pagination
                   page={page}
                   totalPages={11}
-                  onChange={(newPage) => setPage(newPage)}
+                  onChange={(newPage) => {
+                    setPage(newPage);
+                    requestAnimationFrame(() =>
+                      scrollToId("upcoming_page_title"),
+                    );
+                  }}
                 />
               </div>
             </Card>
