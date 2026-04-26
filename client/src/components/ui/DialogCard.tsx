@@ -9,7 +9,7 @@ import {
   type ModalProps,
 } from ".";
 import { energyVariants, type EnergyVariant } from "../../consts";
-import type { Mission } from "../../types";
+import type { Mission, MissionStatus } from "../../types";
 
 export interface DialogCardProps extends Omit<ModalProps, "children"> {
   iconBadge?: ReactNode;
@@ -28,6 +28,13 @@ const variantStyles: Record<CardVariants, { energy: EnergyVariant }> = {
   waiting: { energy: "orange" },
 };
 
+const descriptionTitles: Record<MissionStatus, string> = {
+  success: "Mission Summary",
+  upcoming: "Mission Brief",
+  aborted: "Abort Report",
+  running: "Live Status",
+};
+
 export function DialogCard({
   variant = "primary",
   open,
@@ -39,15 +46,16 @@ export function DialogCard({
   actions,
   className,
 }: DialogCardProps) {
+  const titleLabel = descriptionTitles[mission.status ?? "upcoming"];
   const energy = variantStyles[variant].energy;
 
   const missionFields = [
-    { key: "id", label: "Mission Id", value: mission.id },
     { key: "name", label: "Mission Name", value: mission.name },
     { key: "rocket", label: "Rocket", value: mission.rocket },
     { key: "target", label: "Destination", value: mission.target },
-    { key: "date", label: "Launch Date", value: mission.date },
     { key: "status", label: "Status", value: mission.status },
+    { key: "start-date", label: "Start Date", value: mission.startDate },
+    { key: "end-date", label: "End Date", value: mission.endDate },
   ];
 
   return (
@@ -57,23 +65,15 @@ export function DialogCard({
       onClose={onClose}
       className={twMerge("items-center justify-center p-4 sm:p-8", className)}
     >
-      <div className="flex flex-col w-full items-center gap-8">
+      <div className="flex flex-col w-full items-center gap-4">
         <EnergyBadge className="mt-4" icon={iconBadge} variant={energy} />
 
-        {/* Title and Description */}
-        <div className="flex flex-col text-center items-center gap-2 ">
-          <span className="text-2xl text-white font-heading font-semibold ">
-            {title}
-          </span>
+        {/* Title*/}
+        <span className="text-2xl text-white font-heading font-semibold ">
+          {title}
+        </span>
 
-          <p
-            className={`text-center text-sm max-w-sm ${energyVariants[energy].text}`}
-          >
-            {description}
-          </p>
-        </div>
-
-        {/* Mission Data */}
+        {/* Mission Data Cards*/}
         <div className="w-full grid grid-cols-2">
           {missionFields.map((m) => (
             <Card
@@ -93,6 +93,19 @@ export function DialogCard({
               </span>
             </Card>
           ))}
+        </div>
+
+        <Divider variant={energy} type="line" />
+
+        {/* Description */}
+        <div className="flex flex-col items-center gap-1 max-w-sm text-center">
+          <span
+            className={`text-[10px] uppercase tracking-widest ${energyVariants[energy].text}`}
+          >
+            {titleLabel}
+          </span>
+
+          <p className="text-white/80 text-sm leading-relaxed">{description}</p>
         </div>
 
         <Divider variant={energy} type="line" />

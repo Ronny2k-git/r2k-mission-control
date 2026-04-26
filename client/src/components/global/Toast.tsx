@@ -20,9 +20,10 @@ const missionStatusMap: Record<
   upcoming: { variant: "primary", icon: CircleAlert, energy: "cyan" },
   success: { variant: "success", icon: Check, energy: "green" },
   aborted: { variant: "warning", icon: X, energy: "red" },
+  running: { variant: "waiting", icon: CircleAlert, energy: "orange" },
 };
 
-export function Toast({ id, name, target, date, status }: ToastProps) {
+export function Toast({ id, name, target, startDate, status }: ToastProps) {
   const config = missionStatusMap[status!] ?? missionStatusMap.upcoming;
 
   const Icon = config.icon;
@@ -46,7 +47,7 @@ export function Toast({ id, name, target, date, status }: ToastProps) {
       </div>
 
       <p className="flex gap-2 text-xs text-cyan-muted">
-        {target} • {date} •{" "}
+        {target} • {startDate} •{" "}
         <span className={`capitalize ${textStyle}`}>{status}</span>
       </p>
     </Card>

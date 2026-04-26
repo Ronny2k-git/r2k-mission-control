@@ -8,7 +8,8 @@ export interface MissionRowCardProps extends Mission {
 
 export function MissionRowCard({
   id,
-  date,
+  startDate,
+  endDate,
   name,
   rocket,
   target,
@@ -22,7 +23,7 @@ export function MissionRowCard({
           {String(id).padStart(2, "0")}
         </span>
 
-        {date}
+        {startDate}
       </td>
 
       <td align="center" className="text-white font-semibold tracking-tight">
@@ -47,7 +48,15 @@ export function MissionRowCard({
             variant="warning"
             size="md"
             onClick={() =>
-              onAbort?.({ id, date, name, rocket, target, status })
+              onAbort?.({
+                id,
+                startDate,
+                endDate,
+                name,
+                rocket,
+                target,
+                status,
+              })
             }
           >
             X

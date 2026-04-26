@@ -40,14 +40,20 @@ export default function History() {
 
   // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
-  // TO DO LATER ------------------
+  // 3 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
 
-  // 3 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
+  // 4 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
+
+  // TO DO LATER WHEN THE BACKEND IS READY ------------------
+
+  // 5 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
   // IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE.
 
-  // 4 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
+  // 6 CREATE A FUNCTION TO GET THE MISSION STATUS AND USE THIS TO FILTER THE
+  // MISSIONS FOR UPCOMING AND HISTORY PAGES
 
-  // 5 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
+  // 7 FIND A WAY TO PROVIDE THE FIELD DESCRIPTION WHEN THE USER WANT TO ABORT
+  //   A MISSION
 
   return (
     <div className="flex flex-col w-full gap-12 pb-8">
@@ -126,7 +132,8 @@ export default function History() {
                       <MissionRowCard
                         key={i}
                         id={item.id}
-                        date={item.date}
+                        startDate={item.startDate}
+                        endDate={item.endDate}
                         name={item.name}
                         rocket={item.rocket}
                         target={item.target}

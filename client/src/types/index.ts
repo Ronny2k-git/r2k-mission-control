@@ -1,13 +1,17 @@
 import type { MissionInfoCardProps } from "../components/missions";
 import type { CardVariants } from "../components/ui";
 
+export type MissionStatus = "upcoming" | "running" | "success" | "aborted";
+
 export type Mission = {
   id: number;
-  date: string;
+  startDate: string;
+  endDate: string;
   name: string;
   rocket: string;
   target: string;
-  status?: "success" | "aborted" | "upcoming";
+  description?: string;
+  status?: MissionStatus;
 };
 
 export type MissionCardInfoProps<T> = {

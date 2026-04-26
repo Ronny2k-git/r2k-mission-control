@@ -40,7 +40,8 @@ export default function Launch() {
       id: 1,
       name: "Dragon Demo",
       target: "HORIZON-7",
-      date: "May 16, 2026",
+      startDate: "May 16, 2026",
+      endDate: "May 20, 2026",
       status: "success",
     });
 
@@ -116,14 +117,6 @@ export default function Launch() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <Input
-                  id="launch-date"
-                  inputClassName="h-10"
-                  type="date"
-                  label="● Launch Date"
-                  required={true}
-                />
-
-                <Input
                   id="mission-name"
                   inputClassName="h-10"
                   type="text"
@@ -149,6 +142,29 @@ export default function Launch() {
                   <option value="">Exoplanets</option>
                   <option value="">Test</option>
                 </Selector>
+
+                <Input
+                  id="start-mission-date"
+                  inputClassName="h-10"
+                  type="date"
+                  label="● Start Mission Date"
+                  required={true}
+                />
+
+                <Input
+                  id="end-mission-date"
+                  inputClassName="h-10"
+                  type="date"
+                  label="● End Mission Date"
+                  required={true}
+                />
+
+                {/* {
+
+                1 CREATE A TEXT AREA COMPONENT BASED ON INPUT COMPONENT. 
+                2 IMPLEMENT THE DESCRIPTION FIELD HERE.
+                
+                } */}
               </div>
 
               <Divider />
@@ -191,10 +207,11 @@ export default function Launch() {
         variant="success"
         iconBadge={<Rocket />}
         title="Launch a Mission?"
-        description="Your mission has been submitted and is pending director authorization. You will be notified once clearance is granted."
+        description="Deploying communication satellites into low Earth orbit."
         mission={{
           id: 1,
-          date: "Apr 24, 2026",
+          startDate: "Apr 24, 2026",
+          endDate: "Apr 29, 2026",
           name: "Starlink Batch 12",
           rocket: "Explorer IS1",
           target: "Kepler-452 b",

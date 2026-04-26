@@ -39,7 +39,8 @@ export default function Upcoming() {
       id: selectedMission!.id,
       name: selectedMission!.name,
       target: selectedMission!.target,
-      date: selectedMission!.date,
+      startDate: selectedMission!.startDate,
+      endDate: selectedMission!.endDate,
       status: "aborted",
     });
 
@@ -119,7 +120,8 @@ export default function Upcoming() {
                         <MissionRowCard
                           key={i}
                           id={item.id}
-                          date={item.date}
+                          startDate={item.startDate}
+                          endDate={item.endDate}
                           name={item.name}
                           rocket={item.rocket}
                           target={item.target}
@@ -189,8 +191,7 @@ export default function Upcoming() {
           variant="warning"
           iconBadge={<X />}
           title="Abort Mission ?"
-          description="This action will immediately halt all systems and terminate the
-            mission sequence. This operation cannot be undone."
+          description="Mission aborted due to engine anomaly during ignition phase"
           mission={selectedMission}
           actions={
             <div className="w-full flex gap-2 justify-center">
