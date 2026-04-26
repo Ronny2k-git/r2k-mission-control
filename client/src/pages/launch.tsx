@@ -53,7 +53,7 @@ export default function Launch() {
 
   const infoLaunchCardData: LaunchData = {
     planets: 8,
-    nextMission: <CountdownClock targetDate={"2026-4-26"} />,
+    nextMission: <CountdownClock targetDate={"2026-4-28"} />,
     activeMissions: 3,
     status: "Operational",
   };

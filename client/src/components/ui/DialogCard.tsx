@@ -22,8 +22,10 @@ export interface DialogCardProps extends Omit<ModalProps, "children"> {
 const variantStyles: Record<CardVariants, { energy: EnergyVariant }> = {
   primary: { energy: "cyan" },
   secondary: { energy: "cyan" },
+  glow: { energy: "cyan" },
   warning: { energy: "red" },
   success: { energy: "green" },
+  waiting: { energy: "orange" },
 };
 
 export function DialogCard({

@@ -27,7 +27,7 @@ export function Header() {
     <header className="flex justify-between items-center h-32 md:h-20 border-b border-bg-border md:px-4 gap-4">
       <div className="flex h-full max-md:flex-col max-md:w-full">
         {/* Logo and Name */}
-        <div className="flex h-full w-full items-center p-2 gap-4 border-b border-b-bg-border ">
+        <div className="flex h-full w-full items-center max-md:p-2 gap-4 border-b border-b-bg-border ">
           <Logo />
 
           <div className="h-full flex flex-col justify-center md:pr-4 md:border-r-2 border-bg-border">

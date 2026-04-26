@@ -1,7 +1,8 @@
 export type BorderColors =
   | "border-cyber-cyan-text"
   | "border-green-500"
-  | "border-red-500";
+  | "border-red-500"
+  | "border-orange-300";
 
 type Size = "xs" | "sm" | "md" | "lg";
 

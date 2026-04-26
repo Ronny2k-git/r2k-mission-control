@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { EmptyBanner, Pagination, SectionLabel } from "../components/global";
+import {
+  CountdownClock,
+  EmptyBanner,
+  Pagination,
+  SectionLabel,
+} from "../components/global";
 import {
   MissionInfoCard,
   MissionRowCard,
@@ -22,27 +27,27 @@ export default function History() {
 
   const infoHistoryCardData: HistoryData = {
     totalLaunches: filteredMissions.length,
-    successfull: 7,
+    nextCompletion: (
+      <CountdownClock targetDate={"2026-4-29"} variant="orange" />
+    ),
     firstLaunch: "2006",
     status: "Verified",
   };
 
   // TO DO LIST:
 
-  // 1 CREATE A COUNTDOWN COMPONENT.
+  // 1 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
 
-  // 2 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
-
-  // 3 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
+  // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
   // TO DO LATER ------------------
 
-  // 4 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
+  // 3 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
   // IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE.
 
-  // 5 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
+  // 4 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
 
-  // 6 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
+  // 5 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
 
   return (
     <div className="flex flex-col w-full gap-12 pb-8">

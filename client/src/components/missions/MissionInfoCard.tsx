@@ -1,4 +1,5 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 import { Card, type CardVariants } from "../ui";
 
 export type textColor =
@@ -19,11 +20,12 @@ export function MissionInfoCard({
   text,
   textColor,
   variant,
+  className,
   ...props
 }: MissionInfoCardProps) {
   return (
     <Card
-      className="w-full p-4 font-body"
+      className={twMerge("w-full p-4 font-body", className)}
       variant={variant}
       cornerBorders={false}
       {...props}

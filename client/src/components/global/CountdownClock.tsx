@@ -1,20 +1,27 @@
 import { useEffect, useState } from "react";
+import { energyVariants, type EnergyVariant } from "../../consts";
 
 export type CountdownProps = {
   className?: string;
   targetDate: string | number | Date;
+  variant?: EnergyVariant;
 };
 
-export function CountdownClock({ targetDate }: CountdownProps) {
+export function CountdownClock({
+  targetDate,
+  variant = "cyan",
+}: CountdownProps) {
   const [now, setNow] = useState(new Date());
 
+  const textColor = energyVariants[variant].text;
   const date = new Date(targetDate);
   const diffMs = date.getTime() - now.getTime();
+  const diffSeconds = Math.max(0, Math.floor(diffMs / 1000));
 
-  const seconds = Math.floor(diffMs / 1000) % 60;
-  const minutes = Math.floor(diffMs / (1000 * 60)) % 60;
-  const hours = Math.floor(diffMs / (1000 * 60 * 60)) % 24;
-  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  const seconds = diffSeconds % 60;
+  const minutes = Math.floor(diffSeconds / 60) % 60;
+  const hours = Math.floor(diffSeconds / 3600) % 24;
+  const days = Math.floor(diffSeconds / 86400);
 
   const twoDigits = (n: number) => String(n).padStart(2, "0");
 
@@ -27,7 +34,7 @@ export function CountdownClock({ targetDate }: CountdownProps) {
   }, []);
 
   return (
-    <div className="flex gap-1 font-heading text-xl font-bold text-cyber-cyan-text">
+    <div className={`flex gap-1 font-heading text-xl font-bold ${textColor}`}>
       {days > 0 && <span>{twoDigits(days)}:</span>}
       <span>{twoDigits(hours)}:</span>
       <span>{twoDigits(minutes)}:</span>

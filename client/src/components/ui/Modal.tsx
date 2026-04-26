@@ -15,8 +15,10 @@ export type ModalProps = ComponentPropsWithRef<"div"> & {
 const buttonVariantMap: Record<CardVariants, ButtonVariant> = {
   primary: "primary",
   secondary: "primary",
+  glow: "primary",
   warning: "warning",
   success: "success",
+  waiting: "waiting",
 };
 
 export function Modal({

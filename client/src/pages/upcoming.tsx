@@ -48,7 +48,7 @@ export default function Upcoming() {
 
   const infoUpcomingCardData: UpcomingData = {
     launchedMissions: 10,
-    nextMission: <CountdownClock targetDate={"2026-4-28"} />,
+    nextMission: <CountdownClock targetDate={"2026-4-27"} />,
     rocketsReady: 3,
     status: "Scheduling",
   };
