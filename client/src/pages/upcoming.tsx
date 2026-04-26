@@ -9,7 +9,11 @@ import {
 } from "../components/global";
 import { MissionInfoCard, MissionRowCard } from "../components/missions";
 import { Button, Card, DialogCard, Divider, Input } from "../components/ui";
-import { upcomingInfoCards, type UpcomingData } from "../consts";
+import {
+  upcomingInfoCards,
+  upcomingMissions,
+  type UpcomingData,
+} from "../consts";
 import { useClickFeedback, useSearchMissions } from "../hooks";
 import { useToast } from "../hooks/useToast";
 import type { Mission } from "../types";
@@ -18,10 +22,12 @@ import { scrollToId } from "../utils";
 export default function Upcoming() {
   const [page, setPage] = useState(1);
   const [openDialog, setOpenDialog] = useState(false);
+  const [abortReason, setAbortReason] = useState("");
   const { showToast } = useToast();
 
   const [selectedMission, setSelectedMission] = useState<Mission>();
-  const { searchedMissions, search, setSearch } = useSearchMissions();
+  const { searchedMissions, search, setSearch } =
+    useSearchMissions(upcomingMissions);
 
   const { trigger: audioTrigger } = useClickFeedback({
     audioPath: "/sound/abort.mp3",
@@ -40,7 +46,6 @@ export default function Upcoming() {
       name: selectedMission!.name,
       target: selectedMission!.target,
       startDate: selectedMission!.startDate,
-      endDate: selectedMission!.endDate,
       status: "aborted",
     });
 
@@ -125,11 +130,12 @@ export default function Upcoming() {
                           name={item.name}
                           rocket={item.rocket}
                           target={item.target}
-                          status="upcoming"
+                          status={item.status}
                           onAbort={(mission) => {
                             setSelectedMission(mission);
                             setOpenDialog(true);
                           }}
+                          type={item.type}
                         />
                       ))}
                   </tbody>
@@ -191,7 +197,6 @@ export default function Upcoming() {
           variant="warning"
           iconBadge={<X />}
           title="Abort Mission ?"
-          description="Mission aborted due to engine anomaly during ignition phase"
           mission={selectedMission}
           actions={
             <div className="w-full flex gap-2 justify-center">
@@ -214,6 +219,14 @@ export default function Upcoming() {
                 Abort
               </Button>
             </div>
+          }
+          extraContent={
+            <Input
+              alt="abort-mission-reason"
+              placeholder="Enter abort reason..."
+              value={abortReason}
+              onChange={(e) => setAbortReason(e.target.value)}
+            />
           }
         />
       )}

@@ -3,13 +3,16 @@ import type { CardVariants } from "../components/ui";
 
 export type MissionStatus = "upcoming" | "running" | "success" | "aborted";
 
+export type MissionType = "exploration" | "research" | "cargo" | "crewed";
+
 export type Mission = {
   id: number;
-  startDate: string;
-  endDate: string;
   name: string;
   rocket: string;
   target: string;
+  startDate: string;
+  endDate: string;
+  type: MissionType;
   description?: string;
   status?: MissionStatus;
 };

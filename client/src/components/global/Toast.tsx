@@ -3,7 +3,11 @@ import { energyVariants, type EnergyVariant } from "../../consts";
 import type { Mission } from "../../types";
 import { Card, type CardVariants } from "../ui";
 
-export interface ToastProps extends Omit<Mission, "rocket"> {
+export interface ToastProps extends Pick<
+  Mission,
+  "name" | "target" | "startDate" | "status"
+> {
+  id: number;
   className?: string;
 }
 
@@ -23,7 +27,7 @@ const missionStatusMap: Record<
   running: { variant: "waiting", icon: CircleAlert, energy: "orange" },
 };
 
-export function Toast({ id, name, target, startDate, status }: ToastProps) {
+export function Toast({ name, target, startDate, status }: ToastProps) {
   const config = missionStatusMap[status!] ?? missionStatusMap.upcoming;
 
   const Icon = config.icon;
@@ -31,7 +35,6 @@ export function Toast({ id, name, target, startDate, status }: ToastProps) {
 
   return (
     <Card
-      key={id}
       variant={config.variant}
       className="gap-1 max-w-[17rem] p-3 font-body border-l-4"
       cornerBorders={false}

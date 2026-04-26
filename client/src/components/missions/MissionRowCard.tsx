@@ -14,6 +14,7 @@ export function MissionRowCard({
   rocket,
   target,
   status,
+  type,
   onAbort,
 }: MissionRowCardProps) {
   return (
@@ -56,6 +57,7 @@ export function MissionRowCard({
                 rocket,
                 target,
                 status,
+                type,
               })
             }
           >

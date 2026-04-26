@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
-import { missions } from "../consts";
+import type { Mission } from "../types";
 import { useDebounce } from "./useDebounce";
 
-export function useSearchMissions() {
+export function useSearchMissions(missions: Mission[]) {
   const [search, setSearch] = useState("");
 
   const debouncedValue = useDebounce(search, 500);
@@ -18,7 +18,7 @@ export function useSearchMissions() {
         mission.target.toLowerCase().includes(searchLower)
       );
     });
-  }, [searchLower]);
+  }, [searchLower, missions]);
 
   return { searchedMissions, search, setSearch };
 }

@@ -1,29 +1,29 @@
 import type { ComponentPropsWithRef } from "react";
 import { twMerge } from "tailwind-merge";
 
-type InputVariant = "basic" | "warn";
+type TextAreaVariant = "basic" | "warn";
 
-export type InputProps = ComponentPropsWithRef<"input"> & {
+export type TextAreaProps = ComponentPropsWithRef<"textarea"> & {
   wrapperClassName?: string;
-  inputClassName?: string;
+  textAreaClassName?: string;
   label?: string;
   isRequired?: boolean;
-  variant?: InputVariant;
+  variant?: TextAreaVariant;
 };
 
-const variantStyles: Record<InputVariant, string> = {
-  basic: `border-bg-border focus:border-cyber-cyan-text `,
-  warn: ` border-red-500/50 focus:border-red-500 text-red-400 placeholder:text-red-500/60`,
+const variantStyles: Record<TextAreaVariant, string> = {
+  basic: `border-bg-border focus:border-cyber-cyan-text`,
+  warn: `border-red-500/50 focus:border-red-500 text-red-400 placeholder:text-red-500/60`,
 };
 
-export function Input({
-  inputClassName,
+export function TextArea({
+  textAreaClassName,
   wrapperClassName,
   label,
   isRequired,
   variant = "basic",
   ...props
-}: InputProps) {
+}: TextAreaProps) {
   return (
     <div className={twMerge("flex flex-col", wrapperClassName)}>
       {/* Label */}
@@ -43,16 +43,13 @@ export function Input({
         </div>
       )}
 
-      {/* Input */}
-      <input
+      {/* TextArea */}
+      <textarea
         className={twMerge(
-          `
-          bg-input-color text-white text-[15px] pl-2
-          border placeholder:text-cyan-muted
-          focus:outline-none
-          `,
+          `bg-input-color text-white text-[15px] pl-2 p-2
+          border placeholder:text-cyan-muted focus:outline-none resize-none `,
           variantStyles[variant],
-          inputClassName,
+          textAreaClassName,
         )}
         {...props}
       />

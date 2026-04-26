@@ -1,38 +1,56 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
+type SelectorVariant = "basic" | "warn";
+
 export type SelectorProps = ComponentPropsWithRef<"select"> & {
   className?: string;
   label?: string;
   children: ReactNode;
-  required?: boolean;
+  isRequired?: boolean;
+  variant?: SelectorVariant;
+};
+
+const variantStyles: Record<SelectorVariant, string> = {
+  basic: ` border-bg-border focus:border-cyber-cyan-text `,
+  warn: `border-red-500/50 focus:border-red-500 text-red-400 `,
 };
 
 export function Selector({
   className,
   label,
-  required,
+  isRequired,
   children,
+  variant = "basic",
   ...props
 }: SelectorProps) {
   return (
     <div className="flex flex-col gap-1">
-      <div className="flex items-center gap-2">
-        <span className="text-[13px] text-cyan-text-light uppercase font-mono tracking-widest">
-          {label}
-        </span>
+      {/* Label */}
+      {(label || isRequired) && (
+        <div className="flex items-center gap-2">
+          {label && (
+            <span className="text-[13px] text-cyan-text-light uppercase font-mono tracking-widest">
+              {label}
+            </span>
+          )}
 
-        {required && (
-          <strong className="text-[11px] text-orange-300 font-mono tracking-tighter">
-            REQ
-          </strong>
-        )}
-      </div>
+          {isRequired && (
+            <strong className="text-[11px] text-orange-300 font-mono tracking-tighter">
+              REQ
+            </strong>
+          )}
+        </div>
+      )}
 
+      {/* Select */}
       <select
         className={twMerge(
-          `bg-input-color text-white text-[15px] pl-2 focus:outline-none focus:border-cyber-cyan-text
-          border border-bg-border`,
+          `
+          bg-input-color text-white text-[15px] pl-2
+          border focus:outline-none
+          `,
+          variantStyles[variant],
           className,
         )}
         {...props}

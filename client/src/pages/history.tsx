@@ -12,14 +12,19 @@ import {
   MissionStatusBar,
 } from "../components/missions";
 import { Button, Card, Divider, Input } from "../components/ui";
-import { filters, historyInfoCards, type HistoryData } from "../consts";
+import {
+  filters,
+  historyInfoCards,
+  missions,
+  type HistoryData,
+} from "../consts";
 import { useFilterMissions, useSearchMissions } from "../hooks";
 import { scrollToId } from "../utils";
 
 export default function History() {
   const [page, setPage] = useState(1);
 
-  const { searchedMissions, search, setSearch } = useSearchMissions();
+  const { searchedMissions, search, setSearch } = useSearchMissions(missions);
   const { filteredMissions, filter, setFilter } =
     useFilterMissions(searchedMissions);
 
@@ -138,6 +143,7 @@ export default function History() {
                         rocket={item.rocket}
                         target={item.target}
                         status={item.status}
+                        type={item.type}
                       />
                     ))}
                   </tbody>

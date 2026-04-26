@@ -10,6 +10,7 @@ import {
   Divider,
   Input,
   Selector,
+  TextArea,
 } from "../components/ui";
 import {
   eligibilityPlanets,
@@ -41,7 +42,6 @@ export default function Launch() {
       name: "Dragon Demo",
       target: "HORIZON-7",
       startDate: "May 16, 2026",
-      endDate: "May 20, 2026",
       status: "success",
     });
 
@@ -112,9 +112,10 @@ export default function Launch() {
             </Card>
 
             {/* Form Card */}
-            <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text ">
+            <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
               <Divider type="label" label="Mission Parameters" />
 
+              {/* Form Fields */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <Input
                   id="mission-name"
@@ -139,8 +140,22 @@ export default function Launch() {
                   label="● Destination Exoplanet"
                   required={true}
                 >
-                  <option value="">Exoplanets</option>
+                  <option value="">Select a planet</option>
+                  <option value="">Exoplanet</option>
                   <option value="">Test</option>
+                </Selector>
+
+                <Selector
+                  id="mission-type"
+                  className="h-10"
+                  label="● Mission type"
+                  required={true}
+                >
+                  <option value="">Select a type</option>
+                  <option value="">Exploration</option>
+                  <option value="">Cargo</option>
+                  <option value="">Research</option>
+                  <option value="">Screwed</option>
                 </Selector>
 
                 <Input
@@ -159,12 +174,13 @@ export default function Launch() {
                   required={true}
                 />
 
-                {/* {
-
-                1 CREATE A TEXT AREA COMPONENT BASED ON INPUT COMPONENT. 
-                2 IMPLEMENT THE DESCRIPTION FIELD HERE.
-                
-                } */}
+                <TextArea
+                  id="mission-description"
+                  wrapperClassName="sm:col-span-2"
+                  textAreaClassName="w-full h-28"
+                  label="● Mission Description"
+                  required={true}
+                />
               </div>
 
               <Divider />
@@ -216,6 +232,7 @@ export default function Launch() {
           rocket: "Explorer IS1",
           target: "Kepler-452 b",
           status: "success",
+          type: "cargo",
         }}
         actions={
           <div className="w-full flex gap-2 justify-center">
