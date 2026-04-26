@@ -12,7 +12,7 @@ export type InputProps = ComponentPropsWithRef<"input"> & {
 };
 
 const variantStyles: Record<InputVariant, string> = {
-  basic: `border-bg-border focus:border-cyber-cyan-text `,
+  basic: `bg-input-color border-bg-border focus:border-cyber-cyan-text `,
   warn: ` border-red-500/50 focus:border-red-500 text-red-400 placeholder:text-red-500/60`,
 };
 
@@ -25,7 +25,7 @@ export function Input({
   ...props
 }: InputProps) {
   return (
-    <div className={twMerge("flex flex-col", wrapperClassName)}>
+    <div className={twMerge("flex flex-col gap-2", wrapperClassName)}>
       {/* Label */}
       {(label || isRequired) && (
         <div className="flex items-center gap-2">

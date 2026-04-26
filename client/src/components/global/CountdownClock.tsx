@@ -34,7 +34,9 @@ export function CountdownClock({
   }, []);
 
   return (
-    <div className={`flex gap-1 font-heading text-xl font-bold ${textColor}`}>
+    <div
+      className={`flex gap-1 font-heading text-base sm:text-xl font-bold ${textColor}`}
+    >
       {days > 0 && <span>{twoDigits(days)}:</span>}
       <span>{twoDigits(hours)}:</span>
       <span>{twoDigits(minutes)}:</span>

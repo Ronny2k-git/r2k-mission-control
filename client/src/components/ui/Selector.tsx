@@ -12,7 +12,7 @@ export type SelectorProps = ComponentPropsWithRef<"select"> & {
 };
 
 const variantStyles: Record<SelectorVariant, string> = {
-  basic: ` border-bg-border focus:border-cyber-cyan-text `,
+  basic: ` bg-input-color border-bg-border focus:border-cyber-cyan-text `,
   warn: `border-red-500/50 focus:border-red-500 text-red-400 `,
 };
 
@@ -25,7 +25,7 @@ export function Selector({
   ...props
 }: SelectorProps) {
   return (
-    <div className="flex flex-col gap-1">
+    <div className="flex flex-col gap-2">
       {/* Label */}
       {(label || isRequired) && (
         <div className="flex items-center gap-2">
@@ -46,10 +46,7 @@ export function Selector({
       {/* Select */}
       <select
         className={twMerge(
-          `
-          bg-input-color text-white text-[15px] pl-2
-          border focus:outline-none
-          `,
+          ` bg-input-color text-white text-[15px] pl-2 border focus:outline-none     `,
           variantStyles[variant],
           className,
         )}

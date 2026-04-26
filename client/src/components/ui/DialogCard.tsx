@@ -69,7 +69,7 @@ export function DialogCard({
       open={open}
       onClose={onClose}
       className={twMerge(
-        "items-center justify-center p-4 sm:p-8 max-h-[90vh]",
+        "items-center justify-center p-4 sm:p-8 max-h-[95vh]",
         className,
       )}
     >
