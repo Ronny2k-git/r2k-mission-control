@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* =========================
+   BASE LAYER (reset/global)
+========================= */
 @layer base {
   *,
   ::before,
@@ -12,12 +15,9 @@
   }
 }
 
-@layer utilities {
-  .text-glow {
-    text-shadow: 0 0 2px currentColor;
-  }
-}
-
+/* =========================
+   FONTS
+========================= */
 @font-face {
   font-family: "Orbitron";
   src: url("/fonts/Orbitron-Regular.woff2") format("woff2");
@@ -32,12 +32,18 @@
   font-display: swap;
 }
 
+/* =========================
+   ROOT VARIABLES (fallbacks)
+========================= */
 :root {
   --sans: system-ui, "Segoe UI", Roboto, sans-serif;
   --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 }
 
+/* =========================
+   THEME (Tailwind v4)
+========================= */
 @theme {
   --font-heading: "Orbitron", sans-serif;
   --font-body: "Share Tech Mono", monospace;
@@ -62,6 +68,13 @@
   --text-description: 1.1875rem;
 }
 
+/* =========================
+   GLOBAL ELEMENT STYLES
+========================= */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: var(--color-background-color);
   background-size: cover;
@@ -77,10 +90,9 @@ footer {
   z-index: 10;
 }
 
-html {
-  scroll-behavior: smooth;
-}
-
+/* =========================
+   LAYOUT / BACKGROUND EFFECTS
+========================= */
 #stars {
   position: fixed;
   inset: 0;
@@ -93,6 +105,9 @@ html {
   height: 100%;
 }
 
+/* =========================
+   SCROLLBAR
+========================= */
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -113,6 +128,18 @@ html {
   box-shadow: 0 0 6px rgba(5, 183, 237, 0.8);
 }
 
+/* =========================
+   UTILITIES
+========================= */
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 2px currentColor;
+  }
+}
+
+/* =========================
+   CUSTOM EFFECTS
+========================= */
 .glow::before {
   content: "";
   position: absolute;
@@ -122,4 +149,22 @@ html {
   width: 100%;
   background: rgba(0, 200, 255);
   box-shadow: 0 0 5px cyan;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(36px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }

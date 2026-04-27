@@ -61,7 +61,7 @@ export default function Launch() {
 
   return (
     <>
-      <div className="flex flex-col w-full gap-12 pb-8">
+      <div className="flex flex-col w-full gap-12 pb-8 ">
         {/* Info Cards */}
         <div className="md:flex grid grid-cols-2">
           {launchInfoCards.map((item, i) => (
@@ -75,7 +75,10 @@ export default function Launch() {
           ))}
         </div>
 
-        <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
+        <section
+          className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg 
+           gap-8 px-4 md:px-8 animate-fade-up"
+        >
           {/* Title */}
           <h1 className="font-extrabold text-white text-2xl sm:text-4xl sm:max-w-[27.2rem] font-heading leading-10">
             Schedule a <span className="text-cyber-cyan-text">Launch</span> to

@@ -54,7 +54,10 @@ export default function History() {
         ))}
       </div>
 
-      <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
+      <section
+        className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg 
+        gap-8 px-4 md:px-8 animate-fade-up"
+      >
         {/* Title */}
         <h1
           id="history_page_title"

@@ -70,19 +70,17 @@ export default function Upcoming() {
 
   // 3 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
-  // 4 CREATE OR IMPLEMENT ANIMATIONS FOR EVERY PAGE (-Y using CSS).
-
-  // 5 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
+  // 4 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
 
   // TO DO LATER WHEN THE BACKEND IS READY ------------------
 
-  // 6 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
+  // 5 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
   // IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE.
 
-  // 7 CREATE A FUNCTION TO GET THE MISSION STATUS AND USE THIS TO FILTER THE
+  // 6 CREATE A FUNCTION TO GET THE MISSION STATUS AND USE THIS TO FILTER THE
   // MISSIONS FOR UPCOMING AND HISTORY PAGES
 
-  // 8 FIND A WAY TO PROVIDE THE FIELD DESCRIPTION WHEN THE USER WANT TO ABORT
+  // 7 FIND A WAY TO PROVIDE THE FIELD DESCRIPTION WHEN THE USER WANT TO ABORT
   //   A MISSION
 
   return (
@@ -101,7 +99,10 @@ export default function Upcoming() {
           ))}
         </div>
 
-        <section className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg gap-8 px-4 md:px-8">
+        <section
+          className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg 
+          gap-8 px-4 md:px-8 animate-fade-up"
+        >
           {/* Title */}
           <h1
             id="upcoming_page_title"
