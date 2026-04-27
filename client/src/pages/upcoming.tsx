@@ -1,5 +1,7 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { CornerUpLeft, X } from "lucide-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import {
   CountdownClock,
@@ -23,18 +25,22 @@ import {
 } from "../consts";
 import { useClickFeedback, useSearchMissions } from "../hooks";
 import { useToast } from "../hooks/useToast";
+import { upcomingSchema, type UpcomingFormData } from "../schemas";
 import type { Mission } from "../types";
 import { scrollToId } from "../utils";
 
 export default function Upcoming() {
   const [page, setPage] = useState(1);
   const [openDialog, setOpenDialog] = useState(false);
-  const [abortReason, setAbortReason] = useState("");
   const { showToast } = useToast();
 
   const [selectedMission, setSelectedMission] = useState<Mission>();
   const { searchedMissions, search, setSearch } =
     useSearchMissions(upcomingMissions);
+
+  const { register, handleSubmit, reset } = useForm<UpcomingFormData>({
+    resolver: zodResolver(upcomingSchema),
+  });
 
   const { trigger: audioTrigger } = useClickFeedback({
     audioPath: "/sound/abort.mp3",
@@ -44,8 +50,7 @@ export default function Upcoming() {
   const navigate = useNavigate();
 
   // Function used to abort a selected mission.
-  const handleAbortMission = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const onSubmit = () => {
     audioTrigger();
 
     showToast({
@@ -57,6 +62,9 @@ export default function Upcoming() {
     });
 
     setOpenDialog(false);
+
+    // clean the description field
+    reset();
   };
 
   const infoUpcomingCardData: UpcomingData = {
@@ -73,21 +81,19 @@ export default function Upcoming() {
   // 2 CREATE A REUSABLE COMPONENT CALLED "MISSION TABLE SECTION" TO AVOID
   //   REPEAT THE TABLE SECTION 2 TIMES. (The code is in GPT)
 
-  // 2 VALIDATE THE FORM USING ZOD AND REACT HOOK FORM.
+  // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
-  // 3 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
-
-  // 4 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
+  // 3 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
 
   // TO DO LATER WHEN THE BACKEND IS READY ------------------
 
-  // 5 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
+  // 4 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER FILTERS SOMETHING.
   // IMPLEMENT WHEN THE USER STARTS A LAUNCH AND NAVIGATE TO THE UPCOMING PAGE.
 
-  // 6 CREATE A FUNCTION TO GET THE MISSION STATUS AND USE THIS TO FILTER THE
+  // 5 CREATE A FUNCTION TO GET THE MISSION STATUS AND USE THIS TO FILTER THE
   // MISSIONS FOR UPCOMING AND HISTORY PAGES
 
-  // 7 FIND A WAY TO PROVIDE THE FIELD DESCRIPTION WHEN THE USER WANT TO ABORT
+  // 6 FIND A WAY TO PROVIDE THE FIELD DESCRIPTION WHEN THE USER WANT TO ABORT
   //   A MISSION
 
   return (
@@ -248,7 +254,7 @@ export default function Upcoming() {
                 className="w-full text-sm"
                 variant="warning"
                 iconLeft={<CornerUpLeft className="size-4" />}
-                onClick={(e) => handleAbortMission(e)}
+                onClick={handleSubmit(onSubmit)}
               >
                 Abort
               </Button>
@@ -261,8 +267,8 @@ export default function Upcoming() {
               variant="warn"
               size="md"
               wrapperClassName="w-full"
-              value={abortReason}
-              onChange={(e) => setAbortReason(e.target.value)}
+              required={true}
+              {...register("abortDescription")}
             />
           }
         />

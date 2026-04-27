@@ -8,7 +8,19 @@ export type LaunchData = {
   status: string;
 };
 
-export const missionTypes = ["exploration", "cargo", "research"] as const;
+export const missionTypes = [
+  "exploration",
+  "cargo",
+  "research",
+  "crewed",
+] as const;
+
+export const missionTypeValues = [
+  { value: "exploration", label: "Exploration" },
+  { value: "cargo", label: "Cargo" },
+  { value: "research", label: "Research" },
+  { value: "crewed", label: "Crewed" },
+];
 
 export const launchInfoCards: MissionCardInfoProps<LaunchData>[] = [
   {

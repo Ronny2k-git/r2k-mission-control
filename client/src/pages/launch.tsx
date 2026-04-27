@@ -1,3 +1,4 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Rocket, X } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -16,18 +17,21 @@ import {
 import {
   eligibilityPlanets,
   launchInfoCards,
+  missionTypeValues,
   type LaunchData,
 } from "../consts";
 import { useClickFeedback } from "../hooks";
 import { useToast } from "../hooks/useToast";
-import type { LaunchFormData } from "../schemas";
+import { launchSchema, type LaunchFormData } from "../schemas";
 
 export default function Launch() {
   const [openDialog, setOpenDialog] = useState(false);
+  const [formData, setFormData] = useState<LaunchFormData | null>(null);
   const { showToast } = useToast();
 
-  const { register, handleSubmit, watch } = useForm<LaunchFormData>();
-  const formValues = watch();
+  const { register, handleSubmit } = useForm<LaunchFormData>({
+    resolver: zodResolver(launchSchema),
+  });
 
   const navigate = useNavigate();
 
@@ -120,7 +124,10 @@ export default function Launch() {
               {/* Form Fields */}
               <form
                 className="flex flex-col gap-4 sm:gap-6"
-                onSubmit={handleSubmit(() => setOpenDialog(true))}
+                onSubmit={handleSubmit((data) => {
+                  setFormData(data);
+                  setOpenDialog(true);
+                })}
               >
                 <Divider type="label" label="Mission Parameters" />
 
@@ -149,8 +156,8 @@ export default function Launch() {
                     {...register("target")}
                   >
                     <option value="">Select a planet</option>
-                    <option value="">Exoplanet</option>
-                    <option value="">Test</option>
+                    <option value="exoplanet">Exoplanet</option>
+                    <option value="test">Test</option>
                   </Selector>
 
                   <Selector
@@ -160,10 +167,12 @@ export default function Launch() {
                     {...register("missionType")}
                   >
                     <option value="">Select a type</option>
-                    <option value="">Exploration</option>
-                    <option value="">Cargo</option>
-                    <option value="">Research</option>
-                    <option value="">Screwed</option>
+
+                    {missionTypeValues.map((mission) => (
+                      <option key={mission.value} value={mission.value}>
+                        {mission.label}
+                      </option>
+                    ))}
                   </Selector>
 
                   <Input
@@ -228,47 +237,49 @@ export default function Launch() {
       </div>
 
       {/* Dialog card */}
-      <DialogCard
-        className="max-w-md"
-        open={openDialog}
-        onClose={() => setOpenDialog(false)}
-        variant="success"
-        iconBadge={<Rocket />}
-        title="Launch a Mission?"
-        description={formValues.description}
-        mission={{
-          id: 1,
-          startDate: formValues.startDate,
-          endDate: formValues.endDate,
-          name: formValues.missionName,
-          rocket: formValues.rocket,
-          target: formValues.target,
-          status: "success",
-          type: formValues.missionType,
-        }}
-        actions={
-          <div className="w-full flex gap-2 justify-center">
-            <Button
-              className="w-full text-sm"
-              variant="neutral"
-              size={"lg"}
-              iconLeft={<X className="size-4" />}
-              onClick={() => setOpenDialog(false)}
-            >
-              Cancel
-            </Button>
+      {formData && (
+        <DialogCard
+          className="max-w-md"
+          open={openDialog}
+          onClose={() => setOpenDialog(false)}
+          variant="success"
+          iconBadge={<Rocket />}
+          title="Launch a Mission?"
+          description={formData?.description}
+          mission={{
+            id: 1,
+            startDate: formData?.startDate,
+            endDate: formData?.endDate,
+            name: formData?.missionName,
+            rocket: formData?.rocket,
+            target: formData?.target,
+            status: "success",
+            type: formData?.missionType,
+          }}
+          actions={
+            <div className="w-full flex gap-2 justify-center">
+              <Button
+                className="w-full text-sm"
+                variant="neutral"
+                size={"lg"}
+                iconLeft={<X className="size-4" />}
+                onClick={() => setOpenDialog(false)}
+              >
+                Cancel
+              </Button>
 
-            <Button
-              className="w-full text-sm"
-              variant="success"
-              iconLeft={<Rocket className="size-4" />}
-              onClick={handleSubmit(onSubmit)}
-            >
-              New Mission
-            </Button>
-          </div>
-        }
-      />
+              <Button
+                className="w-full text-sm"
+                variant="success"
+                iconLeft={<Rocket className="size-4" />}
+                onClick={handleSubmit(onSubmit)}
+              >
+                New Mission
+              </Button>
+            </div>
+          }
+        />
+      )}
     </>
   );
 }
