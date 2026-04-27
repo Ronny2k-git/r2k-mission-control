@@ -8,7 +8,14 @@ import {
   SectionLabel,
 } from "../components/global";
 import { MissionInfoCard, MissionRowCard } from "../components/missions";
-import { Button, Card, DialogCard, Divider, Input } from "../components/ui";
+import {
+  Button,
+  Card,
+  DialogCard,
+  Divider,
+  Input,
+  TextArea,
+} from "../components/ui";
 import {
   upcomingInfoCards,
   upcomingMissions,
@@ -248,9 +255,12 @@ export default function Upcoming() {
             </div>
           }
           extraContent={
-            <Input
-              alt="abort-mission-reason"
+            <TextArea
+              aria-label="abort-mission-reason"
               placeholder="Enter abort reason..."
+              variant="warn"
+              size="md"
+              wrapperClassName="w-full"
               value={abortReason}
               onChange={(e) => setAbortReason(e.target.value)}
             />

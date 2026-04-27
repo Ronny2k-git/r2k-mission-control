@@ -69,12 +69,16 @@ export function DialogCard({
       open={open}
       onClose={onClose}
       className={twMerge(
-        "items-center justify-center p-4 sm:p-8 max-h-[95vh]",
+        "items-center justify-center p-4 sm:p-4 max-h-[95vh]",
         className,
       )}
     >
-      <div className="flex flex-col w-full max-h-[90vh] items-center gap-4 overflow-y-auto">
+      <div
+        className={`dialog-scroll flex flex-col w-full max-h-[90vh] items-center gap-4 
+        overflow-y-auto scroll-${energy} p-4`}
+      >
         <EnergyBadge className="mt-4" icon={iconBadge} variant={energy} />
+
         {/* Title + Type*/}
         <div className="flex flex-col items-center gap-2">
           <span className="text-center text-2xl text-white font-heading font-semibold">
@@ -87,12 +91,13 @@ export function DialogCard({
             {mission.type}
           </span>
         </div>
+
         {/* Mission Data Cards*/}
         <div className="w-full grid grid-cols-2">
           {missionFields.map((m) => (
             <Card
               key={m.key}
-              className="bg-transparent font-body p-2 sm:px-4 sm:py-3"
+              className="bg-transparent font-body p-3"
               variant={variant}
               cornerBorders={false}
             >
@@ -100,13 +105,15 @@ export function DialogCard({
                 {m.label}
               </span>
 
-              <span className="text-white/85 font-mono capitalize text-xs sm:text-sm">
+              <span className="text-white/85 font-mono capitalize text-xs sm:text-[13px]">
                 {m.value}
               </span>
             </Card>
           ))}
         </div>
+
         <Divider variant={energy} type="line" />
+
         {/* Description */}
         <div className="flex flex-col items-center gap-1 max-w-sm text-center">
           <span
@@ -118,9 +125,11 @@ export function DialogCard({
           <p className="text-white/80 text-sm leading-relaxed">{description}</p>
         </div>
 
+        {/* Extra content */}
         {extraContent}
 
         <Divider variant={energy} type="line" />
+
         {/* Actions */}
         {actions}
       </div>

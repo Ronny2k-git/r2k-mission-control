@@ -2,18 +2,26 @@ import type { ComponentPropsWithRef } from "react";
 import { twMerge } from "tailwind-merge";
 
 type InputVariant = "basic" | "warn";
+type InputSize = "sm" | "md" | "lg";
 
-export type InputProps = ComponentPropsWithRef<"input"> & {
+export type InputProps = Omit<ComponentPropsWithRef<"input">, "size"> & {
   wrapperClassName?: string;
   inputClassName?: string;
   label?: string;
   isRequired?: boolean;
   variant?: InputVariant;
+  size?: InputSize;
 };
 
 const variantStyles: Record<InputVariant, string> = {
   basic: `bg-input-color border-bg-border focus:border-cyber-cyan-text `,
-  warn: ` border-red-500/50 focus:border-red-500 text-red-400 placeholder:text-red-500/60`,
+  warn: ` bg-red-500/5 border-red-500/70 focus:border-red-500 text-white placeholder:text-red-500/30 `,
+};
+
+const sizeStyles: Record<InputSize, string> = {
+  sm: "h-8 text-sm px-2",
+  md: "h-10 text-[15px] px-2.5",
+  lg: "h-12 text-base px-3",
 };
 
 export function Input({
@@ -22,6 +30,7 @@ export function Input({
   label,
   isRequired,
   variant = "basic",
+  size = "md",
   ...props
 }: InputProps) {
   return (
@@ -52,6 +61,7 @@ export function Input({
           focus:outline-none
           `,
           variantStyles[variant],
+          sizeStyles[size],
           inputClassName,
         )}
         {...props}

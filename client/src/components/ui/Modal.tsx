@@ -29,41 +29,36 @@ export function Modal({
   className,
   ...props
 }: ModalProps) {
-  return (
-    <>
-      {open && (
-        <Portal>
-          {/* Overlay */}
-          <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
-            onClick={onClose}
-          />
+  return open ? (
+    <Portal>
+      {/* Overlay */}
+      <div
+        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50"
+        onClick={onClose}
+      />
 
-          {/* Add FIXED later */}
-          <Card
-            role="dialog"
-            aria-modal="true"
-            variant={variant}
-            className={twMerge(
-              "w-[calc(100%-1.5rem)] gap-4 fixed z-50 p-4 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ",
-              className,
-            )}
-            onClick={(e) => e.stopPropagation()}
-            {...props}
-          >
-            {/* Close modal */}
-            <Button
-              className="absolute size-8 top-4 right-4"
-              variant={buttonVariantMap[variant]}
-              onClick={onClose}
-            >
-              X
-            </Button>
+      <Card
+        role="dialog"
+        aria-modal="true"
+        variant={variant}
+        className={twMerge(
+          "w-[calc(100%-1.5rem)] gap-4 fixed z-50 p-4 top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 ",
+          className,
+        )}
+        onClick={(e) => e.stopPropagation()}
+        {...props}
+      >
+        {/* Close modal */}
+        <Button
+          className="absolute size-8 top-4 right-4"
+          variant={buttonVariantMap[variant]}
+          onClick={onClose}
+        >
+          X
+        </Button>
 
-            {children}
-          </Card>
-        </Portal>
-      )}
-    </>
-  );
+        {children}
+      </Card>
+    </Portal>
+  ) : null;
 }

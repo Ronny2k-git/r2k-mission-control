@@ -8,6 +8,8 @@ export type LaunchData = {
   status: string;
 };
 
+export const missionTypes = ["exploration", "cargo", "research"] as const;
+
 export const launchInfoCards: MissionCardInfoProps<LaunchData>[] = [
   {
     title: "Eligible Planets",

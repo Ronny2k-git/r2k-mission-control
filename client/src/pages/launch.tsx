@@ -1,5 +1,6 @@
 import { Check, Rocket, X } from "lucide-react";
 import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { CountdownClock, SectionLabel } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
@@ -19,37 +20,38 @@ import {
 } from "../consts";
 import { useClickFeedback } from "../hooks";
 import { useToast } from "../hooks/useToast";
+import type { LaunchFormData } from "../schemas";
 
 export default function Launch() {
   const [openDialog, setOpenDialog] = useState(false);
   const { showToast } = useToast();
+
+  const { register, handleSubmit, watch } = useForm<LaunchFormData>();
+  const formValues = watch();
+
+  const navigate = useNavigate();
 
   const { trigger: audioTrigger } = useClickFeedback({
     audioPath: "/sound/success.mp3",
     duration: 100,
   });
 
-  const navigate = useNavigate();
-
   // Function used to launch a new mission
-  const handleNewMission = (e: React.MouseEvent) => {
-    e.preventDefault();
+  const onSubmit = (data: LaunchFormData) => {
     audioTrigger();
 
     // Fill using the form data later
     showToast({
       id: 1,
-      name: "Dragon Demo",
-      target: "HORIZON-7",
-      startDate: "May 16, 2026",
+      name: data.missionName,
+      target: data.target,
+      startDate: data.startDate,
       status: "success",
     });
 
     setOpenDialog(false);
 
-    setTimeout(() => {
-      navigate("/upcoming");
-    }, 300);
+    setTimeout(() => navigate("/upcoming"), 300);
   };
 
   const infoLaunchCardData: LaunchData = {
@@ -114,99 +116,106 @@ export default function Launch() {
               </div>
             </Card>
 
-            {/* Form Card */}
-            <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
-              <Divider type="label" label="Mission Parameters" />
-
+            <Card className="p-4 sm:p-6 text-cyber-cyan-text">
               {/* Form Fields */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <Input
-                  id="mission-name"
-                  inputClassName="h-10"
-                  type="text"
-                  label="● Mission Name"
-                  required={true}
-                  placeholder="Enter mission name"
-                />
+              <form
+                className="flex flex-col gap-4 sm:gap-6"
+                onSubmit={handleSubmit(() => setOpenDialog(true))}
+              >
+                <Divider type="label" label="Mission Parameters" />
 
-                <Input
-                  id="rocket"
-                  inputClassName="h-10"
-                  type="text"
-                  defaultValue={"Explorer IS1"}
-                  label="● Rocket System"
-                />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                  <Input
+                    id="mission-name"
+                    type="text"
+                    label="● Mission Name"
+                    required={true}
+                    placeholder="Enter mission name"
+                    {...register("missionName")}
+                  />
 
-                <Selector
-                  id="destination-exoplanet"
-                  className="h-10"
-                  label="● Destination Exoplanet"
-                  required={true}
-                >
-                  <option value="">Select a planet</option>
-                  <option value="">Exoplanet</option>
-                  <option value="">Test</option>
-                </Selector>
+                  <Input
+                    id="rocket"
+                    type="text"
+                    defaultValue={"Explorer IS1"}
+                    label="● Rocket System"
+                    {...register("rocket")}
+                  />
 
-                <Selector
-                  id="mission-type"
-                  className="h-10"
-                  label="● Mission type"
-                  required={true}
-                >
-                  <option value="">Select a type</option>
-                  <option value="">Exploration</option>
-                  <option value="">Cargo</option>
-                  <option value="">Research</option>
-                  <option value="">Screwed</option>
-                </Selector>
+                  <Selector
+                    id="destination-exoplanet"
+                    label="● Destination Exoplanet"
+                    required={true}
+                    {...register("target")}
+                  >
+                    <option value="">Select a planet</option>
+                    <option value="">Exoplanet</option>
+                    <option value="">Test</option>
+                  </Selector>
 
-                <Input
-                  id="start-mission-date"
-                  inputClassName="h-10"
-                  type="date"
-                  label="● Start Mission Date"
-                  required={true}
-                />
+                  <Selector
+                    id="mission-type"
+                    label="● Mission type"
+                    required={true}
+                    {...register("missionType")}
+                  >
+                    <option value="">Select a type</option>
+                    <option value="">Exploration</option>
+                    <option value="">Cargo</option>
+                    <option value="">Research</option>
+                    <option value="">Screwed</option>
+                  </Selector>
 
-                <Input
-                  id="end-mission-date"
-                  inputClassName="h-10"
-                  type="date"
-                  label="● End Mission Date"
-                  required={true}
-                />
+                  <Input
+                    id="start-mission-date"
+                    type="date"
+                    label="● Start Mission Date"
+                    required={true}
+                    {...register("startDate")}
+                  />
 
-                <TextArea
-                  id="mission-description"
-                  wrapperClassName="sm:col-span-2"
-                  textAreaClassName="w-full h-28"
-                  label="● Mission Description"
-                  required={true}
-                />
-              </div>
+                  <Input
+                    id="end-mission-date"
+                    type="date"
+                    label="● End Mission Date"
+                    required={true}
+                    {...register("endDate")}
+                  />
 
-              <Divider />
+                  <TextArea
+                    id="mission-description"
+                    wrapperClassName="sm:col-span-2"
+                    textAreaClassName="w-full"
+                    label="● Mission Description"
+                    variant="basic"
+                    size="md"
+                    required={true}
+                    {...register("description")}
+                  />
+                </div>
 
-              {/* Warning  + Button*/}
-              <div className="flex w-full max-sm:flex-col gap-4 justify-between">
-                <p className="text-xs max-w-[15rem] text-cyan-muted">
-                  All fields marked{" "}
-                  <span className="text-orange-300 px-1 font-mono tracking-tighter">
-                    REQ
-                  </span>{" "}
-                  are mandatory. Mission will be queued for director
-                  authorization upon submission.
-                </p>
+                <Divider />
 
-                <Button
-                  className="sm:w-[14rem] py-2 gap-2"
-                  onClick={() => setOpenDialog(true)}
-                  variant="success"
-                >
-                  Launch Mission <Check className="size-4" />
-                </Button>
-              </div>
+                {/* Warning  + Button*/}
+                <div className="flex w-full max-sm:flex-col gap-4 justify-between">
+                  <p className="text-xs max-w-[15rem] text-cyan-muted">
+                    All fields marked{" "}
+                    <span className="text-orange-300 px-1 font-mono tracking-tighter">
+                      REQ
+                    </span>{" "}
+                    are mandatory. Mission will be queued for director
+                    authorization upon submission.
+                  </p>
+
+                  <Button
+                    className="sm:w-[14rem] py-2 gap-2"
+                    variant="success"
+                    type="submit"
+                  >
+                    Launch Mission <Check className="size-4" />
+                  </Button>
+                </div>
+              </form>
             </Card>
 
             <Divider />
@@ -226,16 +235,16 @@ export default function Launch() {
         variant="success"
         iconBadge={<Rocket />}
         title="Launch a Mission?"
-        description="Deploying communication satellites into low Earth orbit."
+        description={formValues.description}
         mission={{
           id: 1,
-          startDate: "Apr 24, 2026",
-          endDate: "Apr 29, 2026",
-          name: "Starlink Batch 12",
-          rocket: "Explorer IS1",
-          target: "Kepler-452 b",
+          startDate: formValues.startDate,
+          endDate: formValues.endDate,
+          name: formValues.missionName,
+          rocket: formValues.rocket,
+          target: formValues.target,
           status: "success",
-          type: "cargo",
+          type: formValues.missionType,
         }}
         actions={
           <div className="w-full flex gap-2 justify-center">
@@ -253,7 +262,7 @@ export default function Launch() {
               className="w-full text-sm"
               variant="success"
               iconLeft={<Rocket className="size-4" />}
-              onClick={(e) => handleNewMission(e)}
+              onClick={handleSubmit(onSubmit)}
             >
               New Mission
             </Button>

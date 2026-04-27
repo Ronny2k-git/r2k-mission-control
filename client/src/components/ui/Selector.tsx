@@ -2,18 +2,26 @@ import type { ComponentPropsWithRef, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
 type SelectorVariant = "basic" | "warn";
+type SelectorSize = "sm" | "md" | "lg";
 
-export type SelectorProps = ComponentPropsWithRef<"select"> & {
+export type SelectorProps = Omit<ComponentPropsWithRef<"select">, "size"> & {
   className?: string;
   label?: string;
   children: ReactNode;
   isRequired?: boolean;
   variant?: SelectorVariant;
+  size?: SelectorSize;
 };
 
 const variantStyles: Record<SelectorVariant, string> = {
   basic: ` bg-input-color border-bg-border focus:border-cyber-cyan-text `,
   warn: `border-red-500/50 focus:border-red-500 text-red-400 `,
+};
+
+const sizeStyles: Record<SelectorSize, string> = {
+  sm: "h-8 text-sm px-2",
+  md: "h-10 text-[15px] px-2.5",
+  lg: "h-12 text-base px-3",
 };
 
 export function Selector({
@@ -22,6 +30,7 @@ export function Selector({
   isRequired,
   children,
   variant = "basic",
+  size = "md",
   ...props
 }: SelectorProps) {
   return (
@@ -48,6 +57,7 @@ export function Selector({
         className={twMerge(
           ` bg-input-color text-white text-[15px] pl-2 border focus:outline-none     `,
           variantStyles[variant],
+          sizeStyles[size],
           className,
         )}
         {...props}
