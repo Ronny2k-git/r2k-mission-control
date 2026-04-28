@@ -38,9 +38,10 @@ export default function Upcoming() {
   const { searchedMissions, search, setSearch } =
     useSearchMissions(upcomingMissions);
 
-  const { register, handleSubmit, reset } = useForm<UpcomingFormData>({
-    resolver: zodResolver(upcomingSchema),
-  });
+  const { register, handleSubmit, formState, reset, resetField } =
+    useForm<UpcomingFormData>({
+      resolver: zodResolver(upcomingSchema),
+    });
 
   const { trigger: audioTrigger } = useClickFeedback({
     audioPath: "/sound/abort.mp3",
@@ -80,8 +81,6 @@ export default function Upcoming() {
 
   // 2 CREATE A REUSABLE COMPONENT CALLED "MISSION TABLE SECTION" TO AVOID
   //   REPEAT THE TABLE SECTION 2 TIMES. (The code is in GPT)
-
-  // 2 IMPLEMENT THE ERROR MESSAGES IN THE INPUT COMPONENT.
 
   // 3 INSTALL AND IMPLEMENT IN THE LAUNCH PAGE THE LIBRARY REACT-DATE-PICKER.
 
@@ -233,7 +232,10 @@ export default function Upcoming() {
         <DialogCard
           className="max-w-md"
           open={openDialog}
-          onClose={() => setOpenDialog(false)}
+          onClose={() => {
+            setOpenDialog(false);
+            resetField("abortDescription");
+          }}
           variant="warning"
           iconBadge={<X />}
           title="Abort Mission ?"
@@ -245,7 +247,10 @@ export default function Upcoming() {
                 variant="neutral"
                 size={"lg"}
                 iconLeft={<X className="size-4" />}
-                onClick={() => setOpenDialog(false)}
+                onClick={() => {
+                  setOpenDialog(false);
+                  resetField("abortDescription");
+                }}
               >
                 Cancel
               </Button>
@@ -267,7 +272,7 @@ export default function Upcoming() {
               variant="warn"
               size="md"
               wrapperClassName="w-full"
-              required={true}
+              error={formState.errors.abortDescription?.message}
               {...register("abortDescription")}
             />
           }

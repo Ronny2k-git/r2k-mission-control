@@ -1,7 +1,7 @@
 import type { ComponentPropsWithRef, ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 
-type SelectorVariant = "basic" | "warn";
+type SelectorVariant = "basic" | "warn" | "error";
 type SelectorSize = "sm" | "md" | "lg";
 
 export type SelectorProps = Omit<ComponentPropsWithRef<"select">, "size"> & {
@@ -11,11 +11,13 @@ export type SelectorProps = Omit<ComponentPropsWithRef<"select">, "size"> & {
   isRequired?: boolean;
   variant?: SelectorVariant;
   size?: SelectorSize;
+  error?: string;
 };
 
 const variantStyles: Record<SelectorVariant, string> = {
   basic: ` bg-input-color border-bg-border focus:border-cyber-cyan-text `,
   warn: `border-red-500/50 focus:border-red-500 text-red-400 `,
+  error: `shadow-error-glow border-0`,
 };
 
 const sizeStyles: Record<SelectorSize, string> = {
@@ -31,8 +33,11 @@ export function Selector({
   children,
   variant = "basic",
   size = "md",
+  error,
   ...props
 }: SelectorProps) {
+  const effectiveVariant = error ? "error" : variant;
+
   return (
     <div className="flex flex-col gap-2">
       {/* Label */}
@@ -56,7 +61,7 @@ export function Selector({
       <select
         className={twMerge(
           ` bg-input-color text-white text-[15px] pl-2 border focus:outline-none     `,
-          variantStyles[variant],
+          variantStyles[effectiveVariant],
           sizeStyles[size],
           className,
         )}
@@ -64,6 +69,11 @@ export function Selector({
       >
         {children}
       </select>
+
+      {/* Error message */}
+      {error && (
+        <span className="mt-1 pl-2 text-sm text-red-400/90">{error}</span>
+      )}
     </div>
   );
 }

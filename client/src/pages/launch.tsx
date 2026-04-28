@@ -1,5 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, Rocket, X } from "lucide-react";
+import { Check, Rocket, RotateCcwIcon, X } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -29,9 +29,11 @@ export default function Launch() {
   const [formData, setFormData] = useState<LaunchFormData | null>(null);
   const { showToast } = useToast();
 
-  const { register, handleSubmit } = useForm<LaunchFormData>({
+  const { register, handleSubmit, formState, reset } = useForm<LaunchFormData>({
     resolver: zodResolver(launchSchema),
   });
+
+  const inputError = formState.errors;
 
   const navigate = useNavigate();
 
@@ -136,8 +138,9 @@ export default function Launch() {
                     id="mission-name"
                     type="text"
                     label="● Mission Name"
-                    required={true}
                     placeholder="Enter mission name"
+                    isRequired={true}
+                    error={inputError.missionName?.message}
                     {...register("missionName")}
                   />
 
@@ -146,13 +149,15 @@ export default function Launch() {
                     type="text"
                     defaultValue={"Explorer IS1"}
                     label="● Rocket System"
+                    error={inputError.rocket?.message}
                     {...register("rocket")}
                   />
 
                   <Selector
                     id="destination-exoplanet"
                     label="● Destination Exoplanet"
-                    required={true}
+                    isRequired={true}
+                    error={inputError.target?.message}
                     {...register("target")}
                   >
                     <option value="">Select a planet</option>
@@ -163,7 +168,8 @@ export default function Launch() {
                   <Selector
                     id="mission-type"
                     label="● Mission type"
-                    required={true}
+                    isRequired={true}
+                    error={inputError.missionType?.message}
                     {...register("missionType")}
                   >
                     <option value="">Select a type</option>
@@ -179,7 +185,8 @@ export default function Launch() {
                     id="start-mission-date"
                     type="date"
                     label="● Start Mission Date"
-                    required={true}
+                    isRequired={true}
+                    error={inputError.startDate?.message}
                     {...register("startDate")}
                   />
 
@@ -187,7 +194,8 @@ export default function Launch() {
                     id="end-mission-date"
                     type="date"
                     label="● End Mission Date"
-                    required={true}
+                    isRequired={true}
+                    error={inputError.endDate?.message}
                     {...register("endDate")}
                   />
 
@@ -198,7 +206,8 @@ export default function Launch() {
                     label="● Mission Description"
                     variant="basic"
                     size="md"
-                    required={true}
+                    isRequired={true}
+                    error={inputError.description?.message}
                     {...register("description")}
                   />
                 </div>
@@ -206,7 +215,7 @@ export default function Launch() {
                 <Divider />
 
                 {/* Warning  + Button*/}
-                <div className="flex w-full max-sm:flex-col gap-4 justify-between">
+                <div className="flex w-full max-md:flex-col gap-4 justify-between">
                   <p className="text-xs max-w-[15rem] text-cyan-muted">
                     All fields marked{" "}
                     <span className="text-orange-300 px-1 font-mono tracking-tighter">
@@ -216,13 +225,23 @@ export default function Launch() {
                     authorization upon submission.
                   </p>
 
-                  <Button
-                    className="sm:w-[14rem] py-2 gap-2"
-                    variant="success"
-                    type="submit"
-                  >
-                    Launch Mission <Check className="size-4" />
-                  </Button>
+                  <div className="flex max-sm:flex-col max-md:w-full gap-4">
+                    <Button
+                      className="w-full md:w-[10rem] py-2 gap-2"
+                      variant="ghost"
+                      onClick={() => reset()}
+                    >
+                      Clear Form <RotateCcwIcon className="size-4" />
+                    </Button>
+
+                    <Button
+                      className="w-full md:w-[14rem] py-2 gap-2"
+                      variant="success"
+                      type="submit"
+                    >
+                      Launch Mission <Check className="size-4" />
+                    </Button>
+                  </div>
                 </div>
               </form>
             </Card>
