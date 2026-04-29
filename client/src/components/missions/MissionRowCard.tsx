@@ -1,4 +1,5 @@
 import type { Mission } from "../../types";
+import { formatDate } from "../../utils";
 import { Button } from "../ui";
 
 export interface MissionRowCardProps extends Mission {
@@ -24,7 +25,7 @@ export function MissionRowCard({
           {String(id).padStart(2, "0")}
         </span>
 
-        {startDate}
+        {formatDate(startDate)}
       </td>
 
       <td align="center" className="text-white font-semibold tracking-tight">

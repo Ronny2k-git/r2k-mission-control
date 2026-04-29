@@ -10,6 +10,7 @@ import {
 } from ".";
 import { energyVariants, type EnergyVariant } from "../../consts";
 import type { Mission } from "../../types";
+import { formatDate } from "../../utils";
 
 export interface DialogCardProps extends Omit<ModalProps, "children"> {
   iconBadge?: ReactNode;
@@ -59,8 +60,16 @@ export function DialogCard({
     { key: "rocket", label: "Rocket", value: mission.rocket },
     { key: "target", label: "Destination", value: mission.target },
     { key: "status", label: "Status", value: mission.status },
-    { key: "start-date", label: "Start Date", value: mission.startDate },
-    { key: "end-date", label: "End Date", value: mission.endDate },
+    {
+      key: "start-date",
+      label: "Start Date",
+      value: formatDate(mission.startDate),
+    },
+    {
+      key: "end-date",
+      label: "End Date",
+      value: formatDate(mission.endDate),
+    },
   ];
 
   return (

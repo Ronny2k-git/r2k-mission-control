@@ -1,13 +1,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Rocket, RotateCcwIcon, X } from "lucide-react";
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { CountdownClock, SectionLabel } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import {
   Button,
   Card,
+  DatePicker,
   DialogCard,
   Divider,
   Input,
@@ -29,9 +30,10 @@ export default function Launch() {
   const [formData, setFormData] = useState<LaunchFormData | null>(null);
   const { showToast } = useToast();
 
-  const { register, handleSubmit, formState, reset } = useForm<LaunchFormData>({
-    resolver: zodResolver(launchSchema),
-  });
+  const { register, handleSubmit, formState, reset, control } =
+    useForm<LaunchFormData>({
+      resolver: zodResolver(launchSchema),
+    });
 
   const inputError = formState.errors;
 
@@ -181,7 +183,35 @@ export default function Launch() {
                     ))}
                   </Selector>
 
-                  <Input
+                  <Controller
+                    name="startDate"
+                    control={control}
+                    render={({ field }) => (
+                      <DatePicker
+                        label="● Start Mission Date"
+                        isRequired={true}
+                        error={inputError.startDate?.message}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    )}
+                  />
+
+                  <Controller
+                    name="endDate"
+                    control={control}
+                    render={({ field }) => (
+                      <DatePicker
+                        label="● Start Mission Date"
+                        isRequired={true}
+                        error={inputError.endDate?.message}
+                        value={field.value}
+                        onChange={field.onChange}
+                      />
+                    )}
+                  />
+
+                  {/* <Input
                     id="start-mission-date"
                     type="date"
                     label="● Start Mission Date"
@@ -197,7 +227,7 @@ export default function Launch() {
                     isRequired={true}
                     error={inputError.endDate?.message}
                     {...register("endDate")}
-                  />
+                  /> */}
 
                   <TextArea
                     id="mission-description"

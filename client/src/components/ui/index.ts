@@ -1,6 +1,7 @@
 export * from "./Button";
 export * from "./Card";
 export * from "./CornerBorders";
+export * from "./DatePicker";
 export * from "./DialogCard";
 export * from "./Divider";
 export * from "./EnergyBadge";

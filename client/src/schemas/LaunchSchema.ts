@@ -15,9 +15,13 @@ export const launchSchema = z
       message: "Select a mission type",
     }),
 
-    startDate: z.string().min(1, "Start date is required"),
+    startDate: z.date({
+      error: "Start date is required",
+    }),
 
-    endDate: z.string().min(1, "End date is required"),
+    endDate: z.date({
+      error: "End date is required",
+    }),
 
     description: z
       .string()

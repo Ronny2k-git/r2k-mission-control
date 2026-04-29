@@ -205,3 +205,91 @@ footer {
 .animate-fade-up {
   animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
+
+/* =========================
+   DATE PICKER COMPONENT USING THE REACT-DATE-PICKER LIBRAY
+========================= */
+
+.rdp {
+  background: var(--color-card-background);
+  color: white;
+}
+
+.rdp-day_today {
+  outline: 2px solid red !important;
+}
+
+.rdp-day_today.rdp-day_selected .rdp-day_button {
+  border: 1px solid #00a2ff;
+}
+
+/* caption */
+.rdp-caption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  color: #00a2ff;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+
+.rdp-nav {
+  position: absolute;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+/* weekdays */
+.rdp-head_cell {
+  color: #10b3ff;
+  font-size: 12px;
+}
+
+/* navigation */
+.rdp-nav {
+  display: flex;
+  gap: 10px;
+  z-index: 10;
+}
+
+.rdp-nav_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 24px;
+  color: #ffffff;
+  background: #00a4f0;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+.rdp-nav_button:hover {
+  color: #ffffff;
+  background: #013c5e;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+/* spacing */
+.rdp-day_button {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+}
+
+/* day hover */
+.rdp-day_button:hover {
+  background: #00a2ff;
+  color: white;
+}
+
+/* today */
+.rdp-day_today .rdp-day_button {
+  border: 1px solid #00a2ff;
+  color: #00a2ff;
+  background: rgba(0, 174, 255, 0.15);
+}

@@ -1,6 +1,7 @@
 import { Check, CircleAlert, X, type LucideIcon } from "lucide-react";
 import { energyVariants, type EnergyVariant } from "../../consts";
 import type { Mission } from "../../types";
+import { formatDate } from "../../utils";
 import { Card, type CardVariants } from "../ui";
 
 export interface ToastProps extends Pick<
@@ -50,11 +51,9 @@ export function Toast({ name, target, startDate, status }: ToastProps) {
       </div>
 
       <p className="flex gap-2 text-xs text-cyan-muted">
-        {target} • {startDate} •{" "}
+        {target} • {formatDate(startDate)} •{" "}
         <span className={`capitalize ${textStyle}`}>{status}</span>
       </p>
     </Card>
   );
 }
-
-// CALL THIS COMPONENT GLOBALLY, LIKE: <ToastProvider> <App /> </ToastProvider>

@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import type { Mission } from "../types";
 
 // Function used to calculate percentage and avoid repeating logic
@@ -32,4 +33,9 @@ export function getMissionStatus(mission: Mission) {
   if (now >= start && now <= end) return "running";
 
   return "success";
+}
+
+// Function used to format dates as strings
+export function formatDate(date: Date) {
+  return format(date, "dd/MM/yyyy");
 }
