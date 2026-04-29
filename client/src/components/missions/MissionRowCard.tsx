@@ -1,6 +1,6 @@
 import type { Mission } from "../../types";
 import { formatDate } from "../../utils";
-import { Button } from "../ui";
+import { Button, StatusBadge, type BadgeStatus } from "../ui";
 
 type MissionRowVariant = "live" | "scheduled" | "history";
 
@@ -65,15 +65,7 @@ export function MissionRowCard({
       </td>
 
       <td align="center">
-        {status === "aborted" ? (
-          <span className="text-xs font-mono text-red-400 tracking-widest">
-            ABORTED
-          </span>
-        ) : status === "success" ? (
-          <span className="text-xs font-mono text-green-400 tracking-widest">
-            SUCCESS
-          </span>
-        ) : showAbortButton ? (
+        {showAbortButton && status !== "aborted" && status !== "success" ? (
           <Button
             className="size-5 text-xs"
             aria-label="Abort mission"
@@ -95,7 +87,7 @@ export function MissionRowCard({
             X
           </Button>
         ) : (
-          <span className="text-cyan-muted text-xs">—</span>
+          <StatusBadge status={status as BadgeStatus} />
         )}
       </td>
     </tr>
