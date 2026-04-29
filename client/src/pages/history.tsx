@@ -109,7 +109,7 @@ export default function History() {
 
               {/* Table */}
               <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
-                <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
+                <table className="w-full text-base text-cyan-text-light min-w-[48rem]">
                   <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
                     <tr>
                       <th className="p-3">Launch Date</th>
