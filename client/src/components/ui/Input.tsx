@@ -21,7 +21,7 @@ const variantStyles: Record<InputVariant, string> = {
 };
 
 const sizeStyles: Record<InputSize, string> = {
-  sm: "h-8 text-sm px-2 rounded-sm",
+  sm: "h-9 text-sm px-2 rounded-sm",
   md: "h-10 text-[15px] px-2.5 rounded-sm",
   lg: "h-12 text-base px-3 rounded-sm",
 };

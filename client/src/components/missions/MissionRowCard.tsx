@@ -2,10 +2,19 @@ import type { Mission } from "../../types";
 import { formatDate } from "../../utils";
 import { Button } from "../ui";
 
+type MissionRowVariant = "live" | "scheduled" | "history";
+
 export interface MissionRowCardProps extends Mission {
   className?: string;
   onAbort?: (mission: Mission) => void;
+  variant?: MissionRowVariant;
 }
+
+const nameStyles: Record<MissionRowVariant, string> = {
+  live: "text-green-400/90",
+  scheduled: "text-orange-300",
+  history: "text-white",
+};
 
 export function MissionRowCard({
   id,
@@ -17,18 +26,35 @@ export function MissionRowCard({
   status,
   type,
   onAbort,
+  variant = "scheduled",
 }: MissionRowCardProps) {
+  const showAbortButton = variant !== "history";
+  const isLive = variant === "live";
+
   return (
     <tr className="h-12 border-b border-bg-border hover:bg-secondary-card text-xs md:text-sm text-cyan-muted">
       <td align="center" className="text-white-light">
-        <span className="font-heading text-xs mr-6 text-cyan-muted">
-          {String(id).padStart(2, "0")}
-        </span>
+        {/* Pulse indicator só para live */}
+        <div className="flex items-center justify-center gap-2">
+          {isLive && (
+            <span className="relative flex size-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
+              <span className="relative inline-flex rounded-full size-2 bg-green-500" />
+            </span>
+          )}
 
-        {formatDate(startDate)}
+          <span className="font-heading text-xs mr-6 text-cyan-muted">
+            {String(id).padStart(2, "0")}
+          </span>
+
+          {formatDate(startDate)}
+        </div>
       </td>
 
-      <td align="center" className="text-white font-semibold tracking-tight">
+      <td
+        align="center"
+        className={`${nameStyles[variant]} font-semibold tracking-tight `}
+      >
         {name}
       </td>
 
@@ -40,10 +66,14 @@ export function MissionRowCard({
 
       <td align="center">
         {status === "aborted" ? (
-          <div className="size-5 bg-red-500/90" />
+          <span className="text-xs font-mono text-red-400 tracking-widest">
+            ABORTED
+          </span>
         ) : status === "success" ? (
-          <div className="size-5 bg-green-500/90" />
-        ) : (
+          <span className="text-xs font-mono text-green-400 tracking-widest">
+            SUCCESS
+          </span>
+        ) : showAbortButton ? (
           <Button
             className="size-5 text-xs"
             aria-label="Abort mission"
@@ -64,6 +94,8 @@ export function MissionRowCard({
           >
             X
           </Button>
+        ) : (
+          <span className="text-cyan-muted text-xs">—</span>
         )}
       </td>
     </tr>

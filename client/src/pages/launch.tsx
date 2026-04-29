@@ -3,7 +3,7 @@ import { Check, Rocket, RotateCcwIcon, X } from "lucide-react";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { CountdownClock, SectionLabel } from "../components/global";
+import { CountdownClock, PageHeader, SectionLabel } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import {
   Button,
@@ -64,7 +64,7 @@ export default function Launch() {
 
   const infoLaunchCardData: LaunchData = {
     planets: 8,
-    nextMission: <CountdownClock targetDate={"2026-4-28"} />,
+    nextMission: <CountdownClock targetDate={"2026-5-27"} />,
     activeMissions: 3,
     status: "Operational",
   };
@@ -85,204 +85,195 @@ export default function Launch() {
           ))}
         </div>
 
-        <section
-          className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg 
-           gap-8 px-4 md:px-8 animate-fade-up"
-        >
-          {/* Title */}
-          <h1 className="font-extrabold text-white text-2xl sm:text-4xl sm:max-w-[27.2rem] font-heading leading-10">
-            Schedule a <span className="text-cyber-cyan-text">Launch</span> to
-            Kepler Exoplanets.
-          </h1>
+        <div className="flex flex-col w-full px-4 md:px-8 gap-16 max-w-5xl mx-auto">
+          <PageHeader
+            tag="// MOD-7 · Launch Operations"
+            title="Launch"
+            highlight="Mission"
+            description="Configure and schedule a new space mission for launch."
+          />
 
-          <Divider type="thick" />
+          <section className="flex flex-col gap-8 text-base sm:text-lg animate-fade-up">
+            {/* Title */}
+            <h2 className="font-extrabold text-white text-2xl sm:text-3xl sm:max-w-[27.2rem] font-heading leading-10">
+              Schedule a <span className="text-cyber-cyan-text">Launch</span> to
+              Kepler Exoplanets.
+            </h2>
 
-          <div className="flex flex-col gap-4">
-            {/* Eligibility Criteria  */}
-            <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
-              <SectionLabel>Eligibility Criteria</SectionLabel>
+            <Divider type="thick" />
 
-              <h2 className="text-white-light text-base">
-                Only confirmed planets matching the following criteria are
-                available for the earliest scheduled missions:
-              </h2>
+            <div className="flex flex-col gap-4">
+              {/* Eligibility Criteria  */}
+              <Card className="gap-4 sm:gap-6 p-4 sm:p-6 text-cyber-cyan-text">
+                <SectionLabel>Eligibility Criteria</SectionLabel>
 
-              <div className="flex flex-col gap-2">
-                {eligibilityPlanets.map((planet, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center bg-secondary-card gap-2 p-4 text-sm  border-l-2 border-l-cyber-cyan-text 
+                <h3 className="text-white-light text-base">
+                  Only confirmed planets matching the following criteria are
+                  available for the earliest scheduled missions:
+                </h3>
+
+                <div className="flex flex-col gap-2">
+                  {eligibilityPlanets.map((planet, i) => (
+                    <div
+                      key={i}
+                      className="flex items-center bg-secondary-card gap-2 p-4 text-sm  border-l-2 border-l-cyber-cyan-text 
                     hover:bg-secondary-card/70
                     "
-                  >
-                    <span className="text-cyber-cyan-text text-xs">
-                      {String(planet.id).padStart(2, "0")}
-                    </span>
-                    <p className=" text-white-light">{planet.description}</p>
-                  </div>
-                ))}
-              </div>
-            </Card>
+                    >
+                      <span className="text-cyber-cyan-text text-xs">
+                        {String(planet.id).padStart(2, "0")}
+                      </span>
+                      <p className=" text-white-light">{planet.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </Card>
 
-            <Card className="p-4 sm:p-6 text-cyber-cyan-text">
-              {/* Form Fields */}
-              <form
-                className="flex flex-col gap-4 sm:gap-6"
-                onSubmit={handleSubmit((data) => {
-                  setFormData(data);
-                  setOpenDialog(true);
-                })}
-              >
-                <Divider type="label" label="Mission Parameters" />
+              <Card className="p-4 sm:p-6 text-cyber-cyan-text">
+                {/* Form Fields */}
+                <form
+                  className="flex flex-col gap-4 sm:gap-6"
+                  onSubmit={handleSubmit((data) => {
+                    setFormData(data);
+                    setOpenDialog(true);
+                  })}
+                >
+                  <Divider type="label" label="Mission Parameters" />
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                  <Input
-                    id="mission-name"
-                    type="text"
-                    label="● Mission Name"
-                    placeholder="Enter mission name"
-                    isRequired={true}
-                    error={inputError.missionName?.message}
-                    {...register("missionName")}
-                  />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                    <Input
+                      id="mission-name"
+                      type="text"
+                      label="● Mission Name"
+                      placeholder="Enter mission name"
+                      isRequired={true}
+                      error={inputError.missionName?.message}
+                      {...register("missionName")}
+                    />
 
-                  <Input
-                    id="rocket"
-                    type="text"
-                    defaultValue={"Explorer IS1"}
-                    label="● Rocket System"
-                    error={inputError.rocket?.message}
-                    {...register("rocket")}
-                  />
+                    <Input
+                      id="rocket"
+                      type="text"
+                      defaultValue={"Explorer IS1"}
+                      label="● Rocket System"
+                      error={inputError.rocket?.message}
+                      {...register("rocket")}
+                    />
 
-                  <Selector
-                    id="destination-exoplanet"
-                    label="● Destination Exoplanet"
-                    isRequired={true}
-                    error={inputError.target?.message}
-                    {...register("target")}
-                  >
-                    <option value="">Select a planet</option>
-                    <option value="exoplanet">Exoplanet</option>
-                    <option value="test">Test</option>
-                  </Selector>
-
-                  <Selector
-                    id="mission-type"
-                    label="● Mission type"
-                    isRequired={true}
-                    error={inputError.missionType?.message}
-                    {...register("missionType")}
-                  >
-                    <option value="">Select a type</option>
-
-                    {missionTypeValues.map((mission) => (
-                      <option key={mission.value} value={mission.value}>
-                        {mission.label}
+                    <Selector
+                      id="destination-exoplanet"
+                      label="● Destination Exoplanet"
+                      isRequired={true}
+                      error={inputError.target?.message}
+                      {...register("target")}
+                    >
+                      <option value="" hidden>
+                        Select a planet
                       </option>
-                    ))}
-                  </Selector>
 
-                  <Controller
-                    name="startDate"
-                    control={control}
-                    render={({ field }) => (
-                      <DatePicker
-                        label="● Start Mission Date"
-                        isRequired={true}
-                        error={inputError.startDate?.message}
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
-                    )}
-                  />
+                      <option value="exoplanet">Exoplanet</option>
+                      <option value="test">Test</option>
+                    </Selector>
 
-                  <Controller
-                    name="endDate"
-                    control={control}
-                    render={({ field }) => (
-                      <DatePicker
-                        label="● Start Mission Date"
-                        isRequired={true}
-                        error={inputError.endDate?.message}
-                        value={field.value}
-                        onChange={field.onChange}
-                      />
-                    )}
-                  />
-
-                  {/* <Input
-                    id="start-mission-date"
-                    type="date"
-                    label="● Start Mission Date"
-                    isRequired={true}
-                    error={inputError.startDate?.message}
-                    {...register("startDate")}
-                  />
-
-                  <Input
-                    id="end-mission-date"
-                    type="date"
-                    label="● End Mission Date"
-                    isRequired={true}
-                    error={inputError.endDate?.message}
-                    {...register("endDate")}
-                  /> */}
-
-                  <TextArea
-                    id="mission-description"
-                    wrapperClassName="sm:col-span-2"
-                    textAreaClassName="w-full"
-                    label="● Mission Description"
-                    variant="basic"
-                    size="md"
-                    isRequired={true}
-                    error={inputError.description?.message}
-                    {...register("description")}
-                  />
-                </div>
-
-                <Divider />
-
-                {/* Warning  + Button*/}
-                <div className="flex w-full max-md:flex-col gap-4 justify-between">
-                  <p className="text-xs max-w-[15rem] text-cyan-muted">
-                    All fields marked{" "}
-                    <span className="text-orange-300 px-1 font-mono tracking-tighter">
-                      REQ
-                    </span>{" "}
-                    are mandatory. Mission will be queued for director
-                    authorization upon submission.
-                  </p>
-
-                  <div className="flex max-sm:flex-col max-md:w-full gap-4">
-                    <Button
-                      className="w-full md:w-[10rem] py-2 gap-2"
-                      variant="ghost"
-                      onClick={() => reset()}
+                    <Selector
+                      id="mission-type"
+                      label="● Mission type"
+                      isRequired={true}
+                      error={inputError.missionType?.message}
+                      {...register("missionType")}
                     >
-                      Clear Form <RotateCcwIcon className="size-4" />
-                    </Button>
+                      <option value="">Select a type</option>
 
-                    <Button
-                      className="w-full md:w-[14rem] py-2 gap-2"
-                      variant="success"
-                      type="submit"
-                    >
-                      Launch Mission <Check className="size-4" />
-                    </Button>
+                      {missionTypeValues.map((mission) => (
+                        <option key={mission.value} value={mission.value}>
+                          {mission.label}
+                        </option>
+                      ))}
+                    </Selector>
+
+                    <Controller
+                      name="startDate"
+                      control={control}
+                      render={({ field }) => (
+                        <DatePicker
+                          label="● Start Mission Date"
+                          isRequired={true}
+                          error={inputError.startDate?.message}
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+                      )}
+                    />
+
+                    <Controller
+                      name="endDate"
+                      control={control}
+                      render={({ field }) => (
+                        <DatePicker
+                          label="● Start Mission Date"
+                          isRequired={true}
+                          error={inputError.endDate?.message}
+                          value={field.value}
+                          onChange={field.onChange}
+                        />
+                      )}
+                    />
+
+                    <TextArea
+                      id="mission-description"
+                      wrapperClassName="sm:col-span-2"
+                      textAreaClassName="w-full"
+                      label="● Mission Description"
+                      variant="basic"
+                      size="md"
+                      isRequired={true}
+                      error={inputError.description?.message}
+                      {...register("description")}
+                    />
                   </div>
-                </div>
-              </form>
-            </Card>
 
-            <Divider />
+                  <Divider />
 
-            <span className="text-xs max-sm:text-center font-body text-cyan-muted">
-              R2K MISSION CONTROL · RESTRICTED ACCESS
-            </span>
-          </div>
-        </section>
+                  {/* Warning  + Button*/}
+                  <div className="flex w-full max-md:flex-col gap-4 justify-between">
+                    <p className="text-xs max-w-[15rem] text-cyan-muted">
+                      All fields marked{" "}
+                      <span className="text-orange-300 px-1 font-mono tracking-tighter">
+                        REQ
+                      </span>{" "}
+                      are mandatory. Mission will be queued for director
+                      authorization upon submission.
+                    </p>
+
+                    <div className="flex max-sm:flex-col max-md:w-full gap-4">
+                      <Button
+                        className="w-full md:w-[10rem] py-2 gap-2"
+                        variant="ghost"
+                        onClick={() => reset()}
+                      >
+                        Clear Form <RotateCcwIcon className="size-4" />
+                      </Button>
+
+                      <Button
+                        className="w-full md:w-[14rem] py-2 gap-2"
+                        variant="success"
+                        type="submit"
+                      >
+                        Launch Mission <Check className="size-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </form>
+              </Card>
+
+              <Divider />
+
+              <span className="text-xs max-sm:text-center font-body text-cyan-muted">
+                R2K MISSION CONTROL · RESTRICTED ACCESS
+              </span>
+            </div>
+          </section>
+        </div>
       </div>
 
       {/* Dialog card */}

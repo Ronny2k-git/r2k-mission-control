@@ -1,6 +1,6 @@
 import type { Mission } from "../types";
 
-export const missions: Mission[] = [
+export const completedMissions: Mission[] = [
   {
     id: 1,
     startDate: new Date("2026-05-16"),
@@ -103,7 +103,7 @@ export const missions: Mission[] = [
   },
 ];
 
-export const upcomingMissions: Mission[] = [
+export const missions: Mission[] = [
   {
     id: 1,
     startDate: new Date("2026-11-02"),
@@ -131,7 +131,7 @@ export const upcomingMissions: Mission[] = [
     name: "Lunar Base Supply",
     rocket: "Starship",
     target: "Moon",
-    status: "upcoming",
+    status: "running",
     type: "cargo",
   },
   {
@@ -161,7 +161,7 @@ export const upcomingMissions: Mission[] = [
     name: "Asteroid Mining Test",
     rocket: "Starship",
     target: "Asteroid Belt",
-    status: "upcoming",
+    status: "running",
     type: "research",
   },
   {
@@ -181,7 +181,7 @@ export const upcomingMissions: Mission[] = [
     name: "Solar Observatory",
     rocket: "Falcon 9",
     target: "Solar Orbit",
-    status: "upcoming",
+    status: "running",
     type: "research",
   },
   {
@@ -191,7 +191,7 @@ export const upcomingMissions: Mission[] = [
     name: "Titan Exploration Probe",
     rocket: "Falcon Heavy",
     target: "Titan",
-    status: "upcoming",
+    status: "running",
     type: "exploration",
   },
   {

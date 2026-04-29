@@ -1,6 +1,7 @@
 export * from "./Clock";
 export * from "./CountdownClock";
 export * from "./EmptyBanner";
+export * from "./PageHeader";
 export * from "./Pagination";
 export * from "./ScrollToTop";
 export * from "./SectionLabel";

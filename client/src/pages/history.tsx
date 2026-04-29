@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import {
   CountdownClock,
   EmptyBanner,
+  PageHeader,
   Pagination,
   SectionLabel,
 } from "../components/global";
@@ -13,9 +14,9 @@ import {
 } from "../components/missions";
 import { Button, Card, Divider, Input } from "../components/ui";
 import {
+  completedMissions,
   filters,
   historyInfoCards,
-  missions,
   type HistoryData,
 } from "../consts";
 import { useFilterMissions, useSearchMissions } from "../hooks";
@@ -24,7 +25,8 @@ import { scrollToId } from "../utils";
 export default function History() {
   const [page, setPage] = useState(1);
 
-  const { searchedMissions, search, setSearch } = useSearchMissions(missions);
+  const { searchedMissions, search, setSearch } =
+    useSearchMissions(completedMissions);
   const { filteredMissions, filter, setFilter } =
     useFilterMissions(searchedMissions);
 
@@ -33,7 +35,7 @@ export default function History() {
   const infoHistoryCardData: HistoryData = {
     totalLaunches: filteredMissions.length,
     nextCompletion: (
-      <CountdownClock targetDate={"2026-4-29"} variant="orange" />
+      <CountdownClock targetDate={"2026-5-20"} variant="orange" />
     ),
     firstLaunch: "2006",
     status: "Verified",
@@ -54,146 +56,155 @@ export default function History() {
         ))}
       </div>
 
-      <section
-        className="flex flex-col w-full max-w-5xl mx-auto text-base sm:text-lg 
-        gap-8 px-4 md:px-8 animate-fade-up"
-      >
-        {/* Title */}
-        <h1
-          id="history_page_title"
-          className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10"
-        >
-          Mission <span className="text-cyber-cyan-text">History</span>
-        </h1>
+      <div className="flex flex-col w-full px-4 md:px-8 gap-16 max-w-5xl mx-auto">
+        <PageHeader
+          tag="// MOD-7 · Mission Archive"
+          title="Mission"
+          highlight="History"
+          description="Browse the complete record of past launches and outcomes."
+        />
 
-        <Divider type="thick" />
+        <section className="flex flex-col gap-8 text-base sm:text-lg animate-fade-up">
+          {/* Title */}
+          <h2
+            id="history_page_title"
+            className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10"
+          >
+            Launch <span className="text-cyber-cyan-text">Records</span>
+          </h2>
 
-        <div className="flex flex-col gap-4">
-          <Card className="text-cyber-cyan-text">
-            <div className="flex max-md:flex-col items-center gap-4 p-4 sm:p-6">
-              <SectionLabel>Launch archive</SectionLabel>
+          <Divider type="thick" />
 
-              <Input
-                value={search}
-                inputClassName="h-9"
-                wrapperClassName="w-full"
-                placeholder="Search mission, rocket, customer..."
-                onChange={(e) => setSearch(e.target.value)}
-              />
+          <div className="flex flex-col gap-4">
+            <Card className="text-cyber-cyan-text">
+              <div className="flex max-md:flex-col items-center gap-4 p-4 sm:p-6">
+                <SectionLabel>Launch archive</SectionLabel>
 
-              {/* Mission filters*/}
-              <div className="flex gap-2">
-                {filters.map((item, i) => (
-                  <Button
-                    key={`${item.value}_${i}`}
-                    className={`text-xs uppercase gap-1 h-9`}
-                    variant={filter === item.value ? item.variant : "ghost"}
-                    size="lg"
-                    onClick={() => setFilter(item.value)}
-                  >
-                    {item.icon && (
-                      <item.icon className={`size-4 ${item.iconColor}`} />
-                    )}
-                    {item.label}
-                  </Button>
-                ))}
-              </div>
-            </div>
-
-            {/* Table */}
-            <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
-              <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
-                <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
-                  <tr>
-                    <th className="p-3">Launch Date</th>
-                    <th>Mission</th>
-                    <th>Rocket</th>
-                    <th>Customers</th>
-                    <th>Status</th>
-                  </tr>
-                </thead>
-
-                {filteredMissions.length > 0 && (
-                  <tbody>
-                    {filteredMissions.map((item, i) => (
-                      <MissionRowCard
-                        key={i}
-                        id={item.id}
-                        startDate={item.startDate}
-                        endDate={item.endDate}
-                        name={item.name}
-                        rocket={item.rocket}
-                        target={item.target}
-                        status={item.status}
-                        type={item.type}
-                      />
-                    ))}
-                  </tbody>
-                )}
-              </table>
-            </div>
-
-            {/* Display this banner when the table is empty */}
-            {filteredMissions.length === 0 && (
-              <div className="flex flex-col gap-6 m-4 sm:m-6">
-                <EmptyBanner
-                  key="history-empty-banner"
-                  variant="cyan"
-                  primaryActionVariant="ghost"
-                  secondaryActionVariant="basic"
-                  onPrimaryAction={() => {
-                    setSearch("");
-                    setFilter("all");
-                  }}
-                  onSecondaryAction={() => {
-                    navigate("/");
-                  }}
+                <Input
+                  value={search}
+                  inputClassName="h-9"
+                  wrapperClassName="w-full"
+                  placeholder="Search mission, rocket, customer..."
+                  onChange={(e) => setSearch(e.target.value)}
                 />
 
-                <Divider type="line" />
+                {/* Mission filters*/}
+                <div className="flex gap-2">
+                  {filters.map((item, i) => (
+                    <Button
+                      key={`${item.value}_${i}`}
+                      className={`text-xs uppercase gap-1 h-9`}
+                      variant={filter === item.value ? item.variant : "ghost"}
+                      size="lg"
+                      onClick={() => setFilter(item.value)}
+                    >
+                      {item.icon && (
+                        <item.icon className={`size-4 ${item.iconColor}`} />
+                      )}
+                      {item.label}
+                    </Button>
+                  ))}
+                </div>
               </div>
-            )}
 
-            {/* Total mission + Paginantion */}
-            <div className="flex bg-secondary-card h-16 sm:h-12 sm:px-6 gap-2 items-center justify-center sm:justify-between">
-              <span className="hidden sm:block text-xs">
-                Showing {searchedMissions.length} missions
-              </span>
+              {/* Table */}
+              <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
+                <table className="w-full text-base text-cyan-text-light min-w-[43.5rem]">
+                  <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
+                    <tr>
+                      <th className="p-3">Launch Date</th>
+                      <th>Mission</th>
+                      <th>Rocket</th>
+                      <th>Customers</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
 
-              <Pagination
-                page={page}
-                totalPages={8}
-                onChange={(newPage) => {
-                  setPage(newPage);
-                  requestAnimationFrame(() => scrollToId("history_page_title"));
-                }}
-              />
-            </div>
+                  {filteredMissions.length > 0 && (
+                    <tbody>
+                      {filteredMissions.map((item, i) => (
+                        <MissionRowCard
+                          key={i}
+                          id={item.id}
+                          startDate={item.startDate}
+                          endDate={item.endDate}
+                          name={item.name}
+                          rocket={item.rocket}
+                          target={item.target}
+                          status={item.status}
+                          type={item.type}
+                          variant="history"
+                        />
+                      ))}
+                    </tbody>
+                  )}
+                </table>
+              </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2">
-              <MissionStatusBar
-                title="Mission success rate"
-                status="success"
-                missions={14}
-                totalMissions={20}
-              />
+              {/* Display this banner when the table is empty */}
+              {filteredMissions.length === 0 && (
+                <div className="flex flex-col gap-6 m-4 sm:m-6">
+                  <EmptyBanner
+                    key="history-empty-banner"
+                    variant="cyan"
+                    primaryActionVariant="ghost"
+                    secondaryActionVariant="basic"
+                    onPrimaryAction={() => {
+                      setSearch("");
+                      setFilter("all");
+                    }}
+                    onSecondaryAction={() => {
+                      navigate("/");
+                    }}
+                  />
 
-              <MissionStatusBar
-                title="Abort rate"
-                status="aborted"
-                missions={6}
-                totalMissions={20}
-              />
-            </div>
-          </Card>
+                  <Divider type="line" />
+                </div>
+              )}
 
-          <Divider />
+              {/* Total mission + Paginantion */}
+              <div className="flex bg-secondary-card h-16 sm:h-12 sm:px-6 gap-2 items-center justify-center sm:justify-between">
+                <span className="hidden sm:block text-xs">
+                  Showing {searchedMissions.length} missions
+                </span>
 
-          <span className="text-xs max-sm:text-center font-body text-cyan-muted">
-            R2K MISSION CONTROL · RESTRICTED ACCESS
-          </span>
-        </div>
-      </section>
+                <Pagination
+                  page={page}
+                  totalPages={8}
+                  onChange={(newPage) => {
+                    setPage(newPage);
+                    requestAnimationFrame(() =>
+                      scrollToId("history_page_title"),
+                    );
+                  }}
+                />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                <MissionStatusBar
+                  title="Mission success rate"
+                  status="success"
+                  missions={14}
+                  totalMissions={20}
+                />
+
+                <MissionStatusBar
+                  title="Abort rate"
+                  status="aborted"
+                  missions={6}
+                  totalMissions={20}
+                />
+              </div>
+            </Card>
+
+            <Divider />
+
+            <span className="text-xs max-sm:text-center font-body text-cyan-muted">
+              R2K MISSION CONTROL · RESTRICTED ACCESS
+            </span>
+          </div>
+        </section>
+      </div>
     </div>
   );
 }

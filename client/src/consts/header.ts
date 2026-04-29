@@ -9,6 +9,6 @@ export type HeaderNavItem = {
 
 export const headerNavigation = [
   { nav: "/", icon: Rocket, label: "Launch" },
-  { nav: "/upcoming", icon: Timer, label: "Upcoming" },
+  { nav: "/missions", icon: Timer, label: "Missions" },
   { nav: "/history", icon: History, label: "History" },
 ] as const;
