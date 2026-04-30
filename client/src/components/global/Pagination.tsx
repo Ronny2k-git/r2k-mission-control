@@ -11,7 +11,7 @@ export function Pagination({ page, totalPages, onChange }: PaginationProps) {
   return (
     <div className="flex items-center gap-1 text-base">
       <Button
-        className="uppercase px-2"
+        className="uppercase px-2 rounded-lg"
         variant="primary"
         size="sm"
         iconLeft={<ChevronLeft className="size-4" />}
@@ -23,6 +23,7 @@ export function Pagination({ page, totalPages, onChange }: PaginationProps) {
 
       {/* First page */}
       <Button
+        className="rounded-lg"
         variant={page === 1 ? "glow" : "primary"}
         size="sm"
         onClick={() => onChange(1)}
@@ -33,7 +34,7 @@ export function Pagination({ page, totalPages, onChange }: PaginationProps) {
       {/* Current page */}
       {page > 1 && page < totalPages && (
         <Button
-          className="hidden sm:inline-flex"
+          className="hidden sm:inline-flex rounded-lg"
           variant={"glow"}
           size="sm"
           onClick={() => onChange(page)}
@@ -58,6 +59,7 @@ export function Pagination({ page, totalPages, onChange }: PaginationProps) {
       {/* Last page */}
       {totalPages > 1 && (
         <Button
+          className="rounded-lg"
           variant={page === totalPages ? "glow" : "primary"}
           size="sm"
           onClick={() => onChange(totalPages)}
@@ -67,7 +69,7 @@ export function Pagination({ page, totalPages, onChange }: PaginationProps) {
       )}
 
       <Button
-        className="uppercase px-2"
+        className="uppercase px-2 rounded-lg"
         variant="primary"
         size="sm"
         iconRight={<ChevronRight className="size-4" />}

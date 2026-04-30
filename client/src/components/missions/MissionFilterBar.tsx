@@ -6,6 +6,7 @@ export type MissionFilterBarProps = {
   title: string;
   searchValue?: string;
   onSearch: (value: string) => void;
+  actions?: React.ReactNode;
   className?: string;
 };
 
@@ -13,12 +14,13 @@ export function MissionFilterBar({
   title,
   searchValue,
   onSearch,
+  actions,
   className,
 }: MissionFilterBarProps) {
   return (
     <div
       className={twMerge(
-        "flex max-sm:flex-col items-center gap-4 p-4 sm:p-6",
+        "w-full flex max-sm:flex-col items-center gap-4 p-4 sm:p-6",
         className,
       )}
     >
@@ -32,11 +34,9 @@ export function MissionFilterBar({
         onChange={(e) => onSearch(e.target.value)}
       />
 
-      <div className="flex justify-center max-sm:w-full p-2 text-red-500/80 border border-red-500/50 bg-red-500/10">
-        <h3 className="font-heading font-semibold whitespace-nowrap text-xs">
-          X Abort the Mission
-        </h3>
-      </div>
+      {actions && (
+        <div className="flex justify-center max-sm:w-full">{actions}</div>
+      )}
     </div>
   );
 }

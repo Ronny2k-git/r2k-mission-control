@@ -1,18 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CornerUpLeft, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { CountdownClock, PageHeader } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import { MissionTableSection } from "../components/missions/MissionTableSection";
-import { Button, DialogCard, TextArea } from "../components/ui";
+import { Button, DialogCard, Divider, TextArea } from "../components/ui";
 import { missions, upcomingInfoCards, type UpcomingData } from "../consts";
 import { useClickFeedback, useSearchMissions } from "../hooks";
 import { useToast } from "../hooks/useToast";
 import { upcomingSchema, type UpcomingFormData } from "../schemas";
 import type { Mission } from "../types";
-import { scrollToId } from "../utils";
+import { getMissionStatus, scrollToId } from "../utils";
 
 export default function Missions() {
   const [livePage, setLivePage] = useState(1);
@@ -21,13 +21,13 @@ export default function Missions() {
   const { showToast } = useToast();
   const [selectedMission, setSelectedMission] = useState<Mission>();
 
-  const liveMissions = useMemo(() => {
-    return missions.filter((m) => m.status === "running");
-  }, []);
+  const liveMissions = missions.filter((m) => {
+    return getMissionStatus(m) === "running";
+  });
 
-  const scheduledMissions = useMemo(() => {
-    return missions.filter((m) => m.status === "upcoming");
-  }, []);
+  const scheduledMissions = missions.filter((m) => {
+    return getMissionStatus(m) === "upcoming";
+  });
 
   // Filter live and upcoming missions
   const {
@@ -81,9 +81,6 @@ export default function Missions() {
 
   // TO DO LIST:
 
-  // 1 FILTER THE MISSIONS ON THE "MISSIONS PAGE" USING "getMissionStatus" FUNCTION
-  // AND AVOID FILTERING USING STATUS DIRECTLY.
-
   // 1 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER PAGINATE OR
   // FILTER SOMETHING.
 
@@ -111,52 +108,62 @@ export default function Missions() {
             description="Monitor live, scheduled and historical space missions."
           />
 
-          <div className="flex flex-col w-full gap-30">
-            {/* Live Missions */}
-            <MissionTableSection
-              titleId="live-missions-table"
-              title="Live Missions"
-              missions={searchedLive}
-              search={searchLive}
-              onSearch={setSearchLive}
-              page={livePage}
-              totalPages={11}
-              onPageChange={(p) => {
-                setLivePage(p);
-                requestAnimationFrame(() => scrollToId("live-missions-table"));
-              }}
-              variant="live"
-              onAbort={(mission) => {
-                setSelectedMission(mission);
-                setOpenDialog(true);
-              }}
-              emptyVariant="green"
-              navigateOnEmpty={() => navigate("/")}
-            />
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col w-full gap-30">
+              {/* Live Missions */}
+              <MissionTableSection
+                titleId="live-missions-table"
+                title="Live Missions"
+                missions={searchedLive}
+                search={searchLive}
+                onSearch={setSearchLive}
+                page={livePage}
+                totalPages={11}
+                onPageChange={(p) => {
+                  setLivePage(p);
+                  requestAnimationFrame(() =>
+                    scrollToId("live-missions-table"),
+                  );
+                }}
+                variant="live"
+                onAbort={(mission) => {
+                  setSelectedMission(mission);
+                  setOpenDialog(true);
+                }}
+                emptyVariant="green"
+                navigateOnEmpty={() => navigate("/")}
+              />
 
-            {/* Scheduled Missions */}
-            <MissionTableSection
-              titleId="scheduled-missions-table"
-              title="Scheduled Missions"
-              missions={searchedUpcoming}
-              search={searchUpcoming}
-              onSearch={setSearchUpcoming}
-              page={upcomingPage}
-              totalPages={11}
-              variant="scheduled"
-              onPageChange={(p) => {
-                setUpcomingPage(p);
-                requestAnimationFrame(() =>
-                  scrollToId("scheduled-missions-table"),
-                );
-              }}
-              onAbort={(mission) => {
-                setSelectedMission(mission);
-                setOpenDialog(true);
-              }}
-              emptyVariant="orange"
-              navigateOnEmpty={() => navigate("/")}
-            />
+              {/* Scheduled Missions */}
+              <MissionTableSection
+                titleId="scheduled-missions-table"
+                title="Scheduled Missions"
+                missions={searchedUpcoming}
+                search={searchUpcoming}
+                onSearch={setSearchUpcoming}
+                page={upcomingPage}
+                totalPages={11}
+                variant="scheduled"
+                onPageChange={(p) => {
+                  setUpcomingPage(p);
+                  requestAnimationFrame(() =>
+                    scrollToId("scheduled-missions-table"),
+                  );
+                }}
+                onAbort={(mission) => {
+                  setSelectedMission(mission);
+                  setOpenDialog(true);
+                }}
+                emptyVariant="orange"
+                navigateOnEmpty={() => navigate("/")}
+              />
+            </div>
+
+            <Divider />
+
+            <span className="text-xs max-sm:text-center font-body text-cyan-muted">
+              R2K MISSION CONTROL · RESTRICTED ACCESS
+            </span>
           </div>
         </div>
       </div>

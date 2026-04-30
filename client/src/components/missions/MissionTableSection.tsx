@@ -68,6 +68,13 @@ export function MissionTableSection({
           title="Launch Schedule"
           searchValue={search}
           onSearch={onSearch}
+          actions={
+            <div className="w-full flex items-center justify-center p-2 text-red-500/80 border border-red-500/50 bg-red-500/10">
+              <h3 className="font-heading font-semibold text-xs whitespace-nowrap">
+                X Abort the Mission
+              </h3>
+            </div>
+          }
         />
 
         {/* Table */}

@@ -67,10 +67,10 @@ export function MissionRowCard({
       <td align="center">
         {showAbortButton && status !== "aborted" && status !== "success" ? (
           <Button
-            className="size-5 text-xs"
+            className="h-5 text-[11px]"
             aria-label="Abort mission"
             variant="warning"
-            size="md"
+            size="sm"
             onClick={() =>
               onAbort?.({
                 id,
@@ -84,7 +84,7 @@ export function MissionRowCard({
               })
             }
           >
-            X
+            X Abort
           </Button>
         ) : (
           <StatusBadge status={status as BadgeStatus} />

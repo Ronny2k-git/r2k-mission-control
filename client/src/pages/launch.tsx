@@ -59,7 +59,7 @@ export default function Launch() {
 
     setOpenDialog(false);
 
-    setTimeout(() => navigate("/upcoming"), 300);
+    setTimeout(() => navigate("/missions"), 300);
   };
 
   const infoLaunchCardData: LaunchData = {
@@ -225,7 +225,7 @@ export default function Launch() {
                       textAreaClassName="w-full"
                       label="● Mission Description"
                       variant="basic"
-                      size="md"
+                      size="lg"
                       isRequired={true}
                       error={inputError.description?.message}
                       {...register("description")}

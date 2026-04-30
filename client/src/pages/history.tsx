@@ -5,14 +5,14 @@ import {
   EmptyBanner,
   PageHeader,
   Pagination,
-  SectionLabel,
 } from "../components/global";
 import {
+  MissionFilterBar,
   MissionInfoCard,
   MissionRowCard,
   MissionStatusBar,
 } from "../components/missions";
-import { Button, Card, Divider, Input } from "../components/ui";
+import { Button, Card, Divider } from "../components/ui";
 import {
   completedMissions,
   filters,
@@ -77,35 +77,30 @@ export default function History() {
 
           <div className="flex flex-col gap-4">
             <Card className="text-cyber-cyan-text">
-              <div className="flex max-md:flex-col items-center gap-4 p-4 sm:p-6">
-                <SectionLabel>Launch archive</SectionLabel>
-
-                <Input
-                  value={search}
-                  inputClassName="h-9"
-                  wrapperClassName="w-full"
-                  placeholder="Search mission, rocket, customer..."
-                  onChange={(e) => setSearch(e.target.value)}
-                />
-
-                {/* Mission filters*/}
-                <div className="flex gap-2">
-                  {filters.map((item, i) => (
-                    <Button
-                      key={`${item.value}_${i}`}
-                      className={`text-xs uppercase gap-1 h-9`}
-                      variant={filter === item.value ? item.variant : "ghost"}
-                      size="lg"
-                      onClick={() => setFilter(item.value)}
-                    >
-                      {item.icon && (
-                        <item.icon className={`size-4 ${item.iconColor}`} />
-                      )}
-                      {item.label}
-                    </Button>
-                  ))}
-                </div>
-              </div>
+              <MissionFilterBar
+                title="Launch Schedule"
+                searchValue={search}
+                onSearch={setSearch}
+                actions={
+                  <div className="flex gap-2">
+                    {/* Mission filters*/}
+                    {filters.map((item, i) => (
+                      <Button
+                        key={`${item.value}_${i}`}
+                        className={`text-xs uppercase gap-1 h-9`}
+                        variant={filter === item.value ? item.variant : "ghost"}
+                        size="lg"
+                        onClick={() => setFilter(item.value)}
+                      >
+                        {item.icon && (
+                          <item.icon className={`size-4 ${item.iconColor}`} />
+                        )}
+                        {item.label}
+                      </Button>
+                    ))}
+                  </div>
+                }
+              />
 
               {/* Table */}
               <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
