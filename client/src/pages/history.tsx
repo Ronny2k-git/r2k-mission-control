@@ -19,11 +19,16 @@ import {
   historyInfoCards,
   type HistoryData,
 } from "../consts";
-import { useFilterMissions, useSearchMissions } from "../hooks";
+import { useFilterMissions, useSearchMissions, useUpdateQuery } from "../hooks";
 import { scrollToId } from "../utils";
 
 export default function History() {
   const [page, setPage] = useState(1);
+  const updateQuery = useUpdateQuery();
+
+  updateQuery({ page: 2 });
+  updateQuery({ search: "apollo", page: 1 });
+  updateQuery({ filter: "success" });
 
   const { searchedMissions, search, setSearch } =
     useSearchMissions(completedMissions);

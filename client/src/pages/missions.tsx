@@ -79,11 +79,6 @@ export default function Missions() {
     status: "Scheduling",
   };
 
-  // TO DO LIST:
-
-  // 1 FIND OUT A WAY TO UPDATE THE URL WHEN THE USER PAGINATE OR
-  // FILTER SOMETHING.
-
   return (
     <>
       <div className="flex flex-col w-full gap-12 pb-8">
