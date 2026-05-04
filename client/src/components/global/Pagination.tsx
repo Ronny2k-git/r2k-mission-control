@@ -10,6 +10,7 @@ export type PaginationProps = {
 export function Pagination({ page, totalPages, onChange }: PaginationProps) {
   return (
     <div className="flex items-center gap-1 text-base">
+      {/* Arrow left */}
       <Button
         className="uppercase px-2 rounded-lg"
         variant="primary"
@@ -68,6 +69,7 @@ export function Pagination({ page, totalPages, onChange }: PaginationProps) {
         </Button>
       )}
 
+      {/* Arrow Rigth */}
       <Button
         className="uppercase px-2 rounded-lg"
         variant="primary"

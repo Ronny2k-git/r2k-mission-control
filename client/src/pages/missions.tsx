@@ -2,25 +2,47 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CornerUpLeft, X } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { CountdownClock, PageHeader } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import { MissionTableSection } from "../components/missions/MissionTableSection";
 import { Button, DialogCard, Divider, TextArea } from "../components/ui";
 import { missions, upcomingInfoCards, type UpcomingData } from "../consts";
-import { useClickFeedback, useSearchMissions } from "../hooks";
+import { useClickFeedback, useSearchMissions, useUpdateQuery } from "../hooks";
 import { useToast } from "../hooks/useToast";
-import { upcomingSchema, type UpcomingFormData } from "../schemas";
+import { missionSchema, type MissionFormData } from "../schemas";
 import type { Mission } from "../types";
 import { getMissionStatus, scrollToId } from "../utils";
 
 export default function Missions() {
-  const [livePage, setLivePage] = useState(1);
-  const [upcomingPage, setUpcomingPage] = useState(1);
   const [openDialog, setOpenDialog] = useState(false);
   const { showToast } = useToast();
   const [selectedMission, setSelectedMission] = useState<Mission>();
+  const [searchParams] = useSearchParams();
 
+  const navigate = useNavigate();
+  const updateQuery = useUpdateQuery();
+
+  const { trigger: audioTrigger } = useClickFeedback({
+    audioPath: "/sound/abort.mp3",
+    duration: 100,
+  });
+
+  // Mission form validation
+  const { register, handleSubmit, formState, reset, resetField } =
+    useForm<MissionFormData>({
+      resolver: zodResolver(missionSchema),
+    });
+
+  // Used to get the query params
+  const livePage = Number(searchParams.get("missions_live_page") || 1);
+  const scheduledPage = Number(
+    searchParams.get("missions_scheduled_page") || 1,
+  );
+  const searchLive = searchParams.get("missions_search_live") || "";
+  const searchScheduled = searchParams.get("missions_search_scheduled") || "";
+
+  // Used to get the query params
   const liveMissions = missions.filter((m) => {
     return getMissionStatus(m) === "running";
   });
@@ -29,30 +51,16 @@ export default function Missions() {
     return getMissionStatus(m) === "upcoming";
   });
 
-  // Filter live and upcoming missions
-  const {
-    searchedMissions: searchedLive,
-    search: searchLive,
-    setSearch: setSearchLive,
-  } = useSearchMissions(liveMissions);
+  // Filter live and scheduled missions by search
+  const { searchedMissions: searchedLive } = useSearchMissions(
+    liveMissions,
+    searchLive,
+  );
 
-  const {
-    searchedMissions: searchedUpcoming,
-    search: searchUpcoming,
-    setSearch: setSearchUpcoming,
-  } = useSearchMissions(scheduledMissions);
-
-  const { register, handleSubmit, formState, reset, resetField } =
-    useForm<UpcomingFormData>({
-      resolver: zodResolver(upcomingSchema),
-    });
-
-  const { trigger: audioTrigger } = useClickFeedback({
-    audioPath: "/sound/abort.mp3",
-    duration: 100,
-  });
-
-  const navigate = useNavigate();
+  const { searchedMissions: searchedUpcoming } = useSearchMissions(
+    scheduledMissions,
+    searchScheduled,
+  );
 
   // Function used to abort a selected mission.
   const onSubmit = () => {
@@ -72,6 +80,7 @@ export default function Missions() {
     reset();
   };
 
+  // Used to fill int the info mission cards data
   const infoUpcomingCardData: UpcomingData = {
     launchedMissions: 10,
     nextMission: <CountdownClock targetDate={"2026-5-27"} />,
@@ -111,11 +120,13 @@ export default function Missions() {
                 title="Live Missions"
                 missions={searchedLive}
                 search={searchLive}
-                onSearch={setSearchLive}
+                onSearch={(search) =>
+                  updateQuery({ missions_search_live: search })
+                }
                 page={livePage}
                 totalPages={11}
-                onPageChange={(p) => {
-                  setLivePage(p);
+                onPageChange={(newPage) => {
+                  updateQuery({ missions_live_page: newPage });
                   requestAnimationFrame(() =>
                     scrollToId("live-missions-table"),
                   );
@@ -134,13 +145,15 @@ export default function Missions() {
                 titleId="scheduled-missions-table"
                 title="Scheduled Missions"
                 missions={searchedUpcoming}
-                search={searchUpcoming}
-                onSearch={setSearchUpcoming}
-                page={upcomingPage}
+                search={searchScheduled}
+                onSearch={(search) =>
+                  updateQuery({ missions_search_scheduled: search })
+                }
+                page={scheduledPage}
                 totalPages={11}
                 variant="scheduled"
-                onPageChange={(p) => {
-                  setUpcomingPage(p);
+                onPageChange={(newPage) => {
+                  updateQuery({ missions_scheduled_page: newPage });
                   requestAnimationFrame(() =>
                     scrollToId("scheduled-missions-table"),
                   );

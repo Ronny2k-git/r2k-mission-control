@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import {
   CountdownClock,
   EmptyBanner,
@@ -23,20 +22,20 @@ import { useFilterMissions, useSearchMissions, useUpdateQuery } from "../hooks";
 import { scrollToId } from "../utils";
 
 export default function History() {
-  const [page, setPage] = useState(1);
+  const [searchParams] = useSearchParams();
   const updateQuery = useUpdateQuery();
-
-  updateQuery({ page: 2 });
-  updateQuery({ search: "apollo", page: 1 });
-  updateQuery({ filter: "success" });
-
-  const { searchedMissions, search, setSearch } =
-    useSearchMissions(completedMissions);
-  const { filteredMissions, filter, setFilter } =
-    useFilterMissions(searchedMissions);
-
   const navigate = useNavigate();
 
+  // Used to get the query params
+  const page = Number(searchParams.get("history_page") || 1);
+  const search = searchParams.get("history_search") || "";
+  const filter = searchParams.get("history_filter") || "all";
+
+  // Filter history missions by search,success and aborted
+  const { searchedMissions } = useSearchMissions(completedMissions, search);
+  const { filteredMissions } = useFilterMissions(searchedMissions, filter);
+
+  // Used to fill int the info history cards data
   const infoHistoryCardData: HistoryData = {
     totalLaunches: filteredMissions.length,
     nextCompletion: (
@@ -85,7 +84,7 @@ export default function History() {
               <MissionFilterBar
                 title="Launch Schedule"
                 searchValue={search}
-                onSearch={setSearch}
+                onSearch={(value) => updateQuery({ history_search: value })}
                 actions={
                   <div className="flex gap-2">
                     {/* Mission filters*/}
@@ -95,7 +94,9 @@ export default function History() {
                         className={`text-xs uppercase gap-1 h-9`}
                         variant={filter === item.value ? item.variant : "ghost"}
                         size="lg"
-                        onClick={() => setFilter(item.value)}
+                        onClick={() =>
+                          updateQuery({ history_filter: item.value })
+                        }
                       >
                         {item.icon && (
                           <item.icon className={`size-4 ${item.iconColor}`} />
@@ -150,8 +151,7 @@ export default function History() {
                     primaryActionVariant="ghost"
                     secondaryActionVariant="basic"
                     onPrimaryAction={() => {
-                      setSearch("");
-                      setFilter("all");
+                      updateQuery({ history_search: "" });
                     }}
                     onSecondaryAction={() => {
                       navigate("/");
@@ -172,7 +172,7 @@ export default function History() {
                   page={page}
                   totalPages={8}
                   onChange={(newPage) => {
-                    setPage(newPage);
+                    updateQuery({ history_page: newPage });
                     requestAnimationFrame(() =>
                       scrollToId("history_page_title"),
                     );
