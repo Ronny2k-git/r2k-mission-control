@@ -1,17 +1,27 @@
-# 🚀 R2K Mission Control
+## 🚀 R2K Mission Control
 
 A futuristic mission control dashboard built with React, TypeScript, and Tailwind CSS, simulating a space operations system with live, scheduled, and historical missions.
 
 It features server-like pagination via URL state, advanced filtering, search, and a highly interactive UI inspired by space mission control systems.
 
-# ✨ Preview
+## ✨ Preview
 
-![Home](./docs/screenshots/launch1.webp)
-![Home](./docs/screenshots/launch2.webp)
-![Missions](./docs/screenshots/missions.webp)
-![History](./docs/screenshots/history.webp)
+<div align="center">
 
-# 🎯 Features
+<table>
+  <tr>
+    <td><img src="./docs/screenshots/launch1.webp" width="100%" /></td>
+    <td><img src="./docs/screenshots/missions.webp" width="100%" /></td>
+  </tr>
+  <tr>
+    <td><img src="./docs/screenshots/launch2.webp" width="100%" /></td>
+    <td><img src="./docs/screenshots/history.webp" width="100%" /></td>
+  </tr>
+</table>
+
+</div>
+
+## 🎯 Features
 
 - 🚀 Live, Scheduled and History mission dashboards
 - 🔎 Search with debounced input
@@ -23,7 +33,7 @@ It features server-like pagination via URL state, advanced filtering, search, an
 - 🧩 Reusable UI components system
 - 💬 Toast system for mission actions (abort, status update)
 
-# 🧠 Backend
+## 🧠 Backend
 
 This project is designed to support a fullstack architecture using:
 
