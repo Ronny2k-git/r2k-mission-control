@@ -1,73 +1,39 @@
-# React + TypeScript + Vite
+# 🚀 R2K Mission Control
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A futuristic mission control dashboard built with React, TypeScript, and Tailwind CSS, simulating a space operations system with live, scheduled, and historical missions.
 
-Currently, two official plugins are available:
+It features server-like pagination via URL state, advanced filtering, search, and a highly interactive UI inspired by space mission control systems.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# ✨ Preview
 
-## React Compiler
+![Home](./screenshots/launch1.webp)
+![Home](./screenshots/launch2.webp)
+![Missions](./screenshots/missions.webp)
+![History](./screenshots/history.webp)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# 🎯 Features
 
-## Expanding the ESLint configuration
+- 🚀 Live, Scheduled and History mission dashboards
+- 🔎 Search with debounced input
+- 🧠 Filter system (status-based filtering)
+- 📄 Server-side style pagination via URL
+- 🔗 Fully synced URL state (search, filter, page)
+- ⚡ Optimized rendering with React hooks
+- 🎨 Custom space-themed UI design
+- 🧩 Reusable UI components system
+- 💬 Toast system for mission actions (abort, status update)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# 🧠 Backend
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+This project is designed to support a fullstack architecture using:
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Node.js (REST API)
+- Prisma ORM
+- MongoDB database
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+The backend is responsible for:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- 📦 Missions data persistence
+- 🔍 Filtering and search queries
+- 📄 Server-side pagination
+- ⚙️ Status management (live, scheduled, complete

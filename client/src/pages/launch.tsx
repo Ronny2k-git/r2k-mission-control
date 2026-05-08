@@ -48,7 +48,7 @@ export default function Launch() {
   const onSubmit = (data: LaunchFormData) => {
     audioTrigger();
 
-    // Fill using the form data later
+    // Show a toast message
     showToast({
       id: 1,
       name: data.missionName,
