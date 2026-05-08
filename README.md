@@ -6,10 +6,10 @@ It features server-like pagination via URL state, advanced filtering, search, an
 
 # ✨ Preview
 
-![Home](./screenshots/launch1.webp)
-![Home](./screenshots/launch2.webp)
-![Missions](./screenshots/missions.webp)
-![History](./screenshots/history.webp)
+![Home](./docs/screenshots/launch1.webp)
+![Home](./docs/screenshots/launch2.webp)
+![Missions](./docs/screenshots/missions.webp)
+![History](./docs/screenshots/history.webp)
 
 # 🎯 Features
 
