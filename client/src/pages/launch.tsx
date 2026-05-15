@@ -22,6 +22,7 @@ import {
   type LaunchData,
 } from "../consts";
 import { useClickFeedback } from "../hooks";
+import { useGetPlanets } from "../hooks/useGetPlanets";
 import { useToast } from "../hooks/useToast";
 import { launchSchema, type LaunchFormData } from "../schemas";
 
@@ -29,6 +30,9 @@ export default function Launch() {
   const [openDialog, setOpenDialog] = useState(false);
   const [formData, setFormData] = useState<LaunchFormData | null>(null);
   const { showToast } = useToast();
+  const { data: planets } = useGetPlanets();
+
+  console.log(planets);
 
   const { register, handleSubmit, formState, reset, control } =
     useForm<LaunchFormData>({
