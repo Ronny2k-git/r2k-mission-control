@@ -4,6 +4,7 @@ import { planetsRouter } from "./routes/planets/planets.router";
 
 export const app = express();
 
+// The CORS is required for the frontend to access the content.
 app.use(
   cors({
     origin: "http://localhost:5173",

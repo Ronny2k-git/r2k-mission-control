@@ -32,8 +32,6 @@ export default function Launch() {
   const { showToast } = useToast();
   const { data: planets } = useGetPlanets();
 
-  console.log(planets);
-
   const { register, handleSubmit, formState, reset, control } =
     useForm<LaunchFormData>({
       resolver: zodResolver(launchSchema),
@@ -175,8 +173,9 @@ export default function Launch() {
                         Select a planet
                       </option>
 
-                      <option value="exoplanet">Exoplanet</option>
-                      <option value="test">Test</option>
+                      {planets?.map((planet) => (
+                        <option value={planet.id}>{planet.name}</option>
+                      ))}
                     </Selector>
 
                     <Selector
