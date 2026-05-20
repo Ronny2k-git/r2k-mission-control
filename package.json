@@ -1,0 +1,26 @@
+{
+  "name": "r2k-mission-control",
+  "version": "1.0.0",
+  "description": "A futuristic mission control dashboard built with React, TypeScript, and Tailwind CSS, simulating a space operations system with live, scheduled, and historical missions.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "watch": "npm run server & npm run client",
+    "test": "npm run test --prefix server && npm run test --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ronny2k-git/nasa-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ronny2k-git/nasa-project/issues"
+  },
+  "homepage": "https://github.com/Ronny2k-git/nasa-project#readme"
+}
