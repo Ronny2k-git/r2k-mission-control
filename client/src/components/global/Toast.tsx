@@ -1,6 +1,6 @@
+import type { Mission } from "@common/types";
 import { Check, CircleAlert, X, type LucideIcon } from "lucide-react";
 import { energyVariants, type EnergyVariant } from "../../consts";
-import type { Mission } from "../../types";
 import { formatDate } from "../../utils";
 import { Card, type CardVariants } from "../ui";
 

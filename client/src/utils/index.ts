@@ -1,5 +1,5 @@
+import type { Mission } from "@common/types";
 import { format } from "date-fns";
-import type { Mission } from "../types";
 
 // Function used to calculate percentage and avoid repeating logic
 export function calculatePercentage(value: number, total: number) {

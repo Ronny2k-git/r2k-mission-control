@@ -1,4 +1,4 @@
-import type { Mission } from "../types";
+import type { Mission } from "@common/types";
 
 export function useFilterMissions(missions: Mission[], filter: string) {
   const filteredMissions = missions.filter((mission) => {

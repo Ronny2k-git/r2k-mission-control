@@ -1,5 +1,5 @@
+import type { Mission } from "@common/types";
 import type { EnergyVariant } from "../../consts";
-import type { Mission } from "../../types";
 import { EmptyBanner, Pagination } from "../global";
 import { Card, Divider, type ButtonVariant } from "../ui";
 import { MissionFilterBar } from "./MissionFilterBar";

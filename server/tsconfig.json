@@ -6,6 +6,10 @@
     "rootDir": "..",
     "outDir": "./dist",
 
+    "paths": {
+      "@common/*": ["../common/*"]
+    },
+
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true

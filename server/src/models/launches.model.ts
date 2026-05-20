@@ -101,11 +101,8 @@ export const missions: Mission[] = [
     status: "upcoming",
     type: "crewed",
   },
-];
-
-export const completedMissions: Mission[] = [
   {
-    id: 1,
+    id: 11,
     startDate: new Date("2026-05-16"),
     endDate: new Date("2026-05-20"),
     name: "FalconSat",
@@ -115,7 +112,7 @@ export const completedMissions: Mission[] = [
     type: "cargo",
   },
   {
-    id: 2,
+    id: 12,
     startDate: new Date("2026-06-02"),
     endDate: new Date("2026-06-03"),
     name: "Dragon Demo",
@@ -125,7 +122,7 @@ export const completedMissions: Mission[] = [
     type: "cargo",
   },
   {
-    id: 3,
+    id: 13,
     startDate: new Date("2026-06-18"),
     endDate: new Date("2026-06-25"),
     name: "Starlink Batch 12",
@@ -135,7 +132,7 @@ export const completedMissions: Mission[] = [
     type: "exploration",
   },
   {
-    id: 4,
+    id: 14,
     startDate: new Date("2026-07-01"),
     endDate: new Date("2026-07-10"),
     name: "Explorer IS1",
@@ -145,7 +142,7 @@ export const completedMissions: Mission[] = [
     type: "research",
   },
   {
-    id: 5,
+    id: 15,
     startDate: new Date("2026-07-14"),
     endDate: new Date("2026-07-15"),
     name: "Cargo Resupply CRS-3",
@@ -155,7 +152,7 @@ export const completedMissions: Mission[] = [
     type: "exploration",
   },
   {
-    id: 6,
+    id: 16,
     startDate: new Date("2026-08-03"),
     endDate: new Date("2026-08-12"),
     name: "Voyager X",
@@ -165,7 +162,7 @@ export const completedMissions: Mission[] = [
     type: "exploration",
   },
   {
-    id: 7,
+    id: 17,
     startDate: new Date("2026-08-19"),
     endDate: new Date("2026-08-28"),
     name: "Lunar Surveyor",
@@ -175,7 +172,7 @@ export const completedMissions: Mission[] = [
     type: "crewed",
   },
   {
-    id: 8,
+    id: 18,
     startDate: new Date("2026-09-05"),
     endDate: new Date("2026-09-06"),
     name: "Mars Cargo 1",
@@ -185,7 +182,7 @@ export const completedMissions: Mission[] = [
     type: "exploration",
   },
   {
-    id: 9,
+    id: 19,
     startDate: new Date("2026-09-21"),
     endDate: new Date("2026-10-01"),
     name: "Deep Space Probe",
@@ -195,7 +192,7 @@ export const completedMissions: Mission[] = [
     type: "cargo",
   },
   {
-    id: 10,
+    id: 20,
     startDate: new Date("2026-10-10"),
     endDate: new Date("2026-10-20"),
     name: "Habitat Deployment",

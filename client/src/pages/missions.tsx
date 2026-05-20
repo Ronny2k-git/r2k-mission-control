@@ -1,3 +1,4 @@
+import type { Mission } from "@common/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CornerUpLeft, X } from "lucide-react";
 import { useState } from "react";
@@ -11,7 +12,6 @@ import { missions, upcomingInfoCards, type UpcomingData } from "../consts";
 import { useClickFeedback, useSearchMissions, useUpdateQuery } from "../hooks";
 import { useToast } from "../hooks/useToast";
 import { missionSchema, type MissionFormData } from "../schemas";
-import type { Mission } from "../types";
 import { getMissionStatus, scrollToId } from "../utils";
 
 export default function Missions() {

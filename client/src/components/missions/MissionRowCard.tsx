@@ -1,4 +1,4 @@
-import type { Mission } from "../../types";
+import type { Mission } from "@common/types";
 import { formatDate } from "../../utils";
 import { Button, StatusBadge, type BadgeStatus } from "../ui";
 

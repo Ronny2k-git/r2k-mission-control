@@ -1,3 +1,4 @@
+import type { Mission } from "@common/types";
 import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import {
@@ -9,7 +10,6 @@ import {
   type ModalProps,
 } from ".";
 import { energyVariants, type EnergyVariant } from "../../consts";
-import type { Mission } from "../../types";
 import { formatDate } from "../../utils";
 
 export interface DialogCardProps extends Omit<ModalProps, "children"> {

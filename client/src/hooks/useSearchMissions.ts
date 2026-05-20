@@ -1,5 +1,5 @@
+import type { Mission } from "@common/types";
 import { useMemo } from "react";
-import type { Mission } from "../types";
 import { useDebounce } from "./useDebounce";
 
 export function useSearchMissions(missions: Mission[], search: string) {
