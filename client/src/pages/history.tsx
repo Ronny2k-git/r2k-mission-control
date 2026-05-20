@@ -135,6 +135,7 @@ export default function History() {
                           status={item.status}
                           type={item.type}
                           variant="history"
+                          customers={item.customers}
                         />
                       ))}
                     </tbody>

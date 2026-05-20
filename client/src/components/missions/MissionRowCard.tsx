@@ -1,4 +1,4 @@
-import type { Mission } from "@common/types";
+import type { Mission, MissionBase } from "@common/types";
 import { formatDate } from "../../utils";
 import { Button, StatusBadge, type BadgeStatus } from "../ui";
 
@@ -6,7 +6,7 @@ type MissionRowVariant = "live" | "scheduled" | "history";
 
 export interface MissionRowCardProps extends Mission {
   className?: string;
-  onAbort?: (mission: Mission) => void;
+  onAbort?: (mission: MissionBase) => void;
   variant?: MissionRowVariant;
 }
 
@@ -23,6 +23,7 @@ export function MissionRowCard({
   name,
   rocket,
   target,
+  customers,
   status,
   type,
   onAbort,
@@ -61,7 +62,7 @@ export function MissionRowCard({
       <td align="center">{rocket}</td>
 
       <td align="center" className="text-cyber-cyan-text">
-        {target}
+        {variant === "history" ? customers.join(", ") : target}
       </td>
 
       <td align="center">

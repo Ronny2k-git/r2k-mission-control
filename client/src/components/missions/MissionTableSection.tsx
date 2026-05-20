@@ -1,4 +1,4 @@
-import type { Mission } from "@common/types";
+import type { Mission, MissionBase } from "@common/types";
 import type { EnergyVariant } from "../../consts";
 import { EmptyBanner, Pagination } from "../global";
 import { Card, Divider, type ButtonVariant } from "../ui";
@@ -20,7 +20,7 @@ interface MissionTableSectionProps {
   onPageChange: (page: number) => void;
 
   variant: MissionTableVariant;
-  onAbort?: (mission: Mission) => void;
+  onAbort?: (mission: MissionBase) => void;
 
   emptyVariant?: EnergyVariant;
   navigateOnEmpty?: () => void;

@@ -10,6 +10,7 @@ export const missions: Mission[] = [
     target: "Low Earth Orbit",
     status: "running",
     type: "cargo",
+    customers: ["NASA", "ESA"],
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const missions: Mission[] = [
     target: "Kepler-90 c",
     status: "upcoming",
     type: "research",
+    customers: ["JAXA"],
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ export const missions: Mission[] = [
     target: "Moon",
     status: "running",
     type: "cargo",
+    customers: ["NASA", "SpaceX"],
   },
   {
     id: 4,
@@ -40,6 +43,7 @@ export const missions: Mission[] = [
     target: "Europa",
     status: "upcoming",
     type: "exploration",
+    customers: ["ESA"],
   },
   {
     id: 5,
@@ -50,6 +54,7 @@ export const missions: Mission[] = [
     target: "ISS",
     status: "upcoming",
     type: "crewed",
+    customers: ["NASA"],
   },
   {
     id: 6,
@@ -60,6 +65,7 @@ export const missions: Mission[] = [
     target: "Asteroid Belt",
     status: "running",
     type: "research",
+    customers: ["SpaceX", "NASA"],
   },
   {
     id: 7,
@@ -70,6 +76,7 @@ export const missions: Mission[] = [
     target: "Mars",
     status: "upcoming",
     type: "cargo",
+    customers: ["NASA", "Axiom"],
   },
   {
     id: 8,
@@ -80,6 +87,7 @@ export const missions: Mission[] = [
     target: "Solar Orbit",
     status: "running",
     type: "research",
+    customers: ["ESA", "JAXA"],
   },
   {
     id: 9,
@@ -90,6 +98,7 @@ export const missions: Mission[] = [
     target: "Titan",
     status: "running",
     type: "exploration",
+    customers: ["JAXA", "ESA"],
   },
   {
     id: 10,
@@ -100,6 +109,7 @@ export const missions: Mission[] = [
     target: "Moon",
     status: "upcoming",
     type: "crewed",
+    customers: ["NASA"],
   },
 ];
 
@@ -113,6 +123,7 @@ export const completedMissions: Mission[] = [
     target: "Kepler-442 b",
     status: "success",
     type: "cargo",
+    customers: ["DARPA"],
   },
   {
     id: 2,
@@ -123,6 +134,7 @@ export const completedMissions: Mission[] = [
     target: "Kepler-186 f",
     status: "aborted",
     type: "cargo",
+    customers: ["SpaceX"],
   },
   {
     id: 3,
@@ -133,6 +145,7 @@ export const completedMissions: Mission[] = [
     target: "Low Earth Orbit",
     status: "success",
     type: "exploration",
+    customers: ["SpaceX"],
   },
   {
     id: 4,
@@ -143,6 +156,7 @@ export const completedMissions: Mission[] = [
     target: "Kepler-452 b",
     status: "success",
     type: "research",
+    customers: ["ESA", "NASA"],
   },
   {
     id: 5,
@@ -153,6 +167,7 @@ export const completedMissions: Mission[] = [
     target: "ISS",
     status: "aborted",
     type: "exploration",
+    customers: ["NASA"],
   },
   {
     id: 6,
@@ -163,6 +178,7 @@ export const completedMissions: Mission[] = [
     target: "Kepler-22 b",
     status: "success",
     type: "exploration",
+    customers: ["Blue Origin", "NASA"],
   },
   {
     id: 7,
@@ -173,6 +189,7 @@ export const completedMissions: Mission[] = [
     target: "Moon",
     status: "success",
     type: "crewed",
+    customers: ["NASA", "CSA"],
   },
   {
     id: 8,
@@ -183,6 +200,7 @@ export const completedMissions: Mission[] = [
     target: "Mars",
     status: "aborted",
     type: "exploration",
+    customers: ["SpaceX"],
   },
   {
     id: 9,
@@ -193,6 +211,7 @@ export const completedMissions: Mission[] = [
     target: "Kepler-62 e",
     status: "success",
     type: "cargo",
+    customers: ["JAXA", "ESA"],
   },
   {
     id: 10,
@@ -203,5 +222,6 @@ export const completedMissions: Mission[] = [
     target: "Kepler-1649 c",
     status: "success",
     type: "cargo",
+    customers: ["NASA", "Axiom"],
   },
 ];

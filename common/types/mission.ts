@@ -2,7 +2,17 @@ export type MissionStatus = "upcoming" | "running" | "success" | "aborted";
 
 export type MissionType = "exploration" | "research" | "cargo" | "crewed";
 
-export type Mission = {
+export type Customer =
+  | "NASA"
+  | "ESA"
+  | "JAXA"
+  | "CSA"
+  | "SpaceX"
+  | "Blue Origin"
+  | "DARPA"
+  | "Axiom";
+
+export type MissionBase = {
   id: number;
   name: string;
   rocket: string;
@@ -12,4 +22,8 @@ export type Mission = {
   type: MissionType;
   description?: string;
   status?: MissionStatus;
+};
+
+export type Mission = MissionBase & {
+  customers: Customer[];
 };

@@ -1,4 +1,4 @@
-import type { Mission } from "@common/types";
+import type { MissionBase } from "@common/types";
 import type { ReactNode } from "react";
 import { twMerge } from "tailwind-merge";
 import {
@@ -16,7 +16,7 @@ export interface DialogCardProps extends Omit<ModalProps, "children"> {
   iconBadge?: ReactNode;
   title: string;
   description?: string;
-  mission: Mission;
+  mission: MissionBase;
   actions?: ReactNode;
   extraContent?: ReactNode;
 }

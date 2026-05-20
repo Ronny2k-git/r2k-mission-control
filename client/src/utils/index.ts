@@ -1,4 +1,4 @@
-import type { Mission } from "@common/types";
+import type { MissionBase } from "@common/types";
 import { format } from "date-fns";
 
 // Function used to calculate percentage and avoid repeating logic
@@ -22,7 +22,7 @@ export function scrollToId(id: string, offset = 0) {
 }
 
 // Function used to calculate the mission status
-export function getMissionStatus(mission: Mission) {
+export function getMissionStatus(mission: MissionBase) {
   if (mission.status === "aborted") return "aborted";
 
   const now = new Date();

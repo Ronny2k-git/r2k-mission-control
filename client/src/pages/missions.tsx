@@ -1,4 +1,4 @@
-import type { Mission } from "@common/types";
+import type { MissionBase } from "@common/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CornerUpLeft, X } from "lucide-react";
 import { useState } from "react";
@@ -17,7 +17,7 @@ import { getMissionStatus, scrollToId } from "../utils";
 export default function Missions() {
   const [openDialog, setOpenDialog] = useState(false);
   const { showToast } = useToast();
-  const [selectedMission, setSelectedMission] = useState<Mission>();
+  const [selectedMission, setSelectedMission] = useState<MissionBase>();
   const [searchParams] = useSearchParams();
 
   const navigate = useNavigate();
