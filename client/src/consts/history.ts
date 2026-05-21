@@ -12,13 +12,13 @@ export type HistoryData = {
 
 export const historyInfoCards: MissionCardInfoProps<HistoryData>[] = [
   {
-    title: "First Launch",
+    title: "First Exoplanet Launch",
     key: "firstLaunch",
     textColor: "text-white",
     variant: "secondary",
   },
   {
-    title: "Total Launches",
+    title: "Completed Launches",
     key: "totalLaunches",
     textColor: "text-cyber-cyan-text",
     variant: "secondary",

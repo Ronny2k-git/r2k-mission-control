@@ -1,3 +1,4 @@
+import type { MissionType } from "@common/types";
 import type { ReactNode } from "react";
 import type { MissionCardInfoProps } from "../types";
 
@@ -8,12 +9,14 @@ export type LaunchData = {
   status: string;
 };
 
-export const missionTypes = [
-  "exploration",
-  "cargo",
-  "research",
-  "crewed",
-] as const;
+export const rocketValues = [
+  { value: "falcon-9", name: "Falcon 9" },
+  { value: "falcon-heavy", name: "Falcon Heavy" },
+  { value: "starship", name: "Starship" },
+  { value: "sls", name: "SLS" },
+];
+
+export const rockets = rocketValues.map((r) => r.value);
 
 export const missionTypeValues = [
   { value: "exploration", label: "Exploration" },
@@ -21,6 +24,10 @@ export const missionTypeValues = [
   { value: "research", label: "Research" },
   { value: "crewed", label: "Crewed" },
 ];
+
+export const missionTypes = missionTypeValues.map(
+  (r) => r.value,
+) as MissionType[];
 
 export const launchInfoCards: MissionCardInfoProps<LaunchData>[] = [
   {

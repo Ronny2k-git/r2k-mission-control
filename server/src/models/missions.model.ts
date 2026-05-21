@@ -102,8 +102,8 @@ export const missions: MissionDB[] = [
   },
   {
     id: 10,
-    startDate: new Date("2027-03-01"),
-    endDate: new Date("2027-03-10"),
+    startDate: new Date("2026-05-21"),
+    endDate: new Date("2027-06-10"),
     name: "Crew Mission CM-12",
     rocket: "SLS",
     target: "Moon",

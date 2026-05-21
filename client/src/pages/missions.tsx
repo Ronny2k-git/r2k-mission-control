@@ -8,7 +8,7 @@ import { CountdownClock, PageHeader } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import { MissionTableSection } from "../components/missions/MissionTableSection";
 import { Button, DialogCard, Divider, TextArea } from "../components/ui";
-import { upcomingInfoCards, type UpcomingData } from "../consts";
+import { rockets, upcomingInfoCards, type UpcomingData } from "../consts";
 import {
   useClickFeedback,
   useGetMissionGroups,
@@ -80,10 +80,12 @@ export default function Missions() {
   };
 
   // Used to fill int the info mission cards data
+  const launchedMissions = liveMissions.length + scheduledMissions.length;
+
   const infoUpcomingCardData: UpcomingData = {
-    launchedMissions: 10,
+    launchedMissions: launchedMissions,
     nextMission: <CountdownClock targetDate={"2026-5-27"} />,
-    rocketsReady: 3,
+    rocketsReady: rockets.length,
     status: "Scheduling",
   };
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { missionTypes } from "../consts";
+import { missionTypes, rockets } from "../consts";
 
 export const launchSchema = z
   .object({
@@ -7,7 +7,9 @@ export const launchSchema = z
       .string()
       .min(3, "Mission name must be at least 3 characters"),
 
-    rocket: z.string().min(1, "Rocket is required"),
+    rocket: z.enum(rockets, {
+      message: "Select a rocket",
+    }),
 
     target: z.string().min(1, "Select a destination"),
 

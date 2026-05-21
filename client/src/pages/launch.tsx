@@ -19,9 +19,10 @@ import {
   eligibilityPlanets,
   launchInfoCards,
   missionTypeValues,
+  rocketValues,
   type LaunchData,
 } from "../consts";
-import { useClickFeedback } from "../hooks";
+import { useClickFeedback, useGetMissionGroups } from "../hooks";
 import { useGetPlanets } from "../hooks/useGetPlanets";
 import { useToast } from "../hooks/useToast";
 import { launchSchema, type LaunchFormData } from "../schemas";
@@ -31,6 +32,7 @@ export default function Launch() {
   const [formData, setFormData] = useState<LaunchFormData | null>(null);
   const { showToast } = useToast();
   const { data: planets } = useGetPlanets();
+  const { liveMissions } = useGetMissionGroups();
 
   const { register, handleSubmit, formState, reset, control } =
     useForm<LaunchFormData>({
@@ -67,9 +69,16 @@ export default function Launch() {
   const infoLaunchCardData: LaunchData = {
     planets: planets?.length ?? 0,
     nextMission: <CountdownClock targetDate={"2026-5-27"} />,
-    activeMissions: 3,
+    activeMissions: liveMissions.length,
     status: "Operational",
   };
+
+  //  TO DO LATER:
+
+  //  * CREATE A FUNCTION TO CALCULATE THE NEXT LAUNCH OR END MISSION
+  //    AND APPLY IT FOR LAUNCH, MISSIONS AND HISTORY PAGES.
+  //    OBS: THE FUNCTION NEEDS TO RETURN A DATE.
+  //    OBS2: THE FUNCTION'S RESULT WILL BE USED TO FILL THE COUNTDOWNCLOCK.
 
   return (
     <>
@@ -153,14 +162,23 @@ export default function Launch() {
                       {...register("missionName")}
                     />
 
-                    <Input
-                      id="rocket"
-                      type="text"
-                      defaultValue={"Explorer IS1"}
+                    <Selector
+                      id="rocket-system"
                       label="● Rocket System"
+                      isRequired={true}
                       error={inputError.rocket?.message}
                       {...register("rocket")}
-                    />
+                    >
+                      <option value="" hidden>
+                        Select a rocket
+                      </option>
+
+                      {rocketValues.map((rocket) => (
+                        <option key={rocket.value} value={rocket.value}>
+                          {rocket.name}
+                        </option>
+                      ))}
+                    </Selector>
 
                     <Selector
                       id="destination-exoplanet"

@@ -42,7 +42,7 @@ export default function History() {
     nextCompletion: (
       <CountdownClock targetDate={"2026-5-20"} variant="orange" />
     ),
-    firstLaunch: "2006",
+    firstLaunch: "2009",
     status: "Verified",
   };
 
