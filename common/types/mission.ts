@@ -1,4 +1,4 @@
-export type MissionStatus = "upcoming" | "running" | "success";
+export type MissionStatus = "upcoming" | "running" | "success" | "aborted";
 
 export type MissionType = "exploration" | "research" | "cargo" | "crewed";
 
