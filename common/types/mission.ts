@@ -21,8 +21,11 @@ export type MissionBase = {
   endDate: Date;
   type: MissionType;
   description?: string;
+};
 
-  isAborted?: boolean;
+export type MissionDB = MissionBase & {
+  customers: Customer[];
+  isAborted: boolean;
 };
 
 export type MissionResponse = MissionBase & {

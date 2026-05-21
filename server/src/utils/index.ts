@@ -1,7 +1,7 @@
-import { MissionBase } from "@common/types";
+import { MissionDB } from "@common/types";
 
 // Function used to calculate the mission status
-export function getMissionStatus(mission: MissionBase) {
+export function getMissionStatus(mission: MissionDB) {
   if (mission.isAborted) return "aborted";
 
   const now = new Date();

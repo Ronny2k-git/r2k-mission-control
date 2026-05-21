@@ -1,6 +1,6 @@
-import type { MissionResponse } from "@common/types";
+import type { MissionDB } from "@common/types";
 
-export const missions: Omit<MissionResponse, "status">[] = [
+export const missions: MissionDB[] = [
   {
     id: 1,
     startDate: new Date("2026-04-29"),
@@ -10,6 +10,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Low Earth Orbit",
     type: "cargo",
     customers: ["NASA", "ESA"],
+    isAborted: false,
   },
   {
     id: 2,
@@ -20,6 +21,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Kepler-90 c",
     type: "research",
     customers: ["JAXA"],
+    isAborted: false,
   },
   {
     id: 3,
@@ -30,6 +32,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Moon",
     type: "cargo",
     customers: ["NASA", "SpaceX"],
+    isAborted: true,
   },
   {
     id: 4,
@@ -40,6 +43,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Europa",
     type: "exploration",
     customers: ["ESA"],
+    isAborted: false,
   },
   {
     id: 5,
@@ -50,6 +54,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "ISS",
     type: "crewed",
     customers: ["NASA"],
+    isAborted: false,
   },
   {
     id: 6,
@@ -60,6 +65,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Asteroid Belt",
     type: "research",
     customers: ["SpaceX", "NASA"],
+    isAborted: false,
   },
   {
     id: 7,
@@ -70,6 +76,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Mars",
     type: "cargo",
     customers: ["NASA", "Axiom"],
+    isAborted: false,
   },
   {
     id: 8,
@@ -80,6 +87,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Solar Orbit",
     type: "research",
     customers: ["ESA", "JAXA"],
+    isAborted: false,
   },
   {
     id: 9,
@@ -90,6 +98,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Titan",
     type: "exploration",
     customers: ["JAXA", "ESA"],
+    isAborted: false,
   },
   {
     id: 10,
@@ -100,6 +109,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Moon",
     type: "crewed",
     customers: ["NASA"],
+    isAborted: false,
   },
   {
     id: 11,
@@ -110,6 +120,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Kepler-442 b",
     type: "cargo",
     customers: ["DARPA"],
+    isAborted: false,
   },
   {
     id: 12,
@@ -120,6 +131,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Kepler-186 f",
     type: "cargo",
     customers: ["SpaceX"],
+    isAborted: true,
   },
   {
     id: 13,
@@ -130,6 +142,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Low Earth Orbit",
     type: "exploration",
     customers: ["SpaceX"],
+    isAborted: true,
   },
   {
     id: 14,
@@ -140,6 +153,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Kepler-452 b",
     type: "research",
     customers: ["ESA", "NASA"],
+    isAborted: true,
   },
   {
     id: 15,
@@ -150,6 +164,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "ISS",
     type: "exploration",
     customers: ["NASA"],
+    isAborted: false,
   },
   {
     id: 16,
@@ -160,6 +175,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Kepler-22 b",
     type: "exploration",
     customers: ["Blue Origin", "NASA"],
+    isAborted: false,
   },
   {
     id: 17,
@@ -170,6 +186,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Moon",
     type: "crewed",
     customers: ["NASA", "CSA"],
+    isAborted: true,
   },
   {
     id: 18,
@@ -180,6 +197,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Mars",
     type: "exploration",
     customers: ["SpaceX"],
+    isAborted: false,
   },
   {
     id: 19,
@@ -190,6 +208,7 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Kepler-62 e",
     type: "cargo",
     customers: ["JAXA", "ESA"],
+    isAborted: true,
   },
   {
     id: 20,
@@ -200,5 +219,6 @@ export const missions: Omit<MissionResponse, "status">[] = [
     target: "Kepler-1649 c",
     type: "cargo",
     customers: ["NASA", "Axiom"],
+    isAborted: true,
   },
 ];
