@@ -1,4 +1,4 @@
-export type MissionStatus = "upcoming" | "running" | "success" | "aborted";
+export type MissionStatus = "upcoming" | "running" | "success";
 
 export type MissionType = "exploration" | "research" | "cargo" | "crewed";
 
@@ -21,9 +21,13 @@ export type MissionBase = {
   endDate: Date;
   type: MissionType;
   description?: string;
-  status?: MissionStatus;
+
+  isAborted?: boolean;
 };
 
-export type Mission = MissionBase & {
+export type MissionResponse = MissionBase & {
   customers: Customer[];
+  status: MissionStatus;
 };
+
+export type MissionSlim = Omit<MissionResponse, "customers">;

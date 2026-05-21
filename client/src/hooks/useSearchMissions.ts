@@ -1,8 +1,8 @@
-import type { Mission } from "@common/types";
+import type { MissionResponse } from "@common/types";
 import { useMemo } from "react";
 import { useDebounce } from "./useDebounce";
 
-export function useSearchMissions(missions: Mission[], search: string) {
+export function useSearchMissions(missions: MissionResponse[], search: string) {
   const debouncedValue = useDebounce(search, 500);
   const searchLower = debouncedValue.toLowerCase();
 

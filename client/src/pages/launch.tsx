@@ -174,7 +174,9 @@ export default function Launch() {
                       </option>
 
                       {planets?.map((planet) => (
-                        <option value={planet.id}>{planet.name}</option>
+                        <option key={planet.id} value={planet.id}>
+                          {planet.name}
+                        </option>
                       ))}
                     </Selector>
 

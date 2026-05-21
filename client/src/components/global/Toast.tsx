@@ -1,11 +1,11 @@
-import type { MissionBase } from "@common/types";
+import type { MissionSlim } from "@common/types";
 import { Check, CircleAlert, X, type LucideIcon } from "lucide-react";
 import { energyVariants, type EnergyVariant } from "../../consts";
 import { formatDate } from "../../utils";
 import { Card, type CardVariants } from "../ui";
 
 export interface ToastProps extends Pick<
-  MissionBase,
+  MissionSlim,
   "name" | "target" | "startDate" | "status"
 > {
   id: number;

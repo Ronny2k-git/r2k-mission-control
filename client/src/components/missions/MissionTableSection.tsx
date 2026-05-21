@@ -1,4 +1,4 @@
-import type { Mission, MissionBase } from "@common/types";
+import type { MissionResponse, MissionSlim } from "@common/types";
 import type { EnergyVariant } from "../../consts";
 import { EmptyBanner, Pagination } from "../global";
 import { Card, Divider, type ButtonVariant } from "../ui";
@@ -10,7 +10,7 @@ type MissionTableVariant = "live" | "scheduled" | "history";
 interface MissionTableSectionProps {
   titleId: string;
   title: string;
-  missions: Mission[];
+  missions: MissionResponse[];
 
   search: string;
   onSearch: (value: string) => void;
@@ -20,7 +20,7 @@ interface MissionTableSectionProps {
   onPageChange: (page: number) => void;
 
   variant: MissionTableVariant;
-  onAbort?: (mission: MissionBase) => void;
+  onAbort?: (mission: MissionSlim) => void;
 
   emptyVariant?: EnergyVariant;
   navigateOnEmpty?: () => void;

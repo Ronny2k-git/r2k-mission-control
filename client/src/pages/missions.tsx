@@ -1,4 +1,4 @@
-import type { MissionBase } from "@common/types";
+import type { MissionSlim } from "@common/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CornerUpLeft, X } from "lucide-react";
 import { useState } from "react";
@@ -8,17 +8,24 @@ import { CountdownClock, PageHeader } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import { MissionTableSection } from "../components/missions/MissionTableSection";
 import { Button, DialogCard, Divider, TextArea } from "../components/ui";
-import { missions, upcomingInfoCards, type UpcomingData } from "../consts";
-import { useClickFeedback, useSearchMissions, useUpdateQuery } from "../hooks";
+import { upcomingInfoCards, type UpcomingData } from "../consts";
+import {
+  useClickFeedback,
+  useGetMissionGroups,
+  useSearchMissions,
+  useUpdateQuery,
+} from "../hooks";
+
 import { useToast } from "../hooks/useToast";
 import { missionSchema, type MissionFormData } from "../schemas";
-import { getMissionStatus, scrollToId } from "../utils";
+import { scrollToId } from "../utils";
 
 export default function Missions() {
   const [openDialog, setOpenDialog] = useState(false);
   const { showToast } = useToast();
-  const [selectedMission, setSelectedMission] = useState<MissionBase>();
+  const [selectedMission, setSelectedMission] = useState<MissionSlim>();
   const [searchParams] = useSearchParams();
+  const { liveMissions, scheduledMissions } = useGetMissionGroups();
 
   const navigate = useNavigate();
   const updateQuery = useUpdateQuery();
@@ -41,15 +48,6 @@ export default function Missions() {
   );
   const searchLive = searchParams.get("missions_search_live") || "";
   const searchScheduled = searchParams.get("missions_search_scheduled") || "";
-
-  // Used to get the query params
-  const liveMissions = missions.filter((m) => {
-    return getMissionStatus(m) === "running";
-  });
-
-  const scheduledMissions = missions.filter((m) => {
-    return getMissionStatus(m) === "upcoming";
-  });
 
   // Filter live and scheduled missions by search
   const { searchedMissions: searchedLive } = useSearchMissions(

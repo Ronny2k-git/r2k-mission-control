@@ -12,19 +12,20 @@ import {
   MissionStatusBar,
 } from "../components/missions";
 import { Button, Card, Divider } from "../components/ui";
+import { filters, historyInfoCards, type HistoryData } from "../consts";
 import {
-  completedMissions,
-  filters,
-  historyInfoCards,
-  type HistoryData,
-} from "../consts";
-import { useFilterMissions, useSearchMissions, useUpdateQuery } from "../hooks";
+  useFilterMissions,
+  useGetMissionGroups,
+  useSearchMissions,
+  useUpdateQuery,
+} from "../hooks";
 import { scrollToId } from "../utils";
 
 export default function History() {
   const [searchParams] = useSearchParams();
   const updateQuery = useUpdateQuery();
   const navigate = useNavigate();
+  const { completedMissions } = useGetMissionGroups();
 
   // Used to get the query params
   const page = Number(searchParams.get("history_page") || 1);

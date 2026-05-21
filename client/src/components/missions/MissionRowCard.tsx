@@ -1,12 +1,12 @@
-import type { Mission, MissionBase } from "@common/types";
+import type { MissionResponse, MissionSlim } from "@common/types";
 import { formatDate } from "../../utils";
 import { Button, StatusBadge, type BadgeStatus } from "../ui";
 
 type MissionRowVariant = "live" | "scheduled" | "history";
 
-export interface MissionRowCardProps extends Mission {
+export interface MissionRowCardProps extends MissionResponse {
   className?: string;
-  onAbort?: (mission: MissionBase) => void;
+  onAbort?: (mission: MissionSlim) => void;
   variant?: MissionRowVariant;
 }
 
