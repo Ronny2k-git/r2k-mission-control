@@ -48,7 +48,7 @@ export const missions: MissionDB[] = [
   {
     id: 5,
     startDate: new Date("2026-04-28"),
-    endDate: new Date("2026-05-22"),
+    endDate: new Date("2026-06-01"),
     name: "Crew Transfer CT-7",
     rocket: "SLS",
     target: "ISS",
@@ -91,8 +91,8 @@ export const missions: MissionDB[] = [
   },
   {
     id: 9,
-    startDate: new Date("2027-02-12"),
-    endDate: new Date("2027-02-20"),
+    startDate: new Date("2026-05-29"),
+    endDate: new Date("2026-06-20"),
     name: "Titan Exploration Probe",
     rocket: "Falcon Heavy",
     target: "Titan",
@@ -103,7 +103,7 @@ export const missions: MissionDB[] = [
   {
     id: 10,
     startDate: new Date("2026-05-21"),
-    endDate: new Date("2027-06-10"),
+    endDate: new Date("2027-06-28"),
     name: "Crew Mission CM-12",
     rocket: "SLS",
     target: "Moon",

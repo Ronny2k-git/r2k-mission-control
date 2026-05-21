@@ -33,6 +33,10 @@ export function CountdownClock({
     return () => clearInterval(interval);
   }, []);
 
+  if (isNaN(date.getTime())) {
+    return <span>--:--:--</span>;
+  }
+
   return (
     <div
       className={`flex gap-1 font-heading text-base sm:text-xl font-bold ${textColor}`}

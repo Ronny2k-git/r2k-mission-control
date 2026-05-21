@@ -19,13 +19,13 @@ import {
   useSearchMissions,
   useUpdateQuery,
 } from "../hooks";
-import { scrollToId } from "../utils";
+import { getNextMissionDate, scrollToId } from "../utils";
 
 export default function History() {
   const [searchParams] = useSearchParams();
   const updateQuery = useUpdateQuery();
   const navigate = useNavigate();
-  const { completedMissions } = useGetMissionGroups();
+  const { liveMissions, completedMissions } = useGetMissionGroups();
 
   // Used to get the query params
   const page = Number(searchParams.get("history_page") || 1);
@@ -36,11 +36,13 @@ export default function History() {
   const { searchedMissions } = useSearchMissions(completedMissions, search);
   const { filteredMissions } = useFilterMissions(searchedMissions, filter);
 
-  // Used to fill int the info history cards data
+  // Used to fill into the info history cards data
+  const nextCompletion = getNextMissionDate(liveMissions, "end");
+
   const infoHistoryCardData: HistoryData = {
     totalLaunches: filteredMissions.length,
     nextCompletion: (
-      <CountdownClock targetDate={"2026-5-20"} variant="orange" />
+      <CountdownClock targetDate={nextCompletion?.endDate} variant="orange" />
     ),
     firstLaunch: "2009",
     status: "Verified",
@@ -73,7 +75,7 @@ export default function History() {
           {/* Title */}
           <h2
             id="history_page_title"
-            className="font-extrabold text-white text-2xl sm:text-4xl font-heading leading-10"
+            className="font-extrabold text-white text-2xl sm:text-3xl font-heading leading-10"
           >
             Launch <span className="text-cyber-cyan-text">Records</span>
           </h2>

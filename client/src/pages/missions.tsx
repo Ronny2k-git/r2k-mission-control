@@ -18,7 +18,7 @@ import {
 
 import { useToast } from "../hooks/useToast";
 import { missionSchema, type MissionFormData } from "../schemas";
-import { scrollToId } from "../utils";
+import { getNextMissionDate, scrollToId } from "../utils";
 
 export default function Missions() {
   const [openDialog, setOpenDialog] = useState(false);
@@ -79,12 +79,13 @@ export default function Missions() {
     reset();
   };
 
-  // Used to fill int the info mission cards data
+  // Used to fill into the info mission cards data
   const launchedMissions = liveMissions.length + scheduledMissions.length;
+  const nextMission = getNextMissionDate(scheduledMissions, "start");
 
   const infoUpcomingCardData: UpcomingData = {
     launchedMissions: launchedMissions,
-    nextMission: <CountdownClock targetDate={"2026-5-27"} />,
+    nextMission: <CountdownClock targetDate={nextMission?.startDate} />,
     rocketsReady: rockets.length,
     status: "Scheduling",
   };

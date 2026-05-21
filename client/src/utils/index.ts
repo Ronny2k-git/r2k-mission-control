@@ -1,3 +1,4 @@
+import type { MissionResponse } from "@common/types";
 import { format } from "date-fns";
 
 // Function used to calculate percentage and avoid repeating logic
@@ -23,4 +24,24 @@ export function scrollToId(id: string, offset = 0) {
 // Function used to format dates as strings
 export function formatDate(date: Date) {
   return format(date, "dd/MM/yyyy");
+}
+
+// Function used to get the next launch / completion mission.
+export function getNextMissionDate(
+  missions: MissionResponse[],
+  type: "start" | "end",
+) {
+  const now = new Date();
+
+  return missions
+    .filter((mission) =>
+      type === "start"
+        ? new Date(mission.startDate) > now
+        : new Date(mission.endDate) > now,
+    )
+    .sort((a, b) =>
+      type === "start"
+        ? new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+        : new Date(a.endDate).getTime() - new Date(b.endDate).getTime(),
+    )[0];
 }

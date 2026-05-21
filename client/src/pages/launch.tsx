@@ -26,13 +26,14 @@ import { useClickFeedback, useGetMissionGroups } from "../hooks";
 import { useGetPlanets } from "../hooks/useGetPlanets";
 import { useToast } from "../hooks/useToast";
 import { launchSchema, type LaunchFormData } from "../schemas";
+import { getNextMissionDate } from "../utils";
 
 export default function Launch() {
   const [openDialog, setOpenDialog] = useState(false);
   const [formData, setFormData] = useState<LaunchFormData | null>(null);
   const { showToast } = useToast();
   const { data: planets } = useGetPlanets();
-  const { liveMissions } = useGetMissionGroups();
+  const { liveMissions, scheduledMissions } = useGetMissionGroups();
 
   const { register, handleSubmit, formState, reset, control } =
     useForm<LaunchFormData>({
@@ -66,19 +67,15 @@ export default function Launch() {
     setTimeout(() => navigate("/missions"), 300);
   };
 
+  // Used to fill into the info history cards data
+  const nextMission = getNextMissionDate(scheduledMissions, "start");
+
   const infoLaunchCardData: LaunchData = {
     planets: planets?.length ?? 0,
-    nextMission: <CountdownClock targetDate={"2026-5-27"} />,
+    nextMission: <CountdownClock targetDate={nextMission?.startDate} />,
     activeMissions: liveMissions.length,
     status: "Operational",
   };
-
-  //  TO DO LATER:
-
-  //  * CREATE A FUNCTION TO CALCULATE THE NEXT LAUNCH OR END MISSION
-  //    AND APPLY IT FOR LAUNCH, MISSIONS AND HISTORY PAGES.
-  //    OBS: THE FUNCTION NEEDS TO RETURN A DATE.
-  //    OBS2: THE FUNCTION'S RESULT WILL BE USED TO FILL THE COUNTDOWNCLOCK.
 
   return (
     <>
@@ -233,7 +230,7 @@ export default function Launch() {
                       control={control}
                       render={({ field }) => (
                         <DatePicker
-                          label="● Start Mission Date"
+                          label="● End Mission Date"
                           isRequired={true}
                           error={inputError.endDate?.message}
                           value={field.value}
