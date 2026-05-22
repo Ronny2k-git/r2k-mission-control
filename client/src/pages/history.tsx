@@ -48,6 +48,15 @@ export default function History() {
     status: "Verified",
   };
 
+  // Filter missions by aborted and successful
+  const successfulMissions = completedMissions.filter(
+    (m) => m.status === "success",
+  );
+
+  const abortedMissions = completedMissions.filter(
+    (m) => m.status === "aborted",
+  );
+
   return (
     <div className="flex flex-col w-full gap-12 pb-8">
       {/* Info Cards */}
@@ -188,15 +197,15 @@ export default function History() {
                 <MissionStatusBar
                   title="Mission success rate"
                   status="success"
-                  missions={14}
-                  totalMissions={20}
+                  missions={successfulMissions.length}
+                  totalMissions={completedMissions.length}
                 />
 
                 <MissionStatusBar
                   title="Abort rate"
                   status="aborted"
-                  missions={6}
-                  totalMissions={20}
+                  missions={abortedMissions.length}
+                  totalMissions={completedMissions.length}
                 />
               </div>
             </Card>
