@@ -48,7 +48,7 @@ export default function History() {
     status: "Verified",
   };
 
-  // Filter missions by aborted and successful
+  // Filter missions by status
   const successfulMissions = completedMissions.filter(
     (m) => m.status === "success",
   );

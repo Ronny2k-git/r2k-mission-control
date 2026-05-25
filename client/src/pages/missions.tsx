@@ -30,10 +30,8 @@ export default function Missions() {
   const navigate = useNavigate();
   const updateQuery = useUpdateQuery();
 
-  const { trigger: audioTrigger } = useClickFeedback({
-    audioPath: "/sound/abort.mp3",
-    duration: 100,
-  });
+  const abortAudio = useClickFeedback("/sound/abort.mp3", 100);
+  const errorAudio = useClickFeedback("/sound/warning.mp3", 100);
 
   // Mission form validation
   const { register, handleSubmit, formState, reset, resetField } =
@@ -62,7 +60,7 @@ export default function Missions() {
 
   // Function used to abort a selected mission.
   const onSubmit = () => {
-    audioTrigger();
+    abortAudio.trigger();
 
     // Show a toast message
     showToast({
@@ -210,7 +208,7 @@ export default function Missions() {
                 className="w-full text-sm"
                 variant="warning"
                 iconLeft={<CornerUpLeft className="size-4" />}
-                onClick={handleSubmit(onSubmit)}
+                onClick={handleSubmit(onSubmit, () => errorAudio.trigger())}
               >
                 Abort
               </Button>

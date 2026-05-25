@@ -1,14 +1,6 @@
 import { useRef, useState } from "react";
 
-export type useClickFeedbackProps = {
-  duration?: number;
-  audioPath: string;
-};
-
-export function useClickFeedback({
-  audioPath,
-  duration = 100,
-}: useClickFeedbackProps) {
+export function useClickFeedback(audioPath: string, duration: number = 100) {
   const [active, setActive] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const soundRef = useRef(new Audio(audioPath));

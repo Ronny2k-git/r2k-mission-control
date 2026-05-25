@@ -13,3 +13,5 @@ export function getMissionStatus(mission: MissionDB) {
 
   return "success";
 }
+
+export function addNewMission(mission: MissionDB) {}

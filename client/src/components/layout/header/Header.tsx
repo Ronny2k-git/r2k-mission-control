@@ -6,10 +6,7 @@ import { Logo } from "../Logo";
 import { NavItem } from "./NavItem";
 
 export function Header() {
-  const { triggerIndex } = useClickFeedback({
-    audioPath: "/sound/click.mp3",
-    duration: 100,
-  });
+  const { triggerIndex } = useClickFeedback("/sound/click.mp3", 100);
   const navigate = useNavigate();
 
   // Animate navigation and play a sound when clicked.

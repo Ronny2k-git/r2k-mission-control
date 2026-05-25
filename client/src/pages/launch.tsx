@@ -44,14 +44,12 @@ export default function Launch() {
 
   const navigate = useNavigate();
 
-  const { trigger: audioTrigger } = useClickFeedback({
-    audioPath: "/sound/success.mp3",
-    duration: 100,
-  });
+  const successAudio = useClickFeedback("/sound/success.mp3", 100);
+  const errorAudio = useClickFeedback("/sound/warning.mp3", 100);
 
   // Function used to launch a new mission
   const onSubmit = (data: LaunchFormData) => {
-    audioTrigger();
+    successAudio.trigger();
 
     // Show a toast message
     showToast({
@@ -141,10 +139,13 @@ export default function Launch() {
                 {/* Form Fields */}
                 <form
                   className="flex flex-col gap-4 sm:gap-6"
-                  onSubmit={handleSubmit((data) => {
-                    setFormData(data);
-                    setOpenDialog(true);
-                  })}
+                  onSubmit={handleSubmit(
+                    (data) => {
+                      setFormData(data);
+                      setOpenDialog(true);
+                    },
+                    () => errorAudio.trigger(),
+                  )}
                 >
                   <Divider type="label" label="Mission Parameters" />
 
