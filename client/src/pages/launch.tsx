@@ -23,6 +23,7 @@ import {
   type LaunchData,
 } from "../consts";
 import { useClickFeedback, useGetMissionGroups } from "../hooks";
+import { useCreateMission } from "../hooks/useCreateMission";
 import { useGetPlanets } from "../hooks/useGetPlanets";
 import { useToast } from "../hooks/useToast";
 import { launchSchema, type LaunchFormData } from "../schemas";
@@ -34,6 +35,7 @@ export default function Launch() {
   const { showToast } = useToast();
   const { data: planets } = useGetPlanets();
   const { liveMissions, scheduledMissions } = useGetMissionGroups();
+  const { mutate } = useCreateMission();
 
   const { register, handleSubmit, formState, reset, control } =
     useForm<LaunchFormData>({
@@ -49,6 +51,18 @@ export default function Launch() {
 
   // Function used to launch a new mission
   const onSubmit = (data: LaunchFormData) => {
+    mutate({
+      startDate: data.startDate,
+      endDate: data.endDate,
+      name: data.missionName,
+      rocket: data.rocket,
+      target: data.target,
+      type: data.missionType,
+      isAborted: false,
+      description: data.description,
+      customers: ["JAXA", "CSA"],
+    });
+
     successAudio.trigger();
 
     // Show a toast message

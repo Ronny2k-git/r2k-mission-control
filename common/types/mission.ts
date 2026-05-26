@@ -34,3 +34,5 @@ export type MissionResponse = MissionBase & {
 };
 
 export type MissionSlim = Omit<MissionResponse, "customers">;
+
+export type CreateMissionDTO = Omit<MissionDB, "id">;

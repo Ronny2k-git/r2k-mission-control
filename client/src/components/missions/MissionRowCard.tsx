@@ -35,7 +35,7 @@ export function MissionRowCard({
   return (
     <tr className="h-12 border-b border-bg-border hover:bg-secondary-card text-xs md:text-sm text-cyan-muted">
       <td align="center" className="text-white-light">
-        {/* Pulse indicator só para live */}
+        {/* Pulse indicator only for live missions */}
         <div className="flex items-center justify-center gap-2">
           {isLive && (
             <span className="relative flex size-2">
@@ -54,12 +54,14 @@ export function MissionRowCard({
 
       <td
         align="center"
-        className={`${nameStyles[variant]} font-semibold tracking-tight `}
+        className={`${nameStyles[variant]} font-semibold tracking-tight capitalize`}
       >
         {name}
       </td>
 
-      <td align="center">{rocket}</td>
+      <td className="capitalize" align="center">
+        {rocket}
+      </td>
 
       <td align="center" className="text-cyber-cyan-text">
         {variant === "history" ? customers.join(", ") : target}

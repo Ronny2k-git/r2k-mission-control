@@ -1,4 +1,5 @@
 import { MissionDB } from "@common/types";
+import { missions } from "../models/missions.model";
 
 // Function used to calculate the mission status
 export function getMissionStatus(mission: MissionDB) {
@@ -14,4 +15,13 @@ export function getMissionStatus(mission: MissionDB) {
   return "success";
 }
 
-export function addNewMission(mission: MissionDB) {}
+export function addNewMission(mission: MissionDB) {
+  const newMission: MissionDB = {
+    ...mission,
+    id: missions.length + 1,
+  };
+
+  missions.push(newMission);
+
+  return newMission;
+}
