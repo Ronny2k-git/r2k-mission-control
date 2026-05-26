@@ -28,6 +28,7 @@ const variantStyles: Record<CardVariants, { energy: EnergyVariant }> = {
   warning: { energy: "red" },
   success: { energy: "green" },
   waiting: { energy: "orange" },
+  error: { energy: "red" },
 };
 
 const variantDescriptionTitles: Record<CardVariants, string> = {
@@ -37,6 +38,7 @@ const variantDescriptionTitles: Record<CardVariants, string> = {
   waiting: "Mission Brief",
   secondary: "Mission Brief",
   glow: "Mission Brief",
+  error: "Mission Error",
 };
 
 export function DialogCard({

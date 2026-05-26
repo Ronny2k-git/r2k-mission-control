@@ -10,6 +10,7 @@ const cardVariants = {
   waiting:
     "bg-orange-800/10 border border-bg-border border-t-2 border-t-orange-300",
   glow: "bg-dark-blue/70 border border-bg-border border-t-2 border-t-cyber-cyan-text",
+  error: `shadow-error-glow`,
 };
 
 const borderColorMap: Record<CardVariants, BorderColors> = {
@@ -17,6 +18,7 @@ const borderColorMap: Record<CardVariants, BorderColors> = {
   secondary: "border-cyber-cyan-text",
   success: "border-green-500",
   warning: "border-red-500",
+  error: "border-red-500",
   waiting: "border-orange-300",
   glow: "border-cyber-cyan-text",
 };

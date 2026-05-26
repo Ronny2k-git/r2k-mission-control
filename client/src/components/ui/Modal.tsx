@@ -19,6 +19,7 @@ const buttonVariantMap: Record<CardVariants, ButtonVariant> = {
   warning: "warning",
   success: "success",
   waiting: "waiting",
+  error: "warning",
 };
 
 export function Modal({

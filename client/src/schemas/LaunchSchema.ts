@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { missionTypes, rockets } from "../consts";
+import { customers, missionTypes, rockets } from "../consts";
 
 export const launchSchema = z
   .object({
@@ -28,6 +28,10 @@ export const launchSchema = z
     description: z
       .string()
       .min(10, "Description must be at least 10 characters"),
+
+    customers: z
+      .array(z.enum(customers))
+      .min(1, "Select at least one customer"),
   })
   .refine((data) => new Date(data.endDate) >= new Date(data.startDate), {
     message: "End date must be after start date",

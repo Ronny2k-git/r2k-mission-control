@@ -1,4 +1,4 @@
-import type { MissionType } from "@common/types";
+import type { Customer, MissionType } from "@common/types";
 import type { ReactNode } from "react";
 import type { MissionCardInfoProps } from "../types";
 
@@ -8,6 +8,19 @@ export type LaunchData = {
   activeMissions: number;
   status: string;
 };
+
+export const customerValues = [
+  { label: "NASA", value: "NASA" },
+  { label: "ESA", value: "ESA" },
+  { label: "JAXA", value: "JAXA" },
+  { label: "CSA", value: "CSA" },
+  { label: "SpaceX", value: "SpaceX" },
+  { label: "Blue Origin", value: "Blue Origin" },
+  { label: "DARPA", value: "DARPA" },
+  { label: "Axiom", value: "Axiom" },
+];
+
+export const customers = customerValues.map((c) => c.value as Customer);
 
 export const rocketValues = [
   { value: "falcon-9", name: "Falcon 9" },

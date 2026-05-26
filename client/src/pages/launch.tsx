@@ -8,6 +8,7 @@ import { MissionInfoCard } from "../components/missions";
 import {
   Button,
   Card,
+  CheckboxGroup,
   DatePicker,
   DialogCard,
   Divider,
@@ -16,6 +17,7 @@ import {
   TextArea,
 } from "../components/ui";
 import {
+  customerValues,
   eligibilityPlanets,
   launchInfoCards,
   missionTypeValues,
@@ -40,6 +42,9 @@ export default function Launch() {
   const { register, handleSubmit, formState, reset, control } =
     useForm<LaunchFormData>({
       resolver: zodResolver(launchSchema),
+      defaultValues: {
+        customers: [],
+      },
     });
 
   const inputError = formState.errors;
@@ -60,7 +65,7 @@ export default function Launch() {
       type: data.missionType,
       isAborted: false,
       description: data.description,
-      customers: ["JAXA", "CSA"],
+      customers: data.customers,
     });
 
     successAudio.trigger();
@@ -253,6 +258,24 @@ export default function Launch() {
                         />
                       )}
                     />
+
+                    <Card
+                      className="sm:col-span-2 p-4"
+                      cornerBorders={false}
+                      variant={
+                        inputError.customers?.message ? "error" : "secondary"
+                      }
+                    >
+                      <CheckboxGroup
+                        wrapperClassName="col-span-full"
+                        label="● Customers"
+                        isRequired
+                        error={inputError.customers?.message}
+                        options={customerValues}
+                        variant="basic"
+                        {...register("customers")}
+                      />
+                    </Card>
 
                     <TextArea
                       id="mission-description"
