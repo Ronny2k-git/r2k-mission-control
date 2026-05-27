@@ -9,4 +9,4 @@ export const missionsRouter = express.Router();
 
 missionsRouter.get("/missions", getAllMissions);
 missionsRouter.post("/missions", createMission);
-missionsRouter.patch("/mission/:id/abort", abortMission);
+missionsRouter.patch("/missions/:id/abort", abortMission);

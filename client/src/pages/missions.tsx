@@ -10,6 +10,7 @@ import { MissionTableSection } from "../components/missions/MissionTableSection"
 import { Button, DialogCard, Divider, TextArea } from "../components/ui";
 import { upcomingInfoCards, type UpcomingData } from "../consts";
 import {
+  useAbortMission,
   useClickFeedback,
   useGetMissionGroups,
   useSearchMissions,
@@ -27,6 +28,7 @@ export default function Missions() {
   const [selectedMission, setSelectedMission] = useState<MissionSlim>();
   const [searchParams] = useSearchParams();
   const { liveMissions, scheduledMissions } = useGetMissionGroups();
+  const { mutate } = useAbortMission();
 
   const navigate = useNavigate();
   const updateQuery = useUpdateQuery();
@@ -61,6 +63,10 @@ export default function Missions() {
 
   // Function used to abort a selected mission.
   const onSubmit = () => {
+    if (!selectedMission) return;
+
+    mutate(selectedMission.id);
+
     abortAudio.trigger();
 
     // Show a toast message

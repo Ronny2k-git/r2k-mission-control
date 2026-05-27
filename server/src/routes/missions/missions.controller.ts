@@ -1,8 +1,9 @@
 import type { Request, Response } from "express";
 import { missions } from "../../models/missions.model";
-import { addNewMission, getMissionStatus } from "../../utils";
+import { abortMissionById, addNewMission, getMissionStatus } from "../../utils";
 import { createMissionSchema } from "./missions.schema";
 
+// Get all missions - (READ)
 export function getAllMissions(req: Request, res: Response) {
   const missionWithStatus = missions.map((mission) => ({
     ...mission,
@@ -12,6 +13,7 @@ export function getAllMissions(req: Request, res: Response) {
   return res.status(200).json(missionWithStatus);
 }
 
+// Create a new mission - (CREATE)
 export function createMission(req: Request, res: Response) {
   const result = createMissionSchema.safeParse(req.body);
 
@@ -26,24 +28,17 @@ export function createMission(req: Request, res: Response) {
   return res.status(201).json(mission);
 }
 
+// Abort a mission based on the provided ID - (UPDATE)
 export function abortMission(req: Request, res: Response) {
   const missionId = Number(req.params.id);
 
-  const mission = missions.find((m) => m.id === missionId);
+  const result = abortMissionById(missionId);
 
-  if (!mission) {
+  if (result.error) {
     return res.status(400).json({
-      error: "Mission not found",
+      error: result.error,
     });
   }
 
-  if (mission.isAborted) {
-    return res.status(400).json({
-      error: "Mission already aborted",
-    });
-  }
-
-  mission.isAborted = true;
-
-  return res.status(201).json();
+  return res.status(200).json(result.mission);
 }

@@ -15,6 +15,7 @@ export function getMissionStatus(mission: MissionDB) {
   return "success";
 }
 
+// Used to add a new mission
 export function addNewMission(mission: CreateMissionDTO) {
   const newMission: MissionDB = {
     ...mission,
@@ -24,4 +25,25 @@ export function addNewMission(mission: CreateMissionDTO) {
   missions.push(newMission);
 
   return newMission;
+}
+
+// Used to abort a mission by provided ID
+export function abortMissionById(id: number) {
+  const mission = missions.find((m) => m.id === id);
+
+  if (!mission) {
+    return {
+      error: "Mission not found",
+    };
+  }
+
+  if (mission.isAborted) {
+    return {
+      error: "Mission already aborted",
+    };
+  }
+
+  mission.isAborted = true;
+
+  return { mission };
 }

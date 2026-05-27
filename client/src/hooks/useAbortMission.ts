@@ -1,12 +1,12 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createMission } from "../services/missions";
+import { abortMission } from "../services/missions/abort-mission";
 
-export function useCreateMission() {
+export function useAbortMission() {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationKey: ["create-mission"],
-    mutationFn: createMission,
+    mutationKey: ["abort-mission"],
+    mutationFn: abortMission,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["missions"] });
     },
