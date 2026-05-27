@@ -8,7 +8,7 @@ import { CountdownClock, PageHeader } from "../components/global";
 import { MissionInfoCard } from "../components/missions";
 import { MissionTableSection } from "../components/missions/MissionTableSection";
 import { Button, DialogCard, Divider, TextArea } from "../components/ui";
-import { rockets, upcomingInfoCards, type UpcomingData } from "../consts";
+import { upcomingInfoCards, type UpcomingData } from "../consts";
 import {
   useClickFeedback,
   useGetMissionGroups,
@@ -16,8 +16,9 @@ import {
   useUpdateQuery,
 } from "../hooks";
 
+import { rockets } from "@common/consts";
 import { useToast } from "../hooks/useToast";
-import { missionSchema, type MissionFormData } from "../schemas";
+import { abortMissionSchema, type AbortMissionFormData } from "../schemas";
 import { getNextMissionDate, scrollToId } from "../utils";
 
 export default function Missions() {
@@ -35,8 +36,8 @@ export default function Missions() {
 
   // Mission form validation
   const { register, handleSubmit, formState, reset, resetField } =
-    useForm<MissionFormData>({
-      resolver: zodResolver(missionSchema),
+    useForm<AbortMissionFormData>({
+      resolver: zodResolver(abortMissionSchema),
     });
 
   // Used to get the query params

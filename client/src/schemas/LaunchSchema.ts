@@ -1,5 +1,5 @@
+import { customers, missionTypes, rockets } from "@common/consts";
 import { z } from "zod";
-import { customers, missionTypes, rockets } from "../consts";
 
 export const launchSchema = z
   .object({

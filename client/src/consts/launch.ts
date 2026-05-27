@@ -1,4 +1,3 @@
-import type { Customer, MissionType } from "@common/types";
 import type { ReactNode } from "react";
 import type { MissionCardInfoProps } from "../types";
 
@@ -20,8 +19,6 @@ export const customerValues = [
   { label: "Axiom", value: "Axiom" },
 ];
 
-export const customers = customerValues.map((c) => c.value as Customer);
-
 export const rocketValues = [
   { value: "falcon-9", name: "Falcon 9" },
   { value: "falcon-heavy", name: "Falcon Heavy" },
@@ -29,18 +26,12 @@ export const rocketValues = [
   { value: "sls", name: "SLS" },
 ];
 
-export const rockets = rocketValues.map((r) => r.value);
-
 export const missionTypeValues = [
   { value: "exploration", label: "Exploration" },
   { value: "cargo", label: "Cargo" },
   { value: "research", label: "Research" },
   { value: "crewed", label: "Crewed" },
 ];
-
-export const missionTypes = missionTypeValues.map(
-  (r) => r.value,
-) as MissionType[];
 
 export const launchInfoCards: MissionCardInfoProps<LaunchData>[] = [
   {
