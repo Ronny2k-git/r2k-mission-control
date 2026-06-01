@@ -17,7 +17,7 @@ export const createMissionSchema = z
 
     description: z.string().min(10).optional(),
 
-    customers: z.array(z.enum(customers)).min(1),
+    customers: z.array(z.enum(customers)).min(1).max(3),
 
     isAborted: z.boolean(),
   })

@@ -31,7 +31,8 @@ export const launchSchema = z
 
     customers: z
       .array(z.enum(customers))
-      .min(1, "Select at least one customer"),
+      .min(1, "Select at least one customer")
+      .max(3, "You can select up to 3 customers"),
   })
   .refine((data) => new Date(data.endDate) >= new Date(data.startDate), {
     message: "End date must be after start date",
