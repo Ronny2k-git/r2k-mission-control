@@ -37,7 +37,7 @@ It features server-like pagination via URL state, advanced filtering, search, an
 
 This project is designed to support a fullstack architecture using:
 
-- Node.js (REST API)
+- Node.js and Express (REST API)
 - Prisma ORM
 - MongoDB database
 
