@@ -16,6 +16,7 @@ import { filters, historyInfoCards, type HistoryData } from "../consts";
 import {
   useFilterMissions,
   useGetMissionGroups,
+  usePaginantedArray,
   useSearchMissions,
   useUpdateQuery,
 } from "../hooks";
@@ -28,13 +29,22 @@ export default function History() {
   const { liveMissions, completedMissions } = useGetMissionGroups();
 
   // Used to get the query params
-  const page = Number(searchParams.get("history_page") || 1);
-  const search = searchParams.get("history_search") || "";
-  const filter = searchParams.get("history_filter") || "all";
+  const { page, search, filter } = {
+    page: Number(searchParams.get("history_page") || 1),
+    search: searchParams.get("history_search") || "",
+    filter: searchParams.get("history_filter") || "all",
+  };
 
   // Filter history missions by search,success and aborted
   const { searchedMissions } = useSearchMissions(completedMissions, search);
   const { filteredMissions } = useFilterMissions(searchedMissions, filter);
+
+  // Pagination for history missions
+  const { value: paginatedMissions, totalPages } = usePaginantedArray({
+    data: filteredMissions,
+    page,
+    maximumPerPage: 10,
+  });
 
   // Used to fill into the info history cards data
   const nextCompletion = getNextMissionDate(liveMissions, "end");
@@ -121,8 +131,8 @@ export default function History() {
               />
 
               {/* Table */}
-              <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
-                <table className="w-full text-base text-cyan-text-light min-w-[48rem]">
+              <div className="w-full flex flex-col overflow-y-auto max-md:pb-2 min-h-[33rem]">
+                <table className="w-full text-base text-cyan-text-light min-w-[48rem] ">
                   <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
                     <tr>
                       <th className="p-3">Launch Date</th>
@@ -133,9 +143,9 @@ export default function History() {
                     </tr>
                   </thead>
 
-                  {filteredMissions.length > 0 && (
+                  {paginatedMissions.length > 0 && (
                     <tbody>
-                      {filteredMissions.map((item, i) => (
+                      {paginatedMissions.map((item, i) => (
                         <MissionRowCard
                           key={i}
                           id={item.id}
@@ -183,11 +193,11 @@ export default function History() {
 
                 <Pagination
                   page={page}
-                  totalPages={8}
+                  totalPages={totalPages}
                   onChange={(newPage) => {
                     updateQuery({ history_page: newPage });
                     requestAnimationFrame(() =>
-                      scrollToId("history_page_title"),
+                      scrollToId("history_page_title", 20),
                     );
                   }}
                 />

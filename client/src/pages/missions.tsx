@@ -13,6 +13,7 @@ import {
   useAbortMission,
   useClickFeedback,
   useGetMissionGroups,
+  usePaginantedArray,
   useSearchMissions,
   useUpdateQuery,
 } from "../hooks";
@@ -33,6 +34,14 @@ export default function Missions() {
   const navigate = useNavigate();
   const updateQuery = useUpdateQuery();
 
+  // Used to get the query params
+  const { livePage, scheduledPage, searchLive, searchScheduled } = {
+    livePage: Number(searchParams.get("missions_live_page") || 1),
+    scheduledPage: Number(searchParams.get("missions_scheduled_page") || 1),
+    searchLive: searchParams.get("missions_search_live") || "",
+    searchScheduled: searchParams.get("missions_search_scheduled") || "",
+  };
+
   const abortAudio = useClickFeedback("/sound/abort.mp3", 100);
   const errorAudio = useClickFeedback("/sound/warning.mp3", 100);
 
@@ -41,14 +50,6 @@ export default function Missions() {
     useForm<AbortMissionFormData>({
       resolver: zodResolver(abortMissionSchema),
     });
-
-  // Used to get the query params
-  const livePage = Number(searchParams.get("missions_live_page") || 1);
-  const scheduledPage = Number(
-    searchParams.get("missions_scheduled_page") || 1,
-  );
-  const searchLive = searchParams.get("missions_search_live") || "";
-  const searchScheduled = searchParams.get("missions_search_scheduled") || "";
 
   // Filter live and scheduled missions by search
   const { searchedMissions: searchedLive } = useSearchMissions(
@@ -60,6 +61,22 @@ export default function Missions() {
     scheduledMissions,
     searchScheduled,
   );
+
+  // Pagination for live missions
+  const { value: paginatedLiveMissions, totalPages: totalLivePages } =
+    usePaginantedArray({
+      data: searchedLive,
+      page: livePage,
+      maximumPerPage: 10,
+    });
+
+  // Pagination for scheduled missions
+  const { value: paginatedScheduledMissions, totalPages: totalScheduledPages } =
+    usePaginantedArray({
+      data: searchedUpcoming,
+      page: scheduledPage,
+      maximumPerPage: 10,
+    });
 
   // Function used to abort a selected mission.
   const onSubmit = () => {
@@ -125,13 +142,13 @@ export default function Missions() {
               <MissionTableSection
                 titleId="live-missions-table"
                 title="Live Missions"
-                missions={searchedLive}
+                missions={paginatedLiveMissions}
                 search={searchLive}
                 onSearch={(search) =>
                   updateQuery({ missions_search_live: search })
                 }
                 page={livePage}
-                totalPages={11}
+                totalPages={totalLivePages}
                 onPageChange={(newPage) => {
                   updateQuery({ missions_live_page: newPage });
                   requestAnimationFrame(() =>
@@ -151,13 +168,13 @@ export default function Missions() {
               <MissionTableSection
                 titleId="scheduled-missions-table"
                 title="Scheduled Missions"
-                missions={searchedUpcoming}
+                missions={paginatedScheduledMissions}
                 search={searchScheduled}
                 onSearch={(search) =>
                   updateQuery({ missions_search_scheduled: search })
                 }
                 page={scheduledPage}
-                totalPages={11}
+                totalPages={totalScheduledPages}
                 variant="scheduled"
                 onPageChange={(newPage) => {
                   updateQuery({ missions_scheduled_page: newPage });
