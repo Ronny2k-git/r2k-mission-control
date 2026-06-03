@@ -3,7 +3,7 @@ import {
   customerValues,
   missionTypeValues,
   rocketValues,
-} from "../../client/src/consts";
+} from "../../client/src/consts/launch";
 
 export const customers = customerValues.map((c) => c.value as Customer);
 
