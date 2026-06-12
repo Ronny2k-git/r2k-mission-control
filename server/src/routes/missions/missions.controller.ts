@@ -1,10 +1,12 @@
 import type { Request, Response } from "express";
-import { missions } from "../../models/missions.model";
+import { prisma } from "../../lib/prisma";
 import { abortMissionById, addNewMission, getMissionStatus } from "../../utils";
 import { createMissionSchema } from "./missions.schema";
 
 // Get all missions - (READ)
-export function getAllMissions(req: Request, res: Response) {
+export async function getAllMissions(req: Request, res: Response) {
+  const missions = await prisma.mission.findMany();
+
   const missionWithStatus = missions.map((mission) => ({
     ...mission,
     status: getMissionStatus(mission),

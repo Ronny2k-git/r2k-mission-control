@@ -1,4 +1,5 @@
 import { CreateMissionDTO, MissionDB } from "@common/types";
+import { prisma } from "../lib/prisma";
 import { missions } from "../models/missions.model";
 
 // Function used to calculate the mission status
@@ -16,15 +17,20 @@ export function getMissionStatus(mission: MissionDB) {
 }
 
 // Used to add a new mission
-export function addNewMission(mission: CreateMissionDTO) {
-  const newMission: MissionDB = {
-    ...mission,
-    id: missions.length + 1,
-  };
+export async function addNewMission(data: CreateMissionDTO) {
+  const mission = await prisma.mission.create({
+    data: {
+      ...data,
+    },
+  });
+  // const newMission: MissionDB = {
+  //   ...mission,
+  //   id: missions.length + 1,
+  // };
 
-  missions.push(newMission);
+  // missions.push(newMission);
 
-  return newMission;
+  // return newMission;
 }
 
 // Used to abort a mission by provided ID
