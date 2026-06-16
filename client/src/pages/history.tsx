@@ -129,45 +129,44 @@ export default function History() {
                   </div>
                 }
               />
-
               {/* Table */}
-              <div className="w-full flex flex-col overflow-y-auto max-md:pb-2">
-                <table className="w-full text-base text-cyan-text-light min-w-[48rem] ">
-                  <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
-                    <tr>
-                      <th className="p-3">Launch Date</th>
-                      <th>Mission</th>
-                      <th>Rocket</th>
-                      <th>Customers</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
+              {paginatedMissions.length > 0 ? (
+                <div className="w-full flex flex-col overflow-y-auto max-md:pb-2 min-h-[33rem]">
+                  <table className="w-full text-base text-cyan-text-light min-w-[48rem] ">
+                    <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
+                      <tr>
+                        <th className="p-3">Launch Date</th>
+                        <th>Mission</th>
+                        <th>Rocket</th>
+                        <th>Customers</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
 
-                  {paginatedMissions.length > 0 && (
-                    <tbody>
-                      {paginatedMissions.map((item, i) => (
-                        <MissionRowCard
-                          key={i}
-                          id={item.id}
-                          startDate={item.startDate}
-                          endDate={item.endDate}
-                          name={item.name}
-                          rocket={item.rocket}
-                          target={item.target}
-                          status={item.status}
-                          type={item.type}
-                          variant="history"
-                          customers={item.customers}
-                        />
-                      ))}
-                    </tbody>
-                  )}
-                </table>
-              </div>
-
-              {/* Display this banner when the table is empty */}
-              {filteredMissions.length === 0 && (
+                    {paginatedMissions.length > 0 && (
+                      <tbody>
+                        {paginatedMissions.map((item, i) => (
+                          <MissionRowCard
+                            key={i}
+                            id={item.id}
+                            startDate={item.startDate}
+                            endDate={item.endDate}
+                            name={item.name}
+                            rocket={item.rocket}
+                            target={item.target}
+                            status={item.status}
+                            type={item.type}
+                            variant="history"
+                            customers={item.customers}
+                          />
+                        ))}
+                      </tbody>
+                    )}
+                  </table>
+                </div>
+              ) : (
                 <div className="flex flex-col gap-6 m-4 sm:m-6">
+                  {/* Display this banner when the table is empty */}
                   <EmptyBanner
                     key="history-empty-banner"
                     variant="cyan"

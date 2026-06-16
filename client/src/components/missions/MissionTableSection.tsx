@@ -78,35 +78,35 @@ export function MissionTableSection({
         />
 
         {/* Table */}
-        <div className="w-full flex flex-col overflow-y-auto max-md:pb-2 ">
-          <table className="w-full text-base text-cyan-text-light min-w-[48rem]">
-            <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
-              <tr>
-                <th className="p-3">Launch Date</th>
-                <th>Mission</th>
-                <th>Rocket</th>
-                <th>Destination</th>
-                <th>Abort</th>
-              </tr>
-            </thead>
+        {missions.length > 0 ? (
+          <div className="w-full flex flex-col overflow-y-auto max-md:pb-2 min-h-[33rem]">
+            <table className="w-full text-base text-cyan-text-light min-w-[48rem]">
+              <thead className="bg-secondary-card border-y text-cyber-cyan-text border-bg-border">
+                <tr>
+                  <th className="p-3">Launch Date</th>
+                  <th>Mission</th>
+                  <th>Rocket</th>
+                  <th>Destination</th>
+                  <th>Abort</th>
+                </tr>
+              </thead>
 
-            <tbody>
-              {missions.length > 0 &&
-                missions.map((item) => (
-                  <MissionRowCard
-                    key={item.id}
-                    {...item}
-                    variant={variant}
-                    onAbort={onAbort}
-                  />
-                ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Empty state */}
-        {missions.length === 0 && (
+              <tbody>
+                {missions.length > 0 &&
+                  missions.map((item) => (
+                    <MissionRowCard
+                      key={item.id}
+                      {...item}
+                      variant={variant}
+                      onAbort={onAbort}
+                    />
+                  ))}
+              </tbody>
+            </table>
+          </div>
+        ) : (
           <div className="flex flex-col gap-6 m-4 sm:m-6">
+            {/* Empty state */}
             <EmptyBanner
               variant={emptyVariant}
               primaryActionVariant="ghost"

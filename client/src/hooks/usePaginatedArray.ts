@@ -9,13 +9,15 @@ export function usePaginantedArray<T>({
   page,
   maximumPerPage,
 }: usePaginantedArrayProps<T>) {
-  const currentPageLive = Math.max(1, page ?? 1);
+  const totalPages = Math.max(1, Math.ceil(data.length / maximumPerPage));
+
+  const currentPageLive = Math.min(Math.max(1, page ?? 1), totalPages);
 
   return {
-    value: data?.slice(
+    value: data.slice(
       (currentPageLive - 1) * maximumPerPage,
       currentPageLive * maximumPerPage,
     ),
-    totalPages: Math.ceil((data?.length ?? 0) / maximumPerPage),
+    totalPages,
   };
 }
