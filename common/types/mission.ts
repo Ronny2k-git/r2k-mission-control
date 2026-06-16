@@ -20,7 +20,7 @@ export type MissionBase = {
   startDate: Date;
   endDate: Date;
   type: MissionType;
-  description?: string;
+  description?: string | null;
 };
 
 export type MissionDB = MissionBase & {

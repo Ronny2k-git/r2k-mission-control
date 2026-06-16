@@ -1,6 +1,13 @@
 import { CreateMissionDTO, MissionDB } from "@common/types";
+import { Customer, Prisma } from "../../generated/prisma/client";
 import { prisma } from "../lib/prisma";
-import { missions } from "../models/missions.model";
+
+export function toMissionDB(mission: Prisma.MissionGetPayload<{}>): MissionDB {
+  return {
+    ...mission,
+    customers: mission.customers as Customer[],
+  };
+}
 
 // Function used to calculate the mission status
 export function getMissionStatus(mission: MissionDB) {
@@ -18,24 +25,20 @@ export function getMissionStatus(mission: MissionDB) {
 
 // Used to add a new mission
 export async function addNewMission(data: CreateMissionDTO) {
-  const mission = await prisma.mission.create({
+  return await prisma.mission.create({
     data: {
       ...data,
     },
   });
-  // const newMission: MissionDB = {
-  //   ...mission,
-  //   id: missions.length + 1,
-  // };
-
-  // missions.push(newMission);
-
-  // return newMission;
 }
 
 // Used to abort a mission by provided ID
-export function abortMissionById(id: number) {
-  const mission = missions.find((m) => m.id === id);
+export async function abortMissionById(id: number) {
+  const mission = await prisma.mission.findUnique({
+    where: {
+      id,
+    },
+  });
 
   if (!mission) {
     return {
@@ -49,7 +52,14 @@ export function abortMissionById(id: number) {
     };
   }
 
-  mission.isAborted = true;
+  const updatedMission = await prisma.mission.update({
+    where: {
+      id,
+    },
+    data: {
+      isAborted: true,
+    },
+  });
 
-  return { mission };
+  return { mission: updatedMission };
 }

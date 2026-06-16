@@ -42,7 +42,7 @@ model Mission {
   startDate    DateTime
   endDate      DateTime
   description  String?
-  customers    String
+  customers    Json
   isAborted    Boolean  @default(false)
   createdAt    DateTime @default(now())
 }
