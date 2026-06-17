@@ -117,7 +117,9 @@ export default function History() {
                         variant={filter === item.value ? item.variant : "ghost"}
                         size="lg"
                         onClick={() =>
-                          updateQuery({ history_filter: item.value })
+                          updateQuery({
+                            history_filter: item.value,
+                          })
                         }
                       >
                         {item.icon && (
@@ -173,7 +175,10 @@ export default function History() {
                     primaryActionVariant="ghost"
                     secondaryActionVariant="basic"
                     onPrimaryAction={() => {
-                      updateQuery({ history_search: "" });
+                      updateQuery({
+                        history_search: "",
+                        history_filter: "all",
+                      });
                     }}
                     onSecondaryAction={() => {
                       navigate("/");
