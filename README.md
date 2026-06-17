@@ -46,4 +46,4 @@ The backend is responsible for:
 - 📦 Missions data persistence
 - 🔍 Filtering and search queries
 - 📄 Server-side pagination
-- ⚙️ Status management (live, scheduled, complete
+- ⚙️ Status management (live, scheduled, completeded).
