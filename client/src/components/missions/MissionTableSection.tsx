@@ -52,7 +52,7 @@ export function MissionTableSection({
       {/* Title */}
       <h2
         id={titleId}
-        className="font-extrabold text-white text-2xl sm:text-3xl font-heading leading-10"
+        className="font-extrabold text-white text-xl sm:text-2xl font-heading leading-10"
       >
         {title.split(" ")[0]}{" "}
         <span className="text-cyber-cyan-text">

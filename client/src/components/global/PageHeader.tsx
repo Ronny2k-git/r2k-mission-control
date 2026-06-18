@@ -16,7 +16,7 @@ export function PageHeader({
       <span className="font-mono text-xs tracking-[0.3em] text-cyber-cyan-text uppercase">
         {tag}
       </span>
-      <h1 className="text-2xl sm:text-4xl font-extrabold font-heading text-white leading-tight tracking-tight">
+      <h1 className="text-2xl sm:text-3xl font-extrabold font-heading text-white leading-tight tracking-tight">
         {title} <span className="text-cyber-cyan-text">{highlight}</span>
       </h1>
       <div className="w-16 h-[2px] bg-cyber-cyan-text" />

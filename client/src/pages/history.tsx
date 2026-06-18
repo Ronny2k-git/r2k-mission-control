@@ -94,7 +94,7 @@ export default function History() {
           {/* Title */}
           <h2
             id="history_page_title"
-            className="font-extrabold text-white text-2xl sm:text-3xl font-heading leading-10"
+            className="font-extrabold text-white text-xl sm:text-2xl font-heading leading-10"
           >
             Launch <span className="text-cyber-cyan-text">Records</span>
           </h2>

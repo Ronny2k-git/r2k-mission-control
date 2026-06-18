@@ -120,7 +120,7 @@ export default function Launch() {
 
           <section className="flex flex-col gap-8 text-base sm:text-lg animate-fade-up">
             {/* Title */}
-            <h2 className="font-extrabold text-white text-2xl sm:text-3xl sm:max-w-[27.2rem] font-heading leading-10">
+            <h2 className="font-extrabold text-white text-xl sm:text-2xl sm:max-w-[19rem] font-heading leading-10">
               Schedule a <span className="text-cyber-cyan-text">Launch</span> to
               Kepler Exoplanets.
             </h2>
