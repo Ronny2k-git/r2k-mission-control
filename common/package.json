@@ -1,7 +1,9 @@
 {
   "name": "@r2k/common",
   "version": "1.0.0",
-  "private": true,
-  "types": "./index.ts",
-  "main": "./index.ts"
+  "type": "module",
+  "main": "./index.ts",
+  "scripts": {
+    "build": "echo 'no build step'"
+  }
 }

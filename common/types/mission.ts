@@ -2,6 +2,15 @@ export type MissionStatus = "upcoming" | "running" | "success" | "aborted";
 
 export type MissionType = "exploration" | "research" | "cargo" | "crewed";
 
+export type MissionCardInfoProps<T> = {
+  title: string;
+  key: keyof T;
+  textColor: string;
+  variant: string;
+};
+
+export type FilterType = "all" | "success" | "aborted";
+
 export type Customer =
   | "NASA"
   | "ESA"

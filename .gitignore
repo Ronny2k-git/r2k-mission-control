@@ -38,6 +38,9 @@ pnpm-debug.log*
 prisma/*.db
 prisma/*.db-journal
 
+server/generated
+common/generated
+
 # =====================
 # Frontend
 # =====================

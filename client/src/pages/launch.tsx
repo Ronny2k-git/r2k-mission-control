@@ -1,3 +1,4 @@
+import { launchInfoCards as rawLaunchInfoCards } from "@common/consts";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Check, Rocket, RotateCcwIcon, X } from "lucide-react";
 import { useState } from "react";
@@ -16,14 +17,15 @@ import {
   Selector,
   TextArea,
 } from "../components/ui";
+import type { MissionCardInfoProps } from "../types";
+
 import {
   customerValues,
   eligibilityPlanets,
-  launchInfoCards,
   missionTypeValues,
   rocketValues,
   type LaunchData,
-} from "../consts";
+} from "@common/consts";
 import { useClickFeedback, useGetMissionGroups } from "../hooks";
 import { useCreateMission } from "../hooks/useCreateMission";
 import { useGetPlanets } from "../hooks/useGetPlanets";
@@ -50,6 +52,9 @@ export default function Launch() {
   const inputError = formState.errors;
 
   const navigate = useNavigate();
+
+  const launchInfoCards =
+    rawLaunchInfoCards as MissionCardInfoProps<LaunchData>[];
 
   const successAudio = useClickFeedback("/sound/success.mp3", 100);
   const errorAudio = useClickFeedback("/sound/warning.mp3", 100);

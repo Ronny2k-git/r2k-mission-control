@@ -1,4 +1,4 @@
-import { customers, missionTypes, rockets } from "@common/consts";
+import { customers, missionTypes, rockets } from "@common/consts/mission";
 import { z } from "zod";
 
 export const createMissionSchema = z

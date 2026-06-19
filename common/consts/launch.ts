@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import type { MissionCardInfoProps } from "../types";
+import type { MissionCardInfoProps } from "../types/mission.js";
 
 export type LaunchData = {
   planets: number;

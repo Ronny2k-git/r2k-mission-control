@@ -1,2 +1,2 @@
-export * from "./mission";
-export * from "./planet";
+export * from "./mission.js";
+export * from "./planet.js";

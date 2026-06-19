@@ -3,9 +3,12 @@
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
-    "rootDir": "..",
+
+    "rootDir": "../",
     "outDir": "./dist",
 
+    "ignoreDeprecations": "6.0",
+    "baseUrl": ".",
     "paths": {
       "@common/*": ["../common/*"]
     },
@@ -13,5 +16,9 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true
-  }
+  },
+
+  "include": ["src/**/*.ts", "../common/**/*.ts"],
+
+  "exclude": ["node_modules", "dist", "generated"]
 }

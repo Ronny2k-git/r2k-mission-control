@@ -1,6 +1,6 @@
+import { type Planet } from "@r2k/common/types";
 import { parse } from "csv-parse";
 import fs from "fs";
-import { type Planet } from "../../../common/types";
 
 interface KeplerPlanet {
   koi_disposition: string;

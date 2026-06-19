@@ -1,9 +1,5 @@
-import type { Customer, MissionType } from "@common/types";
-import {
-  customerValues,
-  missionTypeValues,
-  rocketValues,
-} from "../../client/src/consts/launch";
+import type { Customer, MissionType } from "../types/mission.js";
+import { customerValues, missionTypeValues, rocketValues } from "./launch.js";
 
 export const customers = customerValues.map((c) => c.value as Customer);
 
