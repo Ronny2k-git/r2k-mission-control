@@ -17,7 +17,7 @@ export type Customer =
   | "JAXA"
   | "CSA"
   | "SpaceX"
-  | "BlueOrigin"
+  | "Blue Origin"
   | "DARPA"
   | "Axiom";
 

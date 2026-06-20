@@ -1,9 +1,8 @@
-import type { ReactNode } from "react";
 import type { MissionCardInfoProps } from "../types/mission.js";
 
-export type LaunchData = {
+export type BaseLaunchData = {
   planets: number;
-  nextMission: ReactNode;
+  nextMission: string;
   activeMissions: number;
   status: string;
 };
@@ -33,7 +32,7 @@ export const missionTypeValues = [
   { value: "crewed", label: "Crewed" },
 ];
 
-export const launchInfoCards: MissionCardInfoProps<LaunchData>[] = [
+export const launchInfoCards: MissionCardInfoProps<BaseLaunchData>[] = [
   {
     title: "Eligible Planets",
     key: "planets",

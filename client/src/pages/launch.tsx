@@ -17,14 +17,13 @@ import {
   Selector,
   TextArea,
 } from "../components/ui";
-import type { MissionCardInfoProps } from "../types";
+import type { LaunchData, MissionCardInfoProps } from "../types";
 
 import {
   customerValues,
   eligibilityPlanets,
   missionTypeValues,
   rocketValues,
-  type LaunchData,
 } from "@common/consts";
 import { useClickFeedback, useGetMissionGroups } from "../hooks";
 import { useCreateMission } from "../hooks/useCreateMission";
