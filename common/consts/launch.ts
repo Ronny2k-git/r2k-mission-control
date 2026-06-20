@@ -14,7 +14,7 @@ export const customerValues = [
   { label: "JAXA", value: "JAXA" },
   { label: "CSA", value: "CSA" },
   { label: "SpaceX", value: "SpaceX" },
-  { label: "Blue Origin", value: "Blue Origin" },
+  { label: "Blue Origin", value: "BlueOrigin" },
   { label: "DARPA", value: "DARPA" },
   { label: "Axiom", value: "Axiom" },
 ];
