@@ -9,7 +9,7 @@ export const app = express();
 // The CORS is required for the frontend to access the content.
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL || "http://localhost:5173",
   }),
 );
 
