@@ -27,7 +27,7 @@ enum Customer {
   JAXA
   CSA
   SpaceX
-  BlueOrigin
+  BlueOrigin @map("Blue Origin")
   DARPA
   Axiom
 }
