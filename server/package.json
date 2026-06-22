@@ -4,7 +4,7 @@
   "description": "R2K Mission Control",
   "main": "src/server.js",
   "scripts": {
-    "build": "tsc",
+    "build": "prisma generate && tsc",
     "test": "jest",
     "test-watch": "jest --watch",
     "watch": "nodemon src/server.ts",
