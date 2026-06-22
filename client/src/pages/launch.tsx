@@ -309,7 +309,7 @@ export default function Launch() {
 
                     <div className="flex max-sm:flex-col max-md:w-full gap-4">
                       <Button
-                        className="w-full md:w-[10rem] py-2 gap-2"
+                        className="w-full md:w-[12rem] py-2 gap-2"
                         variant="ghost"
                         onClick={() => reset()}
                       >

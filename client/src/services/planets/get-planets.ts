@@ -1,4 +1,4 @@
-import { type Planet } from "../../../../common/types";
+import type { Planet } from "@common/types";
 import { api } from "../api";
 
 export async function getPlanets() {
