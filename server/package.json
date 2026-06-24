@@ -15,9 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@r2k/common": "*",
-    "@prisma/adapter-mariadb": "^7.8.0",
     "@prisma/client": "^6.19.3",
+    "@r2k/common": "*",
     "cors": "^2.8.6",
     "csv-parse": "^6.2.1",
     "dotenv": "^17.4.2",
