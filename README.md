@@ -39,7 +39,7 @@ This project is designed to support a fullstack architecture using:
 
 - Node.js and Express (REST API)
 - Prisma ORM
-- MongoDB database
+- PostgreSQL database (Neon)
 
 The backend is responsible for:
 
